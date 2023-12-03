@@ -1,0 +1,9 @@
+1701636508860|0|statement|     drop table if exists users cascade 
+1701636508875|8|statement|     create table users (         user_id uuid not null,         email varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1701636510116|2|statement|insert into users (email,password,profile_picture,username,user_id) values (NULL,NULL,NULL,'Ayoub','53591338-5fcd-4129-9c70-ba9e4e70fd83')
+1701636510144|0|commit|
+1701636511080|1|statement|     drop table if exists users cascade 
+1701636564341|0|statement|     drop table if exists users cascade 
+1701636564355|5|statement|     create table users (         user_id uuid not null,         email varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1701636565332|2|statement|insert into users (email,password,profile_picture,username,user_id) values (NULL,NULL,NULL,'Ayoub','8bf60078-3323-4375-9bf1-f784bf98cb05')
+1701636565371|0|commit|
