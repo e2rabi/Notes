@@ -1,10 +1,15 @@
 
 spring:
   datasource:
+    type: com.zaxxer.hikari.HikariDataSource
     jdbcUrl: jdbc:h2:mem:testdb3;DB_CLOSE_DELAY=-1
     driverClassName: org.h2.Driver
     username: sa
     password:
+    hikari:
+      connection-timeout: 30000
+      idleTimeout: 600000
+      max-lifetime: 1800000
   jpa:
     hibernate:
       ddl-auto: none

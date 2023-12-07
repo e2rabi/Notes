@@ -29,6 +29,7 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.1'
+	implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.1.0'
 	implementation group: 'org.flywaydb', name: 'flyway-core', version: '10.1.0'
 
 	runtimeOnly 'com.h2database:h2'
