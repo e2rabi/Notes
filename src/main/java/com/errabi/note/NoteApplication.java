@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.sql.DataSource;
+import java.util.Optional;
 
 @Slf4j
 @SpringBootApplication
@@ -26,5 +27,9 @@ public class NoteApplication implements CommandLineRunner {
 		user.setUsername("Ayoub");
         log.info("Datasource : {}",dataSource.getClass().getName());
 		userRepository.save(user);
+		User a = userRepository.findById(1l).get();
+		a.setUsername("lalal");
+		userRepository.save(a);
+
 	}
 }
