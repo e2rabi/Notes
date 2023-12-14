@@ -1,6 +1,7 @@
 package com.errabi.note;
 
 import com.errabi.note.entities.User;
+import com.errabi.note.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -8,13 +9,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.sql.DataSource;
-import java.util.Optional;
 
 @Slf4j
 @SpringBootApplication
 public class NoteApplication implements CommandLineRunner {
      @Autowired
-	UserRepository userRepository ;
+	 UserRepository userRepository ;
 	@Autowired
 	private DataSource dataSource;
 	public static void main(String[] args) {
