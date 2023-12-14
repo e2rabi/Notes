@@ -1,6 +1,7 @@
 package com.errabi.note;
 
 import com.errabi.note.entities.User;
+import com.errabi.note.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,7 +14,7 @@ import javax.sql.DataSource;
 @SpringBootApplication
 public class NoteApplication implements CommandLineRunner {
      @Autowired
-	UserRepository userRepository ;
+	 UserRepository userRepository ;
 	@Autowired
 	private DataSource dataSource;
 	public static void main(String[] args) {
@@ -26,5 +27,9 @@ public class NoteApplication implements CommandLineRunner {
 		user.setUsername("Ayoub");
         log.info("Datasource : {}",dataSource.getClass().getName());
 		userRepository.save(user);
+		User a = userRepository.findById(1l).get();
+		a.setUsername("lalal");
+		userRepository.save(a);
+
 	}
 }
