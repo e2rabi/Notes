@@ -1,15 +1,13 @@
 package com.errabi.note.service;
 
+import com.errabi.note.entities.User;
 import com.errabi.note.service.mapper.UserMapper;
 import com.errabi.note.service.model.UserDto;
 import com.errabi.note.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 @Slf4j
 @Service
@@ -40,5 +38,14 @@ public class UserService {
         var existingUser =  findById(replacementUser.getUserId());
         BeanUtils.copyProperties(replacementUser,existingUser);
         userRepository.save(mapper.toEntity(existingUser));
+    }
+    public Page<UserDto> findByQuery(UserDto userQuery,Pageable page){
+        var user = mapper.toEntity(userQuery);
+        ExampleMatcher exampleMatcher = ExampleMatcher.matching()
+                                                      .withIgnorePaths("userId")
+                                                      .withIgnoreCase();
+        Example<User> userExample = Example.of(user,exampleMatcher);
+        return userRepository.findAll(userExample,PageRequest.of(page.getPageNumber(),page.getPageSize()))
+                             .map(mapper::toModel);
     }
 }
