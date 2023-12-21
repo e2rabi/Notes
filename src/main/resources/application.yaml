@@ -9,6 +9,7 @@ spring:
     username: sa
     password:
     hikari:
+      auto-commit: false # delaying connection acquisition turn of auto commit mode
       connection-timeout: 30000
       idleTimeout: 600000
       max-lifetime: 1800000
@@ -18,6 +19,9 @@ spring:
       ddl-auto: create
     properties:
       hibernate:
+        connection:
+          provider_disables_autocommit: true # delaying hibernates connection acquisition ,turn of auto commit mode
+
         dialect: org.hibernate.dialect.H2Dialect
         format_sql: true
         generate_statistics: false
@@ -28,6 +32,9 @@ spring:
 
 logging:
   level:
+    com:
+      zaxxer:
+        hikari: TRACE # turn on hikari connection pool logging ,each 30s logs the status of the connection pool in the console
     org:
       hibernate:
          orm:
