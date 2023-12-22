@@ -36,6 +36,10 @@ logging:
       zaxxer:
         hikari: TRACE # turn on hikari connection pool logging ,each 30s logs the status of the connection pool in the console
     org:
+      springframework:
+        orm:
+          jpa: debug #logging transaction details
+        transaction: debug #logging transaction details
       hibernate:
          orm:
           jdbc:

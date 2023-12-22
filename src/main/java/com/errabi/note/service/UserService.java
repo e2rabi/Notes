@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -20,12 +22,14 @@ public class UserService {
         var createdUser =  userRepository.save(mapper.toEntity(userDto));
         return mapper.toModel(createdUser);
     }
+    @Transactional(readOnly = true) // avoid automatic dirty check and snapshot copy
     public UserDto findById(Long userId){
         return userRepository.findById(userId)
                 .map(mapper::toModel)
                 .orElseThrow(()->new RuntimeException("User with id {} not found !"));
 
     }
+    @Transactional(readOnly = true)
     public Page<UserDto> findAll(Pageable page){
        return userRepository.findAll(PageRequest.of(page.getPageNumber(),page.getPageSize(),Sort.by("username")))
                             .map(mapper::toModel);
@@ -39,6 +43,7 @@ public class UserService {
         BeanUtils.copyProperties(replacementUser,existingUser);
         userRepository.save(mapper.toEntity(existingUser));
     }
+    @Transactional(readOnly = true)
     public Page<UserDto> findByQuery(UserDto userQuery,Pageable page){
         var user = mapper.toEntity(userQuery);
         ExampleMatcher exampleMatcher = ExampleMatcher.matching()
