@@ -5,5 +5,6 @@
           password varchar(255),
           profile_picture varchar(255),
           username varchar(255),
+          version number,
           primary key (user_id)
 );

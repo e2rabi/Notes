@@ -32,4 +32,6 @@ public class User {
     private String createdBy ;
     @LastModifiedBy
     private String lastModifiedBy ;
+    @Version
+    private int version ;
 }
