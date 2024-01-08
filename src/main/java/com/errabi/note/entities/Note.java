@@ -1,7 +1,7 @@
 package com.errabi.note.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedBy;
@@ -11,20 +11,22 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+
 @Slf4j
 @Data
 @Entity
 @DynamicUpdate // for merge operation update only modified fields
-@Table(name = "users")
+@Table(name = "note")
 @EntityListeners(AuditingEntityListener.class)
-public class User {
+public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long userId;
-    private String username;
-    private String email;
-    private String password;
-    private String profilePicture ;
+    private Long noteId;
+    private String name;
+    private String description;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "userId")
+    private User user ;
     @CreatedDate
     private LocalDateTime created ;
     @LastModifiedDate
@@ -35,8 +37,4 @@ public class User {
     private String lastModifiedBy ;
     @Version
     private int version ;
-    @PostRemove
-    public void postRemove(){
-        log.warn("deleted user id {}",this.userId);
-    }
 }

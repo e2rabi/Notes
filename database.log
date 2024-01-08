@@ -1273,3 +1273,970 @@
 1702855253805|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
 1702855253821|0|statement|update users set last_modified='2023-12-18T00:20:53.805+0100',username='lalal' where user_id=1
 1702855253823|0|commit|
+1703199749233|8|statement|CALL SCHEMA()
+1703199749260|3|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1703199749263|0|statement|CALL SCHEMA()
+1703199749265|0|statement|CALL SCHEMA()
+1703199749265|0|statement|SELECT USER()
+1703199749282|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1703199749292|2|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703199749312|0|commit|
+1703199749322|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703199749322|0|commit|
+1703199749322|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703199749324|1|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1703199749324|0|statement|SELECT USER()
+1703199749356|7|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1703199749362|2|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1703199749367|0|commit|
+1703199749367|0|commit|
+1703199749367|0|statement|CALL SCHEMA()
+1703199749372|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703199749387|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703199749392|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703199749392|0|statement|SET SCHEMA "PUBLIC"
+1703199749392|0|statement|drop table if exists users cascade
+1703199749392|0|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           primary key (user_id) )
+1703199749392|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703199749403|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703199749403|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 606469220, 'SA', 5, true)
+1703199749411|0|commit|
+1703199749411|0|commit|
+1703199749411|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703199749411|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703199749411|0|commit|
+1703199749422|0|statement|SET SCHEMA "PUBLIC"
+1703199749422|0|commit|
+1703199749422|0|statement|SET SCHEMA "PUBLIC"
+1703199749422|0|commit|
+1703199750564|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1703199751392|0|commit|
+1703199751392|0|statement|     drop table if exists users cascade 
+1703199751392|0|statement|     drop sequence if exists users_seq
+1703199751392|0|commit|
+1703199751392|2|statement|     create sequence users_seq start with 1 increment by 50
+1703199751402|0|statement|     create table users (         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1703199752462|0|statement|select next value for users_seq
+1703199752512|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,user_id) values ('2023-12-22T00:02:32.456+0100','errabi',NULL,'2023-12-22T00:02:32.456+0100','errabi',NULL,NULL,'Ayoub',1)
+1703199752512|0|commit|
+1703199752562|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703199752567|0|commit|
+1703199752572|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703199752589|0|statement|update users set last_modified='2023-12-22T00:02:32.572+0100',username='lalal' where user_id=1
+1703199752592|0|commit|
+1703199843098|14|statement|CALL SCHEMA()
+1703199843126|2|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1703199843130|0|statement|CALL SCHEMA()
+1703199843133|0|statement|CALL SCHEMA()
+1703199843135|0|statement|SELECT USER()
+1703199843144|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1703199843163|2|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703199843181|0|commit|
+1703199843184|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703199843185|0|commit|
+1703199843186|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703199843189|1|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1703199843191|0|statement|SELECT USER()
+1703199843225|10|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1703199843233|3|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1703199843234|0|commit|
+1703199843235|0|commit|
+1703199843238|0|statement|CALL SCHEMA()
+1703199843241|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703199843259|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703199843272|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703199843273|0|statement|SET SCHEMA "PUBLIC"
+1703199843277|0|statement|drop table if exists users cascade
+1703199843279|1|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           primary key (user_id) )
+1703199843282|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703199843285|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703199843297|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 606469220, 'SA', 8, true)
+1703199843299|0|commit|
+1703199843300|0|commit|
+1703199843302|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703199843303|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703199843309|0|commit|
+1703199843321|0|statement|SET SCHEMA "PUBLIC"
+1703199843321|0|commit|
+1703199843321|0|statement|SET SCHEMA "PUBLIC"
+1703199843321|0|commit|
+1703199844256|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1703199844941|0|commit|
+1703199844957|0|statement|     drop table if exists users cascade 
+1703199844957|0|statement|     drop sequence if exists users_seq
+1703199844957|0|commit|
+1703199844957|1|statement|     create sequence users_seq start with 1 increment by 50
+1703199844957|1|statement|     create table users (         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1703199845899|1|statement|select next value for users_seq
+1703199845930|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,user_id) values ('2023-12-22T00:04:05.887+0100','errabi',NULL,'2023-12-22T00:04:05.887+0100','errabi',NULL,NULL,'Ayoub',1)
+1703199845946|0|commit|
+1703199846009|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703199846025|0|commit|
+1703199846025|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703199846040|0|statement|update users set last_modified='2023-12-22T00:04:06.025+0100',username='lalal' where user_id=1
+1703199846040|0|commit|
+1703199947626|10|statement|CALL SCHEMA()
+1703199947644|2|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1703199947649|0|statement|CALL SCHEMA()
+1703199947651|0|statement|CALL SCHEMA()
+1703199947653|0|statement|SELECT USER()
+1703199947668|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1703199947683|3|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703199947706|0|commit|
+1703199947711|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703199947711|0|commit|
+1703199947712|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703199947717|3|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1703199947725|0|statement|SELECT USER()
+1703199947768|13|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1703199947778|2|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1703199947780|0|commit|
+1703199947780|0|commit|
+1703199947785|0|statement|CALL SCHEMA()
+1703199947789|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703199947805|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703199947818|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703199947820|0|statement|SET SCHEMA "PUBLIC"
+1703199947823|0|statement|drop table if exists users cascade
+1703199947824|1|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           primary key (user_id) )
+1703199947826|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703199947828|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703199947838|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 606469220, 'SA', 7, true)
+1703199947838|0|commit|
+1703199947839|0|commit|
+1703199947840|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703199947840|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703199947844|0|commit|
+1703199947855|0|statement|SET SCHEMA "PUBLIC"
+1703199947855|0|commit|
+1703199947855|0|statement|SET SCHEMA "PUBLIC"
+1703199947856|0|commit|
+1703199948870|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1703199949629|0|commit|
+1703199949629|0|statement|     drop table if exists users cascade 
+1703199949629|0|statement|     drop sequence if exists users_seq
+1703199949639|0|commit|
+1703199949639|2|statement|     create sequence users_seq start with 1 increment by 50
+1703199949648|1|statement|     create table users (         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1703199950848|1|statement|select next value for users_seq
+1703199950898|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,user_id) values ('2023-12-22T00:05:50.848+0100','errabi',NULL,'2023-12-22T00:05:50.848+0100','errabi',NULL,NULL,'Ayoub',1)
+1703199950908|0|commit|
+1703199950963|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703199950971|0|commit|
+1703199950978|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703199950988|0|statement|update users set last_modified='2023-12-22T00:05:50.978+0100',username='lalal' where user_id=1
+1703199950988|0|commit|
+1703283848192|14|statement|CALL SCHEMA()
+1703283848223|2|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1703283848228|0|statement|CALL SCHEMA()
+1703283848231|0|statement|CALL SCHEMA()
+1703283848235|0|statement|SELECT USER()
+1703283848254|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1703283848282|5|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703283848308|0|commit|
+1703283848311|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703283848312|0|commit|
+1703283848313|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703283848317|2|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1703283848323|0|statement|SELECT USER()
+1703283848360|7|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1703283848367|2|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1703283848368|0|commit|
+1703283848368|0|commit|
+1703283848372|0|statement|CALL SCHEMA()
+1703283848375|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703283848394|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703283848406|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703283848408|0|statement|SET SCHEMA "PUBLIC"
+1703283848410|0|statement|drop table if exists users cascade
+1703283848412|1|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           primary key (user_id) )
+1703283848414|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703283848415|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703283848425|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 606469220, 'SA', 6, true)
+1703283848426|0|commit|
+1703283848427|0|commit|
+1703283848428|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703283848428|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703283848434|0|commit|
+1703283848447|0|statement|SET SCHEMA "PUBLIC"
+1703283848447|0|commit|
+1703283848448|0|statement|SET SCHEMA "PUBLIC"
+1703283848448|0|commit|
+1703283849752|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1703283850683|0|commit|
+1703283850684|1|statement|     drop table if exists users cascade 
+1703283850685|0|statement|     drop sequence if exists users_seq
+1703283850690|0|commit|
+1703283850692|1|statement|     create sequence users_seq start with 1 increment by 50
+1703283850700|0|statement|     create table users (         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1703283852392|1|statement|select next value for users_seq
+1703283852479|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,user_id) values ('2023-12-22T23:24:12.375+0100','errabi',NULL,'2023-12-22T23:24:12.375+0100','errabi',NULL,NULL,NULL,1)
+1703283852482|0|commit|
+1703283852549|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703283852563|0|commit|
+1703283852569|0|rollback|
+1703283852884|215|statement|SHUTDOWN
+1703283965731|9|statement|CALL SCHEMA()
+1703283965755|2|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1703283965759|0|statement|CALL SCHEMA()
+1703283965761|0|statement|CALL SCHEMA()
+1703283965762|0|statement|SELECT USER()
+1703283965770|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1703283965784|2|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703283965807|0|commit|
+1703283965816|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703283965817|0|commit|
+1703283965817|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703283965827|7|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1703283965837|0|statement|SELECT USER()
+1703283965891|15|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1703283965902|3|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1703283965903|0|commit|
+1703283965905|0|commit|
+1703283965910|0|statement|CALL SCHEMA()
+1703283965915|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703283965933|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703283965945|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703283965946|0|statement|SET SCHEMA "PUBLIC"
+1703283965950|0|statement|drop table if exists users cascade
+1703283965951|1|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           primary key (user_id) )
+1703283965954|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703283965955|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703283965965|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 606469220, 'SA', 8, true)
+1703283965966|0|commit|
+1703283965967|0|commit|
+1703283965967|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703283965968|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703283965974|0|commit|
+1703283965983|0|statement|SET SCHEMA "PUBLIC"
+1703283965984|0|commit|
+1703283965984|0|statement|SET SCHEMA "PUBLIC"
+1703283965984|0|commit|
+1703283967094|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1703283967965|0|commit|
+1703283967966|1|statement|     drop table if exists users cascade 
+1703283967967|0|statement|     drop sequence if exists users_seq
+1703283967975|0|commit|
+1703283967977|1|statement|     create sequence users_seq start with 1 increment by 50
+1703283967981|1|statement|     create table users (         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1703283969135|1|statement|select next value for users_seq
+1703283969179|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,user_id) values ('2023-12-22T23:26:09.123+0100','errabi',NULL,'2023-12-22T23:26:09.123+0100','errabi',NULL,NULL,NULL,1)
+1703283969183|0|commit|
+1703283988356|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703283988389|0|commit|
+1703284001230|0|rollback|
+1703284001514|209|statement|SHUTDOWN
+1703284030017|10|statement|CALL SCHEMA()
+1703284030043|3|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1703284030049|0|statement|CALL SCHEMA()
+1703284030052|0|statement|CALL SCHEMA()
+1703284030056|0|statement|SELECT USER()
+1703284030070|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1703284030094|4|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284030133|0|commit|
+1703284030141|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284030142|0|commit|
+1703284030143|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284030151|5|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1703284030165|0|statement|SELECT USER()
+1703284030211|9|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1703284030217|2|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1703284030218|0|commit|
+1703284030218|0|commit|
+1703284030220|0|statement|CALL SCHEMA()
+1703284030223|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703284030239|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703284030248|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284030250|0|statement|SET SCHEMA "PUBLIC"
+1703284030255|1|statement|drop table if exists users cascade
+1703284030256|1|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           primary key (user_id) )
+1703284030259|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703284030261|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703284030272|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 606469220, 'SA', 10, true)
+1703284030273|0|commit|
+1703284030274|0|commit|
+1703284030275|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703284030277|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703284030284|0|commit|
+1703284030297|0|statement|SET SCHEMA "PUBLIC"
+1703284030298|0|commit|
+1703284030299|0|statement|SET SCHEMA "PUBLIC"
+1703284030299|0|commit|
+1703284031413|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1703284032404|0|commit|
+1703284032405|1|statement|     drop table if exists users cascade 
+1703284032406|0|statement|     drop sequence if exists users_seq
+1703284032415|0|commit|
+1703284032418|2|statement|     create sequence users_seq start with 1 increment by 50
+1703284032424|1|statement|     create table users (         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1703284033630|1|statement|select next value for users_seq
+1703284033680|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,user_id) values ('2023-12-22T23:27:13.619+0100','errabi',NULL,'2023-12-22T23:27:13.619+0100','errabi',NULL,NULL,NULL,1)
+1703284033684|0|commit|
+1703284043408|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703284100640|0|commit|
+1703284103151|0|rollback|
+1703284103438|203|statement|SHUTDOWN
+1703284135984|7|statement|CALL SCHEMA()
+1703284135998|2|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1703284136001|0|statement|CALL SCHEMA()
+1703284136003|0|statement|CALL SCHEMA()
+1703284136005|0|statement|SELECT USER()
+1703284136006|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1703284136021|2|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284136037|0|commit|
+1703284136040|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284136040|0|commit|
+1703284136040|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284136043|1|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1703284136047|0|statement|SELECT USER()
+1703284136069|4|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1703284136074|1|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1703284136074|0|commit|
+1703284136074|0|commit|
+1703284136076|0|statement|CALL SCHEMA()
+1703284136078|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703284136090|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703284136100|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284136102|0|statement|SET SCHEMA "PUBLIC"
+1703284136104|0|statement|drop table if exists users cascade
+1703284136105|0|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           primary key (user_id) )
+1703284136106|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703284136107|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703284136116|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 606469220, 'SA', 5, true)
+1703284136117|0|commit|
+1703284136117|0|commit|
+1703284136118|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703284136118|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703284136121|0|commit|
+1703284136133|0|statement|SET SCHEMA "PUBLIC"
+1703284136133|0|commit|
+1703284136133|0|statement|SET SCHEMA "PUBLIC"
+1703284136133|0|commit|
+1703284136986|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1703284137724|0|commit|
+1703284137725|0|statement|     drop table if exists users cascade 
+1703284137726|0|statement|     drop sequence if exists users_seq
+1703284137732|0|commit|
+1703284137735|2|statement|     create sequence users_seq start with 1 increment by 50
+1703284137740|0|statement|     create table users (         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1703284138668|1|statement|select next value for users_seq
+1703284138716|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,user_id) values ('2023-12-22T23:28:58.659+0100','errabi',NULL,'2023-12-22T23:28:58.659+0100','errabi',NULL,NULL,NULL,1)
+1703284138720|0|commit|
+1703284138766|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703284138775|0|commit|
+1703284138777|0|rollback|
+1703284584868|9|statement|CALL SCHEMA()
+1703284584886|1|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1703284584889|0|statement|CALL SCHEMA()
+1703284584890|0|statement|CALL SCHEMA()
+1703284584891|0|statement|SELECT USER()
+1703284584899|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1703284584911|2|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284584930|0|commit|
+1703284584933|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284584934|0|commit|
+1703284584934|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284584937|2|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1703284584941|0|statement|SELECT USER()
+1703284584971|10|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1703284584976|1|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1703284584977|0|commit|
+1703284584977|0|commit|
+1703284584980|0|statement|CALL SCHEMA()
+1703284584983|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703284585001|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703284585009|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284585011|0|statement|SET SCHEMA "PUBLIC"
+1703284585014|1|statement|drop table if exists users cascade
+1703284585017|1|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           primary key (user_id) )
+1703284585019|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703284585021|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703284585032|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 606469220, 'SA', 9, true)
+1703284585034|0|commit|
+1703284585034|0|commit|
+1703284585036|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703284585037|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703284585042|0|commit|
+1703284585053|0|statement|SET SCHEMA "PUBLIC"
+1703284585053|0|commit|
+1703284585054|0|statement|SET SCHEMA "PUBLIC"
+1703284585054|0|commit|
+1703284585825|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1703284586687|0|commit|
+1703284586688|0|statement|     drop table if exists users cascade 
+1703284586689|0|statement|     drop sequence if exists users_seq
+1703284586696|0|commit|
+1703284586698|1|statement|     create sequence users_seq start with 1 increment by 50
+1703284586702|1|statement|     create table users (         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1703284587761|0|statement|select next value for users_seq
+1703284587798|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,user_id) values ('2023-12-22T23:36:27.751+0100','errabi',NULL,'2023-12-22T23:36:27.751+0100','errabi',NULL,NULL,'Ayoub',1)
+1703284587801|0|commit|
+1703284587856|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703284587867|0|commit|
+1703284587870|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703284587874|0|commit|
+1703284695200|8|statement|CALL SCHEMA()
+1703284695226|3|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1703284695230|0|statement|CALL SCHEMA()
+1703284695232|0|statement|CALL SCHEMA()
+1703284695239|1|statement|SELECT USER()
+1703284695255|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1703284695279|2|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284695314|0|commit|
+1703284695321|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284695323|0|commit|
+1703284695324|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284695330|3|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1703284695334|0|statement|SELECT USER()
+1703284695362|7|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1703284695367|1|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1703284695368|0|commit|
+1703284695368|0|commit|
+1703284695373|0|statement|CALL SCHEMA()
+1703284695376|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703284695391|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703284695399|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284695400|0|statement|SET SCHEMA "PUBLIC"
+1703284695403|0|statement|drop table if exists users cascade
+1703284695404|0|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           primary key (user_id) )
+1703284695405|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703284695407|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703284695414|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 606469220, 'SA', 5, true)
+1703284695414|0|commit|
+1703284695414|0|commit|
+1703284695415|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703284695416|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703284695419|0|commit|
+1703284695427|0|statement|SET SCHEMA "PUBLIC"
+1703284695427|0|commit|
+1703284695427|0|statement|SET SCHEMA "PUBLIC"
+1703284695427|0|commit|
+1703284696377|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1703284697023|0|commit|
+1703284697024|0|statement|     drop table if exists users cascade 
+1703284697025|0|statement|     drop sequence if exists users_seq
+1703284697029|0|commit|
+1703284697031|2|statement|     create sequence users_seq start with 1 increment by 50
+1703284697036|0|statement|     create table users (         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1703284697897|0|statement|select next value for users_seq
+1703284697927|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,user_id) values ('2023-12-22T23:38:17.888+0100','errabi',NULL,'2023-12-22T23:38:17.888+0100','errabi',NULL,NULL,'Ayoub',1)
+1703284697929|0|commit|
+1703284697988|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703284697995|0|commit|
+1703284697996|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703284697998|0|commit|
+1703284831781|18|statement|CALL SCHEMA()
+1703284831797|1|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1703284831800|0|statement|CALL SCHEMA()
+1703284831802|0|statement|CALL SCHEMA()
+1703284831803|0|statement|SELECT USER()
+1703284831815|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1703284831828|1|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284831848|0|commit|
+1703284831852|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284831852|0|commit|
+1703284831853|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284831857|2|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1703284831863|0|statement|SELECT USER()
+1703284831897|8|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1703284831903|2|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1703284831903|0|commit|
+1703284831904|0|commit|
+1703284831907|0|statement|CALL SCHEMA()
+1703284831910|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703284831924|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703284831935|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703284831937|0|statement|SET SCHEMA "PUBLIC"
+1703284831941|1|statement|drop table if exists users cascade
+1703284831943|1|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           primary key (user_id) )
+1703284831945|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703284831947|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703284831958|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 606469220, 'SA', 10, true)
+1703284831959|0|commit|
+1703284831960|0|commit|
+1703284831961|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703284831962|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703284831969|0|commit|
+1703284831980|0|statement|SET SCHEMA "PUBLIC"
+1703284831981|0|commit|
+1703284831981|0|statement|SET SCHEMA "PUBLIC"
+1703284831981|0|commit|
+1703284832958|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1703284833696|0|commit|
+1703284833697|0|statement|     drop table if exists users cascade 
+1703284833698|0|statement|     drop sequence if exists users_seq
+1703284833706|0|commit|
+1703284833710|3|statement|     create sequence users_seq start with 1 increment by 50
+1703284833718|0|statement|     create table users (         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1703284834801|1|statement|select next value for users_seq
+1703284834837|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,user_id) values ('2023-12-22T23:40:34.790+0100','errabi',NULL,'2023-12-22T23:40:34.790+0100','errabi',NULL,NULL,'Ayoub',1)
+1703284834841|0|commit|
+1703284834895|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703284834908|0|commit|
+1703284834909|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703284834910|0|commit|
+1703284834914|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703284834935|0|statement|update users set created=NULL,created_by=NULL,last_modified='2023-12-22T23:40:34.916+0100',username='lalal' where user_id=1
+1703284834941|0|commit|
+1703286731574|7|statement|CALL SCHEMA()
+1703286731596|2|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1703286731599|0|statement|CALL SCHEMA()
+1703286731601|0|statement|CALL SCHEMA()
+1703286731603|0|statement|SELECT USER()
+1703286731613|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1703286731625|2|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703286731648|0|commit|
+1703286731655|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703286731656|0|commit|
+1703286731657|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703286731665|5|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1703286731670|0|statement|SELECT USER()
+1703286731714|11|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1703286731720|2|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1703286731721|0|commit|
+1703286731722|0|commit|
+1703286731727|0|statement|CALL SCHEMA()
+1703286731732|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703286731750|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703286731757|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703286731759|0|statement|SET SCHEMA "PUBLIC"
+1703286731763|0|statement|drop table if exists users cascade
+1703286731764|1|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           primary key (user_id) )
+1703286731765|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703286731766|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703286731774|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 606469220, 'SA', 7, true)
+1703286731775|0|commit|
+1703286731775|0|commit|
+1703286731776|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703286731777|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703286731782|0|commit|
+1703286731790|0|statement|SET SCHEMA "PUBLIC"
+1703286731791|0|commit|
+1703286731791|0|statement|SET SCHEMA "PUBLIC"
+1703286731791|0|commit|
+1703286732903|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1703286733630|0|commit|
+1703286733631|0|statement|     drop table if exists users cascade 
+1703286733632|0|statement|     drop sequence if exists users_seq
+1703286733636|0|commit|
+1703286733638|1|statement|     create sequence users_seq start with 1 increment by 50
+1703286733642|0|statement|     create table users (         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1703286734576|0|statement|select next value for users_seq
+1703286734615|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,user_id) values ('2023-12-23T00:12:14.563+0100','errabi',NULL,'2023-12-23T00:12:14.563+0100','errabi',NULL,NULL,'Ayoub',1)
+1703286734617|0|commit|
+1703286734659|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703286734666|0|commit|
+1703286734667|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703286734668|0|commit|
+1703286734672|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703286734681|0|statement|update users set created=NULL,created_by=NULL,last_modified='2023-12-23T00:12:14.673+0100',username='lalal' where user_id=1
+1703286734682|0|commit|
+1703286811467|7|statement|CALL SCHEMA()
+1703286811485|2|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1703286811489|0|statement|CALL SCHEMA()
+1703286811491|0|statement|CALL SCHEMA()
+1703286811493|0|statement|SELECT USER()
+1703286811503|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1703286811519|2|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703286811549|0|commit|
+1703286811554|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703286811555|0|commit|
+1703286811556|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703286811562|2|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1703286811571|0|statement|SELECT USER()
+1703286811609|10|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1703286811617|2|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1703286811619|0|commit|
+1703286811620|0|commit|
+1703286811625|0|statement|CALL SCHEMA()
+1703286811628|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703286811643|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703286811651|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703286811653|0|statement|SET SCHEMA "PUBLIC"
+1703286811656|0|statement|drop table if exists users cascade
+1703286811657|0|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           primary key (user_id) )
+1703286811659|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703286811660|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703286811667|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 606469220, 'SA', 6, true)
+1703286811668|0|commit|
+1703286811668|0|commit|
+1703286811669|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703286811669|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703286811677|0|commit|
+1703286811685|0|statement|SET SCHEMA "PUBLIC"
+1703286811685|0|commit|
+1703286811686|0|statement|SET SCHEMA "PUBLIC"
+1703286811686|0|commit|
+1703286812658|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1703286813340|0|commit|
+1703286813341|0|statement|     drop table if exists users cascade 
+1703286813341|0|statement|     drop sequence if exists users_seq
+1703286813346|0|commit|
+1703286813347|1|statement|     create sequence users_seq start with 1 increment by 50
+1703286813353|0|statement|     create table users (         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1703286814446|1|statement|select next value for users_seq
+1703286814481|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,user_id) values ('2023-12-23T00:13:34.434+0100','errabi',NULL,'2023-12-23T00:13:34.434+0100','errabi',NULL,NULL,'Ayoub',1)
+1703286814485|0|commit|
+1703286814564|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703286814579|0|commit|
+1703286814581|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703286814583|0|commit|
+1703286814596|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username from users u1_0 where u1_0.user_id=1
+1703286814614|0|statement|update users set created=NULL,created_by=NULL,last_modified='2023-12-23T00:13:34.599+0100',username='lalal' where user_id=1
+1703286814618|0|commit|
+1703456821260|9|statement|CALL SCHEMA()
+1703456821278|2|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1703456821281|0|statement|CALL SCHEMA()
+1703456821283|0|statement|CALL SCHEMA()
+1703456821284|0|statement|SELECT USER()
+1703456821299|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1703456821311|2|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703456821332|0|commit|
+1703456821336|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703456821336|0|commit|
+1703456821337|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703456821340|2|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1703456821345|0|statement|SELECT USER()
+1703456821372|7|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1703456821377|2|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1703456821378|0|commit|
+1703456821379|0|commit|
+1703456821381|0|statement|CALL SCHEMA()
+1703456821383|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703456821394|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703456821402|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703456821403|0|statement|SET SCHEMA "PUBLIC"
+1703456821406|0|statement|drop table if exists users cascade
+1703456821407|0|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           version number,           primary key (user_id) )
+1703456821409|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703456821410|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703456821420|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 1865667479, 'SA', 6, true)
+1703456821420|0|commit|
+1703456821421|0|commit|
+1703456821422|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703456821423|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703456821429|0|commit|
+1703456821440|0|statement|SET SCHEMA "PUBLIC"
+1703456821440|0|commit|
+1703456821441|0|statement|SET SCHEMA "PUBLIC"
+1703456821441|0|commit|
+1703456822534|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1703456823495|0|commit|
+1703456823496|0|statement|     drop table if exists users cascade 
+1703456823497|0|statement|     drop sequence if exists users_seq
+1703456823503|0|commit|
+1703456823506|1|statement|     create sequence users_seq start with 1 increment by 50
+1703456823513|0|statement|     create table users (         version integer,         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1703456824919|0|statement|select next value for users_seq
+1703456824969|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2023-12-24T23:27:04.910+0100','errabi',NULL,'2023-12-24T23:27:04.910+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1703456824975|0|commit|
+1703456825086|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1703456825101|0|commit|
+1703456825103|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1703456825104|0|commit|
+1703456825118|0|rollback|
+1703456825432|213|statement|SHUTDOWN
+1703456903422|11|statement|CALL SCHEMA()
+1703456903441|2|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1703456903444|0|statement|CALL SCHEMA()
+1703456903447|0|statement|CALL SCHEMA()
+1703456903450|0|statement|SELECT USER()
+1703456903458|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1703456903475|3|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703456903511|0|commit|
+1703456903520|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703456903521|0|commit|
+1703456903522|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703456903529|5|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1703456903537|0|statement|SELECT USER()
+1703456903594|13|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1703456903603|3|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1703456903604|0|commit|
+1703456903605|0|commit|
+1703456903608|0|statement|CALL SCHEMA()
+1703456903611|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703456903629|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703456903641|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1703456903642|0|statement|SET SCHEMA "PUBLIC"
+1703456903646|1|statement|drop table if exists users cascade
+1703456903648|1|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           version number,           primary key (user_id) )
+1703456903650|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703456903652|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703456903662|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 1865667479, 'SA', 8, true)
+1703456903663|0|commit|
+1703456903664|0|commit|
+1703456903665|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1703456903666|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1703456903670|0|commit|
+1703456903677|0|statement|SET SCHEMA "PUBLIC"
+1703456903677|0|commit|
+1703456903678|0|statement|SET SCHEMA "PUBLIC"
+1703456903678|0|commit|
+1703456904704|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1703456905599|0|commit|
+1703456905601|0|statement|     drop table if exists users cascade 
+1703456905601|0|statement|     drop sequence if exists users_seq
+1703456905607|0|commit|
+1703456905610|2|statement|     create sequence users_seq start with 1 increment by 50
+1703456905617|1|statement|     create table users (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1703456906641|1|statement|select next value for users_seq
+1703456906690|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2023-12-24T23:28:26.631+0100','errabi',NULL,'2023-12-24T23:28:26.631+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1703456906693|0|commit|
+1703456906785|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1703456906793|0|commit|
+1703456906797|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1703456906800|0|commit|
+1703456906808|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1703456906830|0|statement|update users set created=NULL,created_by=NULL,last_modified='2023-12-24T23:28:26.811+0100',username='lalal',version=1 where user_id=1 and version=0
+1703456906834|0|commit|
+1704570126336|9|statement|CALL SCHEMA()
+1704570126358|2|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1704570126361|0|statement|CALL SCHEMA()
+1704570126363|0|statement|CALL SCHEMA()
+1704570126367|0|statement|SELECT USER()
+1704570126376|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1704570126391|3|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1704570126412|0|commit|
+1704570126417|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1704570126418|0|commit|
+1704570126418|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1704570126423|2|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1704570126428|0|statement|SELECT USER()
+1704570126456|7|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1704570126461|1|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1704570126462|0|commit|
+1704570126462|0|commit|
+1704570126464|0|statement|CALL SCHEMA()
+1704570126467|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1704570126481|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1704570126490|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1704570126491|0|statement|SET SCHEMA "PUBLIC"
+1704570126493|0|statement|drop table if exists users cascade
+1704570126494|1|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           version number,           primary key (user_id) )
+1704570126496|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1704570126497|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1704570126505|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 1865667479, 'SA', 5, true)
+1704570126505|0|commit|
+1704570126506|0|commit|
+1704570126507|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1704570126507|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1704570126511|0|commit|
+1704570126522|0|statement|SET SCHEMA "PUBLIC"
+1704570126522|0|commit|
+1704570126523|0|statement|SET SCHEMA "PUBLIC"
+1704570126523|0|commit|
+1704570127618|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1704570128649|0|commit|
+1704570128650|0|statement|     drop table if exists users cascade 
+1704570128651|0|statement|     drop sequence if exists users_seq
+1704570128657|0|commit|
+1704570128658|1|statement|     create sequence users_seq start with 1 increment by 50
+1704570128663|0|statement|     create table users (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1704570129730|1|statement|select next value for users_seq
+1704570129773|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2024-01-06T20:42:09.721+0100','errabi',NULL,'2024-01-06T20:42:09.721+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1704570129777|0|commit|
+1704570129835|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1704570129845|0|commit|
+1704570129847|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1704570129848|0|commit|
+1704570129853|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1704570129864|0|statement|update users set created=NULL,created_by=NULL,last_modified='2024-01-06T20:42:09.855+0100',username='lalal',version=1 where user_id=1 and version=0
+1704570129866|0|commit|
+1704570129867|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1704570129868|0|commit|
+1704570129870|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1704570129881|0|statement|delete from users where user_id=1 and version=1
+1704570129883|0|commit|
+1704748806660|12|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1704748807592|0|commit|
+1704748807593|0|statement|     drop table if exists users cascade 
+1704748807594|0|statement|     drop sequence if exists users_seq
+1704748807601|0|commit|
+1704748807603|2|statement|     create sequence users_seq start with 1 increment by 50
+1704748807613|5|statement|     create table users (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         note_id bigint not null,         user_id bigint not null,         user_user_id bigint,         created_by varchar(255),         description varchar(255),         email varchar(255),         last_modified_by varchar(255),         name varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1704748807619|5|statement|     alter table if exists users         add constraint FKq3dbykqf8ubyg1k4r3m95bs92         foreign key (user_user_id)         references users
+1704748808745|2|statement|select next value for users_seq
+1704748808794|2|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2024-01-08T22:20:08.730+0100','errabi',NULL,'2024-01-08T22:20:08.730+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1704748808801|0|rollback|
+1704748809184|208|statement|SHUTDOWN
+1704748898609|9|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1704748899584|0|commit|
+1704748899587|1|statement|     drop table if exists users cascade 
+1704748899588|0|statement|     drop sequence if exists users_seq
+1704748899599|0|commit|
+1704748899602|2|statement|     create sequence users_seq start with 1 increment by 50
+1704748899614|7|statement|     create table users (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         note_id bigint not null,         user_id bigint not null,         user_user_id bigint,         created_by varchar(255),         description varchar(255),         email varchar(255),         last_modified_by varchar(255),         name varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1704748899622|6|statement|     alter table if exists users         add constraint FKq3dbykqf8ubyg1k4r3m95bs92         foreign key (user_user_id)         references users
+1704748900741|1|statement|select next value for users_seq
+1704748900798|2|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2024-01-08T22:21:40.727+0100','errabi',NULL,'2024-01-08T22:21:40.727+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1704748900806|0|rollback|
+1704748900892|0|commit|
+1704748900893|1|statement|     drop table if exists users cascade 
+1704748900894|0|statement|     drop sequence if exists users_seq
+1704748901098|201|statement|SHUTDOWN
+1704749011579|12|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1704749012537|0|commit|
+1704749012539|1|statement|     drop table if exists users cascade 
+1704749012541|0|statement|     drop sequence if exists users_seq
+1704749012552|0|commit|
+1704749012555|2|statement|     create sequence users_seq start with 1 increment by 50
+1704749012570|8|statement|     create table users (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         note_id bigint not null,         user_id bigint not null,         user_user_id bigint,         created_by varchar(255),         description varchar(255),         email varchar(255),         last_modified_by varchar(255),         name varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1704749012581|9|statement|     alter table if exists users         add constraint FKq3dbykqf8ubyg1k4r3m95bs92         foreign key (user_user_id)         references users
+1704749013640|1|statement|select next value for users_seq
+1704749013687|1|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2024-01-08T22:23:33.630+0100','errabi',NULL,'2024-01-08T22:23:33.630+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1704749013694|0|rollback|
+1704749013769|0|commit|
+1704749013770|1|statement|     drop table if exists users cascade 
+1704749013771|0|statement|     drop sequence if exists users_seq
+1704749013977|202|statement|SHUTDOWN
+1704749107090|12|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1704749108133|0|commit|
+1704749108135|0|statement|     drop table if exists note cascade 
+1704749108135|0|statement|     drop table if exists users cascade 
+1704749108136|0|statement|     drop sequence if exists note_seq
+1704749108137|0|statement|     drop sequence if exists users_seq
+1704749108149|0|commit|
+1704749108152|2|statement|     create sequence note_seq start with 1 increment by 50
+1704749108153|0|statement|     create sequence users_seq start with 1 increment by 50
+1704749108162|5|statement|     create table note (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         note_id bigint not null,         user_user_id bigint,         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (note_id)     )
+1704749108163|0|statement|     create table users (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1704749108175|7|statement|     alter table if exists note         add constraint FK1a1q3g92a05l7l1winct6xahw         foreign key (user_user_id)         references users
+1704749109437|1|statement|select next value for users_seq
+1704749109489|1|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2024-01-08T22:25:09.422+0100','errabi',NULL,'2024-01-08T22:25:09.422+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1704749109495|0|commit|
+1704749109650|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1704749109664|0|commit|
+1704749109667|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1704749109668|0|commit|
+1704749109675|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1704749109691|0|statement|update users set created=NULL,created_by=NULL,last_modified='2024-01-08T22:25:09.677+0100',username='lalal',version=1 where user_id=1 and version=0
+1704749109696|0|commit|
+1704749109700|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1704749109702|0|commit|
+1704749109704|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1704749109720|0|statement|delete from users where user_id=1 and version=1
+1704749109724|0|commit|
+1704749250029|10|statement|CALL SCHEMA()
+1704749250047|2|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1704749250050|0|statement|CALL SCHEMA()
+1704749250052|0|statement|CALL SCHEMA()
+1704749250054|0|statement|SELECT USER()
+1704749250063|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1704749250077|2|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1704749250095|0|commit|
+1704749250098|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1704749250099|0|commit|
+1704749250100|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1704749250104|2|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1704749250110|0|statement|SELECT USER()
+1704749250150|11|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1704749250157|2|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1704749250158|0|commit|
+1704749250158|0|commit|
+1704749250161|0|statement|CALL SCHEMA()
+1704749250166|1|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1704749250184|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1704749250195|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1704749250198|0|statement|SET SCHEMA "PUBLIC"
+1704749250202|0|statement|drop table if exists users cascade
+1704749250204|1|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           version number,           primary key (user_id) )
+1704749250206|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1704749250208|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1704749250220|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 1865667479, 'SA', 10, true)
+1704749250221|0|commit|
+1704749250222|0|commit|
+1704749250222|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1704749250223|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1704749250227|0|commit|
+1704749250246|0|statement|SET SCHEMA "PUBLIC"
+1704749250246|0|commit|
+1704749250246|0|statement|SET SCHEMA "PUBLIC"
+1704749250247|0|commit|
+1704749251230|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1704749252171|0|commit|
+1704749252171|0|statement|     drop table if exists note cascade 
+1704749252173|0|statement|     drop table if exists users cascade 
+1704749252174|0|statement|     drop sequence if exists note_seq
+1704749252174|0|statement|     drop sequence if exists users_seq
+1704749252182|0|commit|
+1704749252184|1|statement|     create sequence note_seq start with 1 increment by 50
+1704749252184|0|statement|     create sequence users_seq start with 1 increment by 50
+1704749252188|0|statement|     create table note (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         note_id bigint not null,         user_user_id bigint,         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (note_id)     )
+1704749252189|0|statement|     create table users (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1704749252196|6|statement|     alter table if exists note         add constraint FK1a1q3g92a05l7l1winct6xahw         foreign key (user_user_id)         references users
+1704749253202|1|statement|select next value for users_seq
+1704749253244|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2024-01-08T22:27:33.193+0100','errabi',NULL,'2024-01-08T22:27:33.193+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1704749253248|0|commit|
+1704749253311|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1704749253327|0|commit|
+1704749253332|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1704749253334|0|commit|
+1704749253343|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1704749253366|1|statement|update users set created=NULL,created_by=NULL,last_modified='2024-01-08T22:27:33.346+0100',username='lalal',version=1 where user_id=1 and version=0
+1704749253369|0|commit|
+1704749253373|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1704749253374|0|commit|
+1704749253378|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1704749253402|1|statement|delete from users where user_id=1 and version=1
+1704749253407|0|commit|
+1704749441180|9|statement|CALL SCHEMA()
+1704749441204|2|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1704749441209|0|statement|CALL SCHEMA()
+1704749441211|0|statement|CALL SCHEMA()
+1704749441213|0|statement|SELECT USER()
+1704749441225|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1704749441241|2|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1704749441263|0|commit|
+1704749441268|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1704749441269|0|commit|
+1704749441270|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1704749441275|2|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1704749441278|0|statement|SELECT USER()
+1704749441310|8|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1704749441317|3|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1704749441318|0|commit|
+1704749441319|0|commit|
+1704749441323|0|statement|CALL SCHEMA()
+1704749441327|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1704749441344|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1704749441359|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1704749441361|0|statement|SET SCHEMA "PUBLIC"
+1704749441366|2|statement|drop table if exists users cascade
+1704749441369|2|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           version number,           primary key (user_id) )
+1704749441373|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1704749441375|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1704749441390|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 1865667479, 'SA', 12, true)
+1704749441391|0|commit|
+1704749441392|0|commit|
+1704749441394|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1704749441394|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1704749441402|0|commit|
+1704749441413|0|statement|SET SCHEMA "PUBLIC"
+1704749441413|0|commit|
+1704749441414|0|statement|SET SCHEMA "PUBLIC"
+1704749441414|0|commit|
+1704749442466|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1704749443402|0|commit|
+1704749443402|0|statement|     drop table if exists note cascade 
+1704749443403|1|statement|     drop table if exists users cascade 
+1704749443404|0|statement|     drop sequence if exists note_seq
+1704749443404|0|statement|     drop sequence if exists users_seq
+1704749443412|0|commit|
+1704749443414|1|statement|     create sequence note_seq start with 1 increment by 50
+1704749443414|0|statement|     create sequence users_seq start with 1 increment by 50
+1704749443420|0|statement|     create table note (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         note_id bigint not null,         user_user_id bigint,         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (note_id)     )
+1704749443421|0|statement|     create table users (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1704749443428|6|statement|     alter table if exists note         add constraint FK1a1q3g92a05l7l1winct6xahw         foreign key (user_user_id)         references users
+1704749444463|0|statement|select next value for users_seq
+1704749444499|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2024-01-08T22:30:44.452+0100','errabi',NULL,'2024-01-08T22:30:44.452+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1704749444502|0|commit|
+1704749444573|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1704749444583|0|commit|
+1704749444585|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1704749444587|0|commit|
+1704749444622|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1704749444648|1|statement|update users set created=NULL,created_by=NULL,last_modified='2024-01-08T22:30:44.626+0100',username='lalal',version=1 where user_id=1 and version=0
+1704749444655|0|commit|
+1704749444687|0|statement|select next value for note_seq
+1704749444695|0|statement|insert into note (created,created_by,description,last_modified,last_modified_by,name,user_user_id,version,note_id) values ('2024-01-08T22:30:44.686+0100','errabi',NULL,'2024-01-08T22:30:44.686+0100','errabi','note',1,0,1)
+1704749444696|0|commit|

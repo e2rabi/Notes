@@ -21,7 +21,6 @@ spring:
       hibernate:
         connection:
           provider_disables_autocommit: true # delaying hibernates connection acquisition ,turn of auto commit mode
-
         dialect: org.hibernate.dialect.H2Dialect
         format_sql: true
         generate_statistics: false

@@ -1,7 +1,10 @@
 package com.errabi.note;
 
 
+import com.errabi.note.entities.Note;
+import com.errabi.note.repository.NoteRepository;
 import com.errabi.note.service.UserService;
+import com.errabi.note.service.mapper.UserMapper;
 import com.errabi.note.service.model.UserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,10 @@ import javax.sql.DataSource;
 public class NoteApplication implements ApplicationRunner {
      @Autowired
 	 UserService userService ;
+    @Autowired
+	NoteRepository noteRepository;
+	@Autowired
+	UserMapper userMapper ;
 	@Autowired
 	private DataSource dataSource;
 	public static void main(String[] args) {
@@ -36,6 +43,11 @@ public class NoteApplication implements ApplicationRunner {
 		UserDto a = userService.findById(1l);
 		a.setUsername("lalal");
 		userService.update(a);
+		Note note = new Note();
+		note.setName("note");
+		note.setUser(userMapper.toEntity(a));
+		noteRepository.save(note);
+		//userService.deleteById(a.getUserId());
 		//userRepository.save(a);
 	}
 }
