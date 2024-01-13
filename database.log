@@ -2240,3 +2240,641 @@
 1704749444687|0|statement|select next value for note_seq
 1704749444695|0|statement|insert into note (created,created_by,description,last_modified,last_modified_by,name,user_user_id,version,note_id) values ('2024-01-08T22:30:44.686+0100','errabi',NULL,'2024-01-08T22:30:44.686+0100','errabi','note',1,0,1)
 1704749444696|0|commit|
+1705154967582|8|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1705154968490|0|commit|
+1705154968491|0|statement|     drop table if exists label cascade 
+1705154968492|0|statement|     drop table if exists note cascade 
+1705154968492|0|statement|     drop table if exists users cascade 
+1705154968493|0|statement|     drop sequence if exists label_seq
+1705154968493|0|statement|     drop sequence if exists note_seq
+1705154968494|0|statement|     drop sequence if exists users_seq
+1705154968500|0|commit|
+1705154968502|2|statement|     create sequence label_seq start with 1 increment by 50
+1705154968503|0|statement|     create sequence note_seq start with 1 increment by 50
+1705154968504|0|statement|     create sequence users_seq start with 1 increment by 50
+1705154968513|4|statement|     create table label (         label_id bigint not null,         description varchar(255),         name varchar(255),         primary key (label_id)     )
+1705154968514|0|statement|     create table note (         version integer not null,         created timestamp(6),         label_label_id bigint,         last_modified timestamp(6),         note_id bigint not null,         user_user_id bigint,         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (note_id)     )
+1705154968516|1|statement|     create table users (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1705154968523|6|statement|     alter table if exists note         add constraint FKlh2sim636efkdye8e530lftiy         foreign key (label_label_id)         references label
+1705154968524|1|statement|     alter table if exists note         add constraint FK1a1q3g92a05l7l1winct6xahw         foreign key (user_user_id)         references users
+1705154969545|1|statement|select next value for users_seq
+1705154969596|1|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2024-01-13T15:09:29.533+0100','errabi',NULL,'2024-01-13T15:09:29.533+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1705154969599|0|commit|
+1705154969668|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705154969677|0|commit|
+1705154969679|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705154969680|0|commit|
+1705154969687|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705154969716|1|statement|update users set created=NULL,created_by=NULL,last_modified='2024-01-13T15:09:29.689+0100',username='lalal',version=1 where user_id=1 and version=0
+1705154969719|0|commit|
+1705154969742|0|statement|select next value for note_seq
+1705154969747|0|statement|insert into note (created,created_by,description,label_label_id,last_modified,last_modified_by,name,user_user_id,version,note_id) values ('2024-01-13T15:09:29.740+0100','errabi',NULL,NULL,'2024-01-13T15:09:29.740+0100','errabi','note',1,0,1)
+1705154969748|0|commit|
+1705155240370|9|statement|CALL SCHEMA()
+1705155240388|2|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1705155240391|0|statement|CALL SCHEMA()
+1705155240393|0|statement|CALL SCHEMA()
+1705155240396|0|statement|SELECT USER()
+1705155240405|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1705155240417|2|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705155240434|0|commit|
+1705155240438|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705155240439|0|commit|
+1705155240439|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705155240442|1|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1705155240448|0|statement|SELECT USER()
+1705155240493|9|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1705155240501|3|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1705155240502|0|commit|
+1705155240503|0|commit|
+1705155240506|0|statement|CALL SCHEMA()
+1705155240509|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705155240533|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705155240544|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705155240546|0|statement|SET SCHEMA "PUBLIC"
+1705155240552|1|statement|drop table if exists users cascade
+1705155240553|1|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           version number,           primary key (user_id) )
+1705155240555|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705155240556|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705155240568|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 1865667479, 'SA', 10, true)
+1705155240569|0|commit|
+1705155240569|0|commit|
+1705155240570|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705155240571|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705155240575|0|commit|
+1705155240585|0|statement|SET SCHEMA "PUBLIC"
+1705155240586|0|commit|
+1705155240586|0|statement|SET SCHEMA "PUBLIC"
+1705155240586|0|commit|
+1705155241672|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1705155242598|0|commit|
+1705155242598|0|statement|     drop table if exists label cascade 
+1705155242599|0|statement|     drop table if exists note cascade 
+1705155242600|0|statement|     drop table if exists users cascade 
+1705155242600|0|statement|     drop sequence if exists label_seq
+1705155242601|0|statement|     drop sequence if exists note_seq
+1705155242601|0|statement|     drop sequence if exists users_seq
+1705155242608|0|commit|
+1705155242610|1|statement|     create sequence label_seq start with 1 increment by 50
+1705155242610|0|statement|     create sequence note_seq start with 1 increment by 50
+1705155242611|0|statement|     create sequence users_seq start with 1 increment by 50
+1705155242617|0|statement|     create table label (         label_id bigint not null,         description varchar(255),         name varchar(255),         primary key (label_id)     )
+1705155242618|0|statement|     create table note (         version integer not null,         created timestamp(6),         label_label_id bigint,         last_modified timestamp(6),         note_id bigint not null,         user_user_id bigint,         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (note_id)     )
+1705155242619|0|statement|     create table users (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1705155242626|6|statement|     alter table if exists note         add constraint FKlh2sim636efkdye8e530lftiy         foreign key (label_label_id)         references label
+1705155242627|1|statement|     alter table if exists note         add constraint FK1a1q3g92a05l7l1winct6xahw         foreign key (user_user_id)         references users
+1705155243707|1|statement|select next value for users_seq
+1705155243756|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2024-01-13T15:14:03.697+0100','errabi',NULL,'2024-01-13T15:14:03.697+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1705155243759|0|commit|
+1705155243819|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705155243827|0|commit|
+1705155243829|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705155243829|0|commit|
+1705155243835|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705155243847|0|statement|update users set created=NULL,created_by=NULL,last_modified='2024-01-13T15:14:03.837+0100',username='lalal',version=1 where user_id=1 and version=0
+1705155243850|0|commit|
+1705155243866|0|statement|select next value for note_seq
+1705155243875|0|statement|insert into note (created,created_by,description,label_label_id,last_modified,last_modified_by,name,user_user_id,version,note_id) values ('2024-01-13T15:14:03.865+0100','errabi',NULL,NULL,'2024-01-13T15:14:03.865+0100','errabi','note',1,0,1)
+1705155243876|0|commit|
+1705155334270|10|statement|CALL SCHEMA()
+1705155334289|2|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1705155334293|0|statement|CALL SCHEMA()
+1705155334294|0|statement|CALL SCHEMA()
+1705155334296|0|statement|SELECT USER()
+1705155334315|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1705155334326|2|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705155334344|0|commit|
+1705155334349|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705155334349|0|commit|
+1705155334350|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705155334354|2|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1705155334358|0|statement|SELECT USER()
+1705155334384|5|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1705155334388|1|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1705155334389|0|commit|
+1705155334390|0|commit|
+1705155334393|0|statement|CALL SCHEMA()
+1705155334397|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705155334412|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705155334424|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705155334426|0|statement|SET SCHEMA "PUBLIC"
+1705155334429|1|statement|drop table if exists users cascade
+1705155334432|2|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           version number,           primary key (user_id) )
+1705155334435|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705155334436|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705155334450|1|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 1865667479, 'SA', 9, true)
+1705155334450|0|commit|
+1705155334450|0|commit|
+1705155334451|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705155334452|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705155334459|0|commit|
+1705155334473|0|statement|SET SCHEMA "PUBLIC"
+1705155334473|0|commit|
+1705155334473|0|statement|SET SCHEMA "PUBLIC"
+1705155334474|0|commit|
+1705155335507|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1705155336417|0|commit|
+1705155336417|0|statement|     drop table if exists label cascade 
+1705155336418|0|statement|     drop table if exists note cascade 
+1705155336419|0|statement|     drop table if exists users cascade 
+1705155336420|0|statement|     drop sequence if exists label_seq
+1705155336420|0|statement|     drop sequence if exists note_seq
+1705155336420|0|statement|     drop sequence if exists users_seq
+1705155336429|0|commit|
+1705155336431|1|statement|     create sequence label_seq start with 1 increment by 50
+1705155336431|0|statement|     create sequence note_seq start with 1 increment by 50
+1705155336432|0|statement|     create sequence users_seq start with 1 increment by 50
+1705155336437|0|statement|     create table label (         label_id bigint not null,         description varchar(255),         name varchar(255),         primary key (label_id)     )
+1705155336438|1|statement|     create table note (         version integer not null,         created timestamp(6),         label_label_id bigint,         last_modified timestamp(6),         note_id bigint not null,         user_user_id bigint,         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (note_id)     )
+1705155336440|0|statement|     create table users (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1705155336447|6|statement|     alter table if exists note         add constraint FKlh2sim636efkdye8e530lftiy         foreign key (label_label_id)         references label
+1705155336448|0|statement|     alter table if exists note         add constraint FK1a1q3g92a05l7l1winct6xahw         foreign key (user_user_id)         references users
+1705155337513|0|statement|select next value for users_seq
+1705155337551|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2024-01-13T15:15:37.506+0100','errabi',NULL,'2024-01-13T15:15:37.506+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1705155337553|0|commit|
+1705155337631|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705155337644|0|commit|
+1705155337648|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705155337650|0|commit|
+1705155337662|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705155337679|0|statement|update users set created=NULL,created_by=NULL,last_modified='2024-01-13T15:15:37.666+0100',username='lalal',version=1 where user_id=1 and version=0
+1705155337683|0|commit|
+1705155337692|0|statement|select next value for note_seq
+1705155337699|0|statement|insert into note (created,created_by,description,label_label_id,last_modified,last_modified_by,name,user_user_id,version,note_id) values ('2024-01-13T15:15:37.691+0100','errabi',NULL,NULL,'2024-01-13T15:15:37.691+0100','errabi','note',1,0,1)
+1705155337699|0|commit|
+1705155500295|15|statement|CALL SCHEMA()
+1705155500316|2|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1705155500320|0|statement|CALL SCHEMA()
+1705155500322|0|statement|CALL SCHEMA()
+1705155500327|1|statement|SELECT USER()
+1705155500339|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1705155500355|3|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705155500380|0|commit|
+1705155500387|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705155500387|0|commit|
+1705155500389|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705155500397|5|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1705155500404|0|statement|SELECT USER()
+1705155500461|11|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1705155500471|3|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1705155500472|0|commit|
+1705155500473|0|commit|
+1705155500478|0|statement|CALL SCHEMA()
+1705155500482|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705155500501|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705155500512|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705155500514|0|statement|SET SCHEMA "PUBLIC"
+1705155500517|0|statement|drop table if exists users cascade
+1705155500519|1|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           version number,           primary key (user_id) )
+1705155500520|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705155500522|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705155500532|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 1865667479, 'SA', 8, true)
+1705155500533|0|commit|
+1705155500534|0|commit|
+1705155500535|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705155500535|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705155500539|0|commit|
+1705155500550|0|statement|SET SCHEMA "PUBLIC"
+1705155500550|0|commit|
+1705155500551|0|statement|SET SCHEMA "PUBLIC"
+1705155500551|0|commit|
+1705155501748|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1705155502654|0|commit|
+1705155502655|0|statement|     drop table if exists label cascade 
+1705155502655|0|statement|     drop table if exists note cascade 
+1705155502656|0|statement|     drop table if exists users cascade 
+1705155502658|0|statement|     drop sequence if exists label_seq
+1705155502658|0|statement|     drop sequence if exists note_seq
+1705155502658|0|statement|     drop sequence if exists users_seq
+1705155502666|0|commit|
+1705155502668|1|statement|     create sequence label_seq start with 1 increment by 50
+1705155502668|0|statement|     create sequence note_seq start with 1 increment by 50
+1705155502669|0|statement|     create sequence users_seq start with 1 increment by 50
+1705155502673|0|statement|     create table label (         label_id bigint not null,         description varchar(255),         name varchar(255),         primary key (label_id)     )
+1705155502674|1|statement|     create table note (         version integer not null,         created timestamp(6),         label_label_id bigint,         last_modified timestamp(6),         note_id bigint not null,         user_user_id bigint,         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (note_id)     )
+1705155502676|1|statement|     create table users (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1705155502681|4|statement|     alter table if exists note         add constraint FKlh2sim636efkdye8e530lftiy         foreign key (label_label_id)         references label
+1705155502682|1|statement|     alter table if exists note         add constraint FK1a1q3g92a05l7l1winct6xahw         foreign key (user_user_id)         references users
+1705155503788|0|statement|select next value for users_seq
+1705155503837|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2024-01-13T15:18:23.779+0100','errabi',NULL,'2024-01-13T15:18:23.779+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1705155503840|0|commit|
+1705155503898|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705155503907|0|commit|
+1705155503908|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705155503909|0|commit|
+1705155503915|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705155503927|0|statement|update users set created=NULL,created_by=NULL,last_modified='2024-01-13T15:18:23.916+0100',username='lalal',version=1 where user_id=1 and version=0
+1705155503929|0|commit|
+1705155503936|0|statement|select next value for note_seq
+1705155503940|0|statement|select next value for label_seq
+1705155503942|0|statement|insert into label (description,name,label_id) values (NULL,'Book',1)
+1705155503946|0|statement|insert into note (created,created_by,description,label_label_id,last_modified,last_modified_by,name,user_user_id,version,note_id) values ('2024-01-13T15:18:23.935+0100','errabi',NULL,1,'2024-01-13T15:18:23.935+0100','errabi','note',1,0,1)
+1705155503947|0|commit|
+1705156014833|8|statement|CALL SCHEMA()
+1705156014853|2|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1705156014856|0|statement|CALL SCHEMA()
+1705156014858|0|statement|CALL SCHEMA()
+1705156014860|0|statement|SELECT USER()
+1705156014871|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1705156014889|3|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705156014911|0|commit|
+1705156014917|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705156014917|0|commit|
+1705156014918|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705156014921|2|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1705156014925|0|statement|SELECT USER()
+1705156014965|9|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1705156014974|2|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1705156014975|0|commit|
+1705156014975|0|commit|
+1705156014979|0|statement|CALL SCHEMA()
+1705156014982|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705156015005|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705156015018|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705156015021|0|statement|SET SCHEMA "PUBLIC"
+1705156015025|1|statement|drop table if exists users cascade
+1705156015027|1|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           version number,           primary key (user_id) )
+1705156015030|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705156015032|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705156015046|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 1865667479, 'SA', 11, true)
+1705156015047|0|commit|
+1705156015048|0|commit|
+1705156015049|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705156015050|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705156015058|0|commit|
+1705156015078|0|statement|SET SCHEMA "PUBLIC"
+1705156015079|0|commit|
+1705156015079|0|statement|SET SCHEMA "PUBLIC"
+1705156015079|0|commit|
+1705156016348|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1705156017246|0|commit|
+1705156017247|0|statement|     drop table if exists label cascade 
+1705156017247|0|statement|     drop table if exists note cascade 
+1705156017248|0|statement|     drop table if exists users cascade 
+1705156017249|0|statement|     drop sequence if exists label_seq
+1705156017249|0|statement|     drop sequence if exists note_seq
+1705156017249|0|statement|     drop sequence if exists users_seq
+1705156017256|0|commit|
+1705156017258|2|statement|     create sequence label_seq start with 1 increment by 50
+1705156017259|0|statement|     create sequence note_seq start with 1 increment by 50
+1705156017259|0|statement|     create sequence users_seq start with 1 increment by 50
+1705156017264|0|statement|     create table label (         version integer not null,         created timestamp(6),         label_id bigint not null,         last_modified timestamp(6),         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (label_id)     )
+1705156017266|0|statement|     create table note (         version integer not null,         created timestamp(6),         label_label_id bigint,         last_modified timestamp(6),         note_id bigint not null,         user_user_id bigint,         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (note_id)     )
+1705156017267|1|statement|     create table users (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1705156017276|8|statement|     alter table if exists note         add constraint FKlh2sim636efkdye8e530lftiy         foreign key (label_label_id)         references label
+1705156017278|1|statement|     alter table if exists note         add constraint FK1a1q3g92a05l7l1winct6xahw         foreign key (user_user_id)         references users
+1705156018579|1|statement|select next value for users_seq
+1705156018631|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2024-01-13T15:26:58.568+0100','errabi',NULL,'2024-01-13T15:26:58.568+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1705156018636|0|commit|
+1705156018746|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705156018759|0|commit|
+1705156018762|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705156018763|0|commit|
+1705156018779|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705156018799|0|statement|update users set created=NULL,created_by=NULL,last_modified='2024-01-13T15:26:58.781+0100',username='lalal',version=1 where user_id=1 and version=0
+1705156018802|0|commit|
+1705156018814|0|statement|select next value for note_seq
+1705156018825|0|statement|select next value for label_seq
+1705156018830|0|statement|insert into label (created,created_by,description,last_modified,last_modified_by,name,version,label_id) values ('2024-01-13T15:26:58.824+0100','errabi',NULL,'2024-01-13T15:26:58.824+0100','errabi','Book',0,1)
+1705156018834|0|statement|insert into note (created,created_by,description,label_label_id,last_modified,last_modified_by,name,user_user_id,version,note_id) values ('2024-01-13T15:26:58.813+0100','errabi',NULL,1,'2024-01-13T15:26:58.813+0100','errabi','note',1,0,1)
+1705156018835|0|commit|
+1705156069867|41|statement|CALL SCHEMA()
+1705156069892|3|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1705156069898|0|statement|CALL SCHEMA()
+1705156069901|0|statement|CALL SCHEMA()
+1705156069904|0|statement|SELECT USER()
+1705156069923|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1705156069938|3|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705156069975|0|commit|
+1705156069984|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705156069985|0|commit|
+1705156069986|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705156069994|5|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1705156070000|0|statement|SELECT USER()
+1705156070046|13|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1705156070058|4|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1705156070060|0|commit|
+1705156070061|0|commit|
+1705156070067|0|statement|CALL SCHEMA()
+1705156070073|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705156070102|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705156070118|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705156070120|0|statement|SET SCHEMA "PUBLIC"
+1705156070124|1|statement|drop table if exists users cascade
+1705156070127|2|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           version number,           primary key (user_id) )
+1705156070129|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705156070131|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705156070145|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 1865667479, 'SA', 10, true)
+1705156070146|0|commit|
+1705156070147|0|commit|
+1705156070148|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705156070150|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705156070157|0|commit|
+1705156070168|0|statement|SET SCHEMA "PUBLIC"
+1705156070169|0|commit|
+1705156070169|0|statement|SET SCHEMA "PUBLIC"
+1705156070169|0|commit|
+1705156071361|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1705156072150|0|commit|
+1705156072150|0|statement|     drop table if exists label cascade 
+1705156072151|0|statement|     drop table if exists note cascade 
+1705156072152|1|statement|     drop table if exists users cascade 
+1705156072152|0|statement|     drop sequence if exists label_seq
+1705156072153|0|statement|     drop sequence if exists note_seq
+1705156072153|0|statement|     drop sequence if exists users_seq
+1705156072159|0|commit|
+1705156072161|1|statement|     create sequence label_seq start with 1 increment by 50
+1705156072162|0|statement|     create sequence note_seq start with 1 increment by 50
+1705156072162|0|statement|     create sequence users_seq start with 1 increment by 50
+1705156072167|1|statement|     create table label (         version integer not null,         created timestamp(6),         label_id bigint not null,         last_modified timestamp(6),         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (label_id)     )
+1705156072168|0|statement|     create table note (         version integer not null,         created timestamp(6),         label_label_id bigint,         last_modified timestamp(6),         note_id bigint not null,         user_user_id bigint,         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (note_id)     )
+1705156072169|0|statement|     create table users (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1705156072175|6|statement|     alter table if exists note         add constraint FKlh2sim636efkdye8e530lftiy         foreign key (label_label_id)         references label
+1705156072176|1|statement|     alter table if exists note         add constraint FK1a1q3g92a05l7l1winct6xahw         foreign key (user_user_id)         references users
+1705156073407|1|statement|select next value for users_seq
+1705156073474|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2024-01-13T15:27:53.396+0100','errabi',NULL,'2024-01-13T15:27:53.396+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1705156073478|0|commit|
+1705156073566|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705156073586|0|commit|
+1705156073590|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705156073591|0|commit|
+1705156073607|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705156073628|0|statement|update users set created=NULL,created_by=NULL,last_modified='2024-01-13T15:27:53.609+0100',username='lalal',version=1 where user_id=1 and version=0
+1705156073632|0|commit|
+1705156073646|0|statement|select next value for note_seq
+1705156073657|0|statement|select next value for label_seq
+1705156073662|0|statement|insert into label (created,created_by,description,last_modified,last_modified_by,name,version,label_id) values ('2024-01-13T15:27:53.656+0100','errabi',NULL,'2024-01-13T15:27:53.656+0100','errabi','Book',0,1)
+1705156073666|0|statement|insert into note (created,created_by,description,label_label_id,last_modified,last_modified_by,name,user_user_id,version,note_id) values ('2024-01-13T15:27:53.645+0100','errabi',NULL,1,'2024-01-13T15:27:53.645+0100','errabi','note',1,0,1)
+1705156073667|0|commit|
+1705157099360|18|statement|CALL SCHEMA()
+1705157099389|4|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1705157099393|0|statement|CALL SCHEMA()
+1705157099394|0|statement|CALL SCHEMA()
+1705157099397|0|statement|SELECT USER()
+1705157099410|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1705157099428|3|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705157099450|0|commit|
+1705157099454|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705157099455|0|commit|
+1705157099455|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705157099459|1|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1705157099463|0|statement|SELECT USER()
+1705157099497|9|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1705157099504|3|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1705157099505|0|commit|
+1705157099505|0|commit|
+1705157099507|0|statement|CALL SCHEMA()
+1705157099510|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705157099522|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705157099530|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705157099531|0|statement|SET SCHEMA "PUBLIC"
+1705157099534|0|statement|drop table if exists users cascade
+1705157099535|0|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           version number,           primary key (user_id) )
+1705157099536|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705157099537|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705157099545|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 1865667479, 'SA', 6, true)
+1705157099546|0|commit|
+1705157099546|0|commit|
+1705157099547|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705157099548|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705157099553|0|commit|
+1705157099568|0|statement|SET SCHEMA "PUBLIC"
+1705157099569|0|commit|
+1705157099570|0|statement|SET SCHEMA "PUBLIC"
+1705157099570|0|commit|
+1705157100859|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1705157101778|0|commit|
+1705157101779|0|statement|     drop table if exists label cascade 
+1705157101779|0|statement|     drop table if exists note cascade 
+1705157101780|0|statement|     drop table if exists users cascade 
+1705157101781|1|statement|     drop sequence if exists label_seq
+1705157101782|0|statement|     drop sequence if exists note_seq
+1705157101782|0|statement|     drop sequence if exists users_seq
+1705157101789|0|commit|
+1705157101790|1|statement|     create sequence label_seq start with 1 increment by 50
+1705157101790|0|statement|     create sequence note_seq start with 1 increment by 50
+1705157101791|0|statement|     create sequence users_seq start with 1 increment by 50
+1705157101796|1|statement|     create table label (         version integer not null,         created timestamp(6),         label_id bigint not null,         last_modified timestamp(6),         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (label_id)     )
+1705157101798|0|statement|     create table note (         version integer not null,         created timestamp(6),         label_label_id bigint,         last_modified timestamp(6),         note_id bigint not null,         user_user_id bigint,         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (note_id)     )
+1705157101804|5|statement|     create table users (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1705157101811|5|statement|     alter table if exists note         add constraint FKlh2sim636efkdye8e530lftiy         foreign key (label_label_id)         references label
+1705157101812|1|statement|     alter table if exists note         add constraint FK1a1q3g92a05l7l1winct6xahw         foreign key (user_user_id)         references users
+1705157103050|1|statement|select next value for users_seq
+1705157103122|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2024-01-13T15:45:03.037+0100','errabi',NULL,'2024-01-13T15:45:03.037+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1705157103127|0|commit|
+1705157103269|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705157103307|0|commit|
+1705157103310|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705157103311|0|commit|
+1705157103321|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705157103344|0|statement|update users set created=NULL,created_by=NULL,last_modified='2024-01-13T15:45:03.324+0100',username='lalal',version=1 where user_id=1 and version=0
+1705157103353|0|commit|
+1705157103365|0|statement|select next value for note_seq
+1705157103378|0|statement|select next value for label_seq
+1705157103383|0|statement|insert into label (created,created_by,description,last_modified,last_modified_by,name,version,label_id) values ('2024-01-13T15:45:03.377+0100','errabi',NULL,'2024-01-13T15:45:03.377+0100','errabi','Book',0,1)
+1705157103386|0|statement|insert into note (created,created_by,description,label_label_id,last_modified,last_modified_by,name,user_user_id,version,note_id) values ('2024-01-13T15:45:03.364+0100','errabi',NULL,1,'2024-01-13T15:45:03.364+0100','errabi','note',1,0,1)
+1705157103386|0|commit|
+1705157137419|11|statement|CALL SCHEMA()
+1705157137449|4|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1705157137454|0|statement|CALL SCHEMA()
+1705157137454|0|statement|CALL SCHEMA()
+1705157137459|0|statement|SELECT USER()
+1705157137469|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1705157137509|3|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705157137529|0|commit|
+1705157137542|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705157137542|0|commit|
+1705157137542|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705157137549|4|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1705157137559|0|statement|SELECT USER()
+1705157137599|8|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1705157137609|3|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1705157137609|0|commit|
+1705157137609|0|commit|
+1705157137609|0|statement|CALL SCHEMA()
+1705157137619|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705157137629|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705157137639|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705157137649|0|statement|SET SCHEMA "PUBLIC"
+1705157137649|1|statement|drop table if exists users cascade
+1705157137654|2|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           version number,           primary key (user_id) )
+1705157137654|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705157137659|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705157137670|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 1865667479, 'SA', 9, true)
+1705157137670|0|commit|
+1705157137670|0|commit|
+1705157137670|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705157137670|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705157137679|0|commit|
+1705157137702|0|statement|SET SCHEMA "PUBLIC"
+1705157137702|0|commit|
+1705157137702|0|statement|SET SCHEMA "PUBLIC"
+1705157137702|0|commit|
+1705157139063|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1705157140182|0|commit|
+1705157140182|0|statement|     drop table if exists label cascade 
+1705157140182|0|statement|     drop table if exists note cascade 
+1705157140182|0|statement|     drop table if exists users cascade 
+1705157140182|0|statement|     drop sequence if exists label_seq
+1705157140182|0|statement|     drop sequence if exists note_seq
+1705157140182|0|statement|     drop sequence if exists users_seq
+1705157140191|0|commit|
+1705157140191|2|statement|     create sequence label_seq start with 1 increment by 50
+1705157140191|0|statement|     create sequence note_seq start with 1 increment by 50
+1705157140191|0|statement|     create sequence users_seq start with 1 increment by 50
+1705157140199|1|statement|     create table label (         version integer not null,         created timestamp(6),         label_id bigint not null,         last_modified timestamp(6),         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (label_id)     )
+1705157140204|1|statement|     create table note (         version integer not null,         created timestamp(6),         label_label_id bigint,         last_modified timestamp(6),         note_id bigint not null,         user_user_id bigint,         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (note_id)     )
+1705157140204|1|statement|     create table users (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1705157140209|6|statement|     alter table if exists note         add constraint FKlh2sim636efkdye8e530lftiy         foreign key (label_label_id)         references label
+1705157140209|1|statement|     alter table if exists note         add constraint FK1a1q3g92a05l7l1winct6xahw         foreign key (user_user_id)         references users
+1705157141700|1|statement|select next value for users_seq
+1705157141754|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2024-01-13T15:45:41.689+0100','errabi',NULL,'2024-01-13T15:45:41.689+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1705157141759|0|commit|
+1705157141883|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705157141922|0|commit|
+1705157141922|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705157141922|0|commit|
+1705157141929|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705157141954|0|statement|update users set created=NULL,created_by=NULL,last_modified='2024-01-13T15:45:41.929+0100',username='lalal',version=1 where user_id=1 and version=0
+1705157141959|0|commit|
+1705157141970|0|statement|select next value for note_seq
+1705157141979|0|statement|select next value for label_seq
+1705157141979|0|statement|insert into label (created,created_by,description,last_modified,last_modified_by,name,version,label_id) values ('2024-01-13T15:45:41.979+0100','errabi',NULL,'2024-01-13T15:45:41.979+0100','errabi','Book',0,1)
+1705157141989|2|statement|insert into note (created,created_by,description,label_label_id,last_modified,last_modified_by,name,user_user_id,version,note_id) values ('2024-01-13T15:45:41.964+0100','errabi',NULL,1,'2024-01-13T15:45:41.964+0100','errabi','note',1,0,1)
+1705157141989|1|commit|
+1705157230059|10|statement|CALL SCHEMA()
+1705157230092|4|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1705157230106|0|statement|CALL SCHEMA()
+1705157230106|0|statement|CALL SCHEMA()
+1705157230106|0|statement|SELECT USER()
+1705157230122|0|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1705157230153|3|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705157230184|0|commit|
+1705157230184|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705157230192|0|commit|
+1705157230192|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705157230192|2|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1705157230200|0|statement|SELECT USER()
+1705157230232|6|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1705157230247|2|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1705157230247|0|commit|
+1705157230247|0|commit|
+1705157230247|0|statement|CALL SCHEMA()
+1705157230247|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705157230263|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705157230263|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705157230263|0|statement|SET SCHEMA "PUBLIC"
+1705157230263|0|statement|drop table if exists users cascade
+1705157230263|1|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           version number,           primary key (user_id) )
+1705157230279|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705157230279|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705157230279|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 1865667479, 'SA', 5, true)
+1705157230279|0|commit|
+1705157230279|0|commit|
+1705157230279|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705157230279|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705157230295|0|commit|
+1705157230295|0|statement|SET SCHEMA "PUBLIC"
+1705157230295|0|commit|
+1705157230295|0|statement|SET SCHEMA "PUBLIC"
+1705157230295|0|commit|
+1705157231657|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1705157232647|0|commit|
+1705157232647|0|statement|     drop table if exists label cascade 
+1705157232647|0|statement|     drop table if exists note cascade 
+1705157232647|0|statement|     drop table if exists users cascade 
+1705157232647|0|statement|     drop sequence if exists label_seq
+1705157232647|0|statement|     drop sequence if exists note_seq
+1705157232652|0|statement|     drop sequence if exists users_seq
+1705157232655|0|commit|
+1705157232655|1|statement|     create sequence label_seq start with 1 increment by 50
+1705157232655|0|statement|     create sequence note_seq start with 1 increment by 50
+1705157232662|0|statement|     create sequence users_seq start with 1 increment by 50
+1705157232662|1|statement|     create table label (         version integer not null,         created timestamp(6),         label_id bigint not null,         last_modified timestamp(6),         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (label_id)     )
+1705157232662|0|statement|     create table note (         version integer not null,         created timestamp(6),         label_label_id bigint,         last_modified timestamp(6),         note_id bigint not null,         user_user_id bigint,         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (note_id)     )
+1705157232671|1|statement|     create table users (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1705157232677|7|statement|     alter table if exists note         add constraint FKlh2sim636efkdye8e530lftiy         foreign key (label_label_id)         references label
+1705157232682|1|statement|     alter table if exists note         add constraint FK1a1q3g92a05l7l1winct6xahw         foreign key (user_user_id)         references users
+1705157234265|2|statement|select next value for users_seq
+1705157234372|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2024-01-13T15:47:14.242+0100','errabi',NULL,'2024-01-13T15:47:14.242+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1705157234392|0|commit|
+1705157234487|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705157234502|0|commit|
+1705157234502|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705157234502|0|commit|
+1705157234502|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705157234532|0|statement|update users set created=NULL,created_by=NULL,last_modified='2024-01-13T15:47:14.522+0100',username='lalal',version=1 where user_id=1 and version=0
+1705157234542|0|commit|
+1705157234552|0|statement|select next value for note_seq
+1705157234572|0|statement|select next value for label_seq
+1705157234574|0|statement|insert into label (created,created_by,description,last_modified,last_modified_by,name,version,label_id) values ('2024-01-13T15:47:14.567+0100','errabi',NULL,'2024-01-13T15:47:14.567+0100','errabi','Book',0,1)
+1705157234582|0|statement|insert into note (created,created_by,description,label_label_id,last_modified,last_modified_by,name,user_user_id,version,note_id) values ('2024-01-13T15:47:14.552+0100','errabi',NULL,1,'2024-01-13T15:47:14.552+0100','errabi','note',1,0,1)
+1705157234582|0|commit|
+1705160443778|15|statement|CALL SCHEMA()
+1705160443801|3|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
+1705160443806|0|statement|CALL SCHEMA()
+1705160443808|0|statement|CALL SCHEMA()
+1705160443811|0|statement|SELECT USER()
+1705160443827|1|statement|SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'info.BUILD_ID'
+1705160443852|4|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705160443893|0|commit|
+1705160443900|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705160443901|0|commit|
+1705160443902|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705160443909|3|statement|SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_TYPE = 'BASE TABLE'
+1705160443917|0|statement|SELECT USER()
+1705160443963|7|statement|CREATE TABLE IF NOT EXISTS "PUBLIC"."flyway_schema_history" (     "installed_rank" INT NOT NULL,     "version" VARCHAR(50),     "description" VARCHAR(200) NOT NULL,     "type" VARCHAR(20) NOT NULL,     "script" VARCHAR(1000) NOT NULL,     "checksum" INT,     "installed_by" VARCHAR(100) NOT NULL,     "installed_on" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,     "execution_time" INT NOT NULL,     "success" BOOLEAN NOT NULL,     CONSTRAINT "flyway_schema_history_pk" PRIMARY KEY ("installed_rank") ) AS SELECT -1, NULL, '<< Flyway Schema History table created >>', 'TABLE', '', NULL, 'SA', CURRENT_TIMESTAMP, 0, TRUE
+1705160443970|2|statement|CREATE INDEX "PUBLIC"."flyway_schema_history_s_idx" ON "PUBLIC"."flyway_schema_history" ("success")
+1705160443971|0|commit|
+1705160443971|0|commit|
+1705160443973|0|statement|CALL SCHEMA()
+1705160443975|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705160443989|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705160443999|0|statement|SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='PUBLIC'
+1705160444000|0|statement|SET SCHEMA "PUBLIC"
+1705160444002|0|statement|drop table if exists users cascade
+1705160444004|1|statement|create table users (           user_id uuid not null,           email varchar(255),           password varchar(255),           profile_picture varchar(255),           username varchar(255),           version number,           primary key (user_id) )
+1705160444006|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705160444007|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705160444016|0|statement|INSERT INTO "PUBLIC"."flyway_schema_history" ("installed_rank", "version", "description", "type", "script", "checksum", "installed_by", "execution_time", "success") VALUES (1, '1', 'user create', 'SQL', 'V1__user_create.sql', 1865667479, 'SA', 6, true)
+1705160444017|0|commit|
+1705160444017|0|commit|
+1705160444018|0|statement|select * from "PUBLIC"."flyway_schema_history" for update
+1705160444019|0|statement|SELECT "installed_rank","version","description","type","script","checksum","installed_on","installed_by","execution_time","success" FROM "PUBLIC"."flyway_schema_history" WHERE "type" != 'TABLE' AND "installed_rank" > -1 ORDER BY "installed_rank"
+1705160444026|0|commit|
+1705160444037|0|statement|SET SCHEMA "PUBLIC"
+1705160444038|0|commit|
+1705160444038|0|statement|SET SCHEMA "PUBLIC"
+1705160444039|0|commit|
+1705160445295|0|statement|select * from INFORMATION_SCHEMA.SEQUENCES
+1705160446134|0|commit|
+1705160446134|0|statement|     drop table if exists label cascade 
+1705160446134|0|statement|     drop table if exists note cascade 
+1705160446136|0|statement|     drop table if exists users cascade 
+1705160446136|0|statement|     drop sequence if exists label_seq
+1705160446136|0|statement|     drop sequence if exists note_seq
+1705160446137|0|statement|     drop sequence if exists users_seq
+1705160446144|0|commit|
+1705160446147|2|statement|     create sequence label_seq start with 1 increment by 50
+1705160446147|0|statement|     create sequence note_seq start with 1 increment by 50
+1705160446148|0|statement|     create sequence users_seq start with 1 increment by 50
+1705160446154|0|statement|     create table label (         version integer not null,         created timestamp(6),         label_id bigint not null,         last_modified timestamp(6),         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (label_id)     )
+1705160446155|0|statement|     create table note (         version integer not null,         created timestamp(6),         label_label_id bigint,         last_modified timestamp(6),         note_id bigint not null,         user_user_id bigint,         created_by varchar(255),         description varchar(255),         last_modified_by varchar(255),         name varchar(255),         primary key (note_id)     )
+1705160446156|0|statement|     create table users (         version integer not null,         created timestamp(6),         last_modified timestamp(6),         user_id bigint not null,         created_by varchar(255),         email varchar(255),         last_modified_by varchar(255),         password varchar(255),         profile_picture varchar(255),         username varchar(255),         primary key (user_id)     )
+1705160446165|8|statement|     alter table if exists note         add constraint FKlh2sim636efkdye8e530lftiy         foreign key (label_label_id)         references label
+1705160446167|1|statement|     alter table if exists note         add constraint FK1a1q3g92a05l7l1winct6xahw         foreign key (user_user_id)         references users
+1705160447435|1|statement|select next value for users_seq
+1705160447508|0|statement|insert into users (created,created_by,email,last_modified,last_modified_by,password,profile_picture,username,version,user_id) values ('2024-01-13T16:40:47.425+0100','errabi',NULL,'2024-01-13T16:40:47.425+0100','errabi',NULL,NULL,'Ayoub',0,1)
+1705160447515|0|commit|
+1705160447595|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705160447605|0|commit|
+1705160447607|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705160447609|0|commit|
+1705160447615|0|statement|select u1_0.user_id,u1_0.created,u1_0.created_by,u1_0.email,u1_0.last_modified,u1_0.last_modified_by,u1_0.password,u1_0.profile_picture,u1_0.username,u1_0.version from users u1_0 where u1_0.user_id=1
+1705160447629|0|statement|update users set created=NULL,created_by=NULL,last_modified='2024-01-13T16:40:47.617+0100',username='lalal',version=1 where user_id=1 and version=0
+1705160447632|0|commit|
+1705160447641|0|statement|select next value for note_seq
+1705160447648|0|statement|select next value for label_seq
+1705160447653|0|statement|insert into label (created,created_by,description,last_modified,last_modified_by,name,version,label_id) values ('2024-01-13T16:40:47.647+0100','errabi',NULL,'2024-01-13T16:40:47.647+0100','errabi','Book',0,1)
+1705160447655|0|statement|insert into note (created,created_by,description,label_label_id,last_modified,last_modified_by,name,user_user_id,version,note_id) values ('2024-01-13T16:40:47.640+0100','errabi',NULL,1,'2024-01-13T16:40:47.640+0100','errabi','note',1,0,1)
+1705160447661|0|commit|

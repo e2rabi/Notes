@@ -1,6 +1,7 @@
 package com.errabi.note;
 
 
+import com.errabi.note.entities.Label;
 import com.errabi.note.entities.Note;
 import com.errabi.note.repository.NoteRepository;
 import com.errabi.note.service.UserService;
@@ -46,6 +47,9 @@ public class NoteApplication implements ApplicationRunner {
 		Note note = new Note();
 		note.setName("note");
 		note.setUser(userMapper.toEntity(a));
+		Label label = new Label();
+		label.setName("Book");
+		note.setLabel(label);
 		noteRepository.save(note);
 		//userService.deleteById(a.getUserId());
 		//userRepository.save(a);
