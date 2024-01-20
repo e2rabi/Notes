@@ -1,7 +1,9 @@
 package com.errabi.note.service;
 
 import com.errabi.note.entities.User;
+import com.errabi.note.service.mapper.NoteMapper;
 import com.errabi.note.service.mapper.UserMapper;
+import com.errabi.note.service.model.NoteDto;
 import com.errabi.note.service.model.UserDto;
 import com.errabi.note.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,13 +13,15 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Set;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
     private final UserMapper mapper ;
-
+    @Transactional
     public UserDto save(UserDto userDto){
         var createdUser =  userRepository.save(mapper.toEntity(userDto));
         return mapper.toModel(createdUser);
@@ -34,10 +38,12 @@ public class UserService {
        return userRepository.findAll(PageRequest.of(page.getPageNumber(),page.getPageSize(),Sort.by("username")))
                             .map(mapper::toModel);
     }
+    @Transactional
     public void deleteById(Long id){
         var existUser = findById(id);
         userRepository.deleteById(existUser.getUserId());
     }
+    @Transactional
     public void update(UserDto replacementUser){
         var existingUser =  findById(replacementUser.getUserId());
         BeanUtils.copyProperties(replacementUser,existingUser);
@@ -52,5 +58,10 @@ public class UserService {
         Example<User> userExample = Example.of(user,exampleMatcher);
         return userRepository.findAll(userExample,PageRequest.of(page.getPageNumber(),page.getPageSize()))
                              .map(mapper::toModel);
+    }
+    @Transactional(readOnly = true)
+    public Set<NoteDto> getNotesByUserId(Long userId){
+         UserDto userDto =  findById(userId);
+         return userDto.getNotes();
     }
 }

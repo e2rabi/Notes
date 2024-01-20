@@ -1,1 +1,5 @@
 rootProject.name = 'note'
+
+include 'note-keep'
+include 'sdk'
+include 'note-infrastructure'
