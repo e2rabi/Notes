@@ -1,5 +1,6 @@
 package com.errabi.note.service;
 
+import com.errabi.note.service.exception.NoteBusinessException;
 import com.errabi.note.stub.UserStub;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
 
+import static com.errabi.note.service.exception.NoteErrorMessage.USER_NOT_FOUND_MESSAGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -35,7 +37,7 @@ public class UserServiceTest {
     @Test
     @Order(3)
     public void getUserByExample(){
-        var users =  userService.findByExample(UserStub.getValidUser(),PageRequest.of(0,10));
+        var users =  userService.findUsersByExample(UserStub.getValidUser(),PageRequest.of(0,10));
         assertEquals(1,users.getTotalElements());
         assertEquals(UserStub.getValidUser().getEmail(),users.getContent().get(0).getEmail());
     }
@@ -56,10 +58,13 @@ public class UserServiceTest {
 
     @Test
     @Order(6)
-    public void deleteUser(){
+    public void findNonExistingUser(){
+        Throwable exception = assertThrows(NoteBusinessException.class, () -> userService.findById(2l));
+        assertEquals(USER_NOT_FOUND_MESSAGE, exception.getMessage());
+    }
+    @Test
+    @Order(7)
+    public void deleteExistingUser(){
         userService.deleteById(1l);
-        Throwable thrown = assertThrows(RuntimeException.class, () -> userService.findById(1l));
-        assertEquals("User with id {} not found !", thrown.getMessage());
-
     }
 }
