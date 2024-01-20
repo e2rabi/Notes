@@ -1,7 +1,6 @@
 package com.errabi.note.service;
 
 import com.errabi.note.entities.User;
-import com.errabi.note.service.mapper.NoteMapper;
 import com.errabi.note.service.mapper.UserMapper;
 import com.errabi.note.service.model.NoteDto;
 import com.errabi.note.service.model.UserDto;
@@ -13,7 +12,7 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -50,7 +49,7 @@ public class UserService {
         userRepository.save(mapper.toEntity(existingUser));
     }
     @Transactional(readOnly = true)
-    public Page<UserDto> findByQuery(UserDto userQuery,Pageable page){
+    public Page<UserDto> findByExample(UserDto userQuery, Pageable page){
         var user = mapper.toEntity(userQuery);
         ExampleMatcher exampleMatcher = ExampleMatcher.matching()
                                                       .withIgnorePaths("userId")
@@ -60,7 +59,7 @@ public class UserService {
                              .map(mapper::toModel);
     }
     @Transactional(readOnly = true)
-    public Set<NoteDto> getNotesByUserId(Long userId){
+    public List<NoteDto> getNotesByUserId(Long userId){
          UserDto userDto =  findById(userId);
          return userDto.getNotes();
     }

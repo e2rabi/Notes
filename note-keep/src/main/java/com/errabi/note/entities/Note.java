@@ -2,6 +2,7 @@ package com.errabi.note.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -10,6 +11,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @Entity
 @DynamicUpdate // for merge operation update only modified fields
 @Table(name = "note")
+@EqualsAndHashCode(callSuper=false)
 public class Note extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

@@ -37,7 +37,7 @@ public class NoteApplication implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		UserDto user = new UserDto();
+		/*UserDto user = new UserDto();
 		user.setUsername("Ayoub");
 		log.info("Datasource : {}",dataSource.getClass().getName());
 		userService.save(user);
@@ -50,8 +50,8 @@ public class NoteApplication implements ApplicationRunner {
 		Label label = new Label();
 		label.setName("Book");
 		note.setLabel(label);
-		noteRepository.save(note);
+		//noteRepository.save(note);
 		//userService.deleteById(a.getUserId());
-		//userRepository.save(a);
+		//userRepository.save(a);*/
 	}
 }

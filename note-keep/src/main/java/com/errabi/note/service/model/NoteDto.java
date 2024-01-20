@@ -13,6 +13,6 @@ public class NoteDto {
     private Long noteId;
     private String name;
     private String description;
-    private UserDto user ;
+   // private UserDto user ;
     private LabelDto label ;
 }

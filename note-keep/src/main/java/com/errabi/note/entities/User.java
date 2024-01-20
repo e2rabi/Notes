@@ -5,7 +5,9 @@ import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Slf4j
@@ -13,6 +15,7 @@ import java.util.Set;
 @Entity
 @DynamicUpdate // for merge operation update only modified fields
 @Table(name = "users")
+@EqualsAndHashCode(callSuper=false)
 public class User extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -22,7 +25,7 @@ public class User extends BaseEntity{
     private String password;
     private String profilePicture ;
     @OneToMany(mappedBy = "user",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
-    private Set<Note> notes = new HashSet<>();
+    private List<Note> notes = new ArrayList<>();
 
     public void addNote(Note note){
         this.notes.add(note);

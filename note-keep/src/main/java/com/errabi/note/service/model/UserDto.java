@@ -1,6 +1,8 @@
 package com.errabi.note.service.model;
 
 import lombok.*;
+
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -12,6 +14,6 @@ public class UserDto {
     private String username;
     private String email;
     private String profilePicture ;
-    private Set<NoteDto> notes ;
+    private List<NoteDto> notes ;
   //  private Set<LabelDto> labels ;
 }
