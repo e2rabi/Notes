@@ -1,0 +1,20 @@
+
+spring:
+  flyway:
+    enabled: false
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+    hikari:
+      auto-commit: false # delaying connection acquisition turn of auto commit mode
+      connection-timeout: 30000
+      idleTimeout: 600000
+      max-lifetime: 1800000
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
