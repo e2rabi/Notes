@@ -4,7 +4,7 @@ class Card extends BaseComponant{
         super();
     }
     connectedCallback(){
-       super.css `Card` ;
+       super.css `Card.css` ;
        this.render();
     }
     propagateEvent(cardId,eventType){
@@ -50,6 +50,9 @@ class Card extends BaseComponant{
               break;
               case "PIN" :
                 this.propagateEvent(this.getAttribute("id"),'CARD_IS_PINNED');
+              break;
+              case "FAVORIT" :
+                this.propagateEvent(this.getAttribute("id"),'CARD_IS_FAVORIT');
               break;
             }
           }

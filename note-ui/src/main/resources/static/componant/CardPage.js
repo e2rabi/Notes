@@ -6,7 +6,7 @@ class CardPage extends BaseComponant{
         super();
     }
     connectedCallback(){
-       super.css `CardPage` ;
+       super.css `CardPage.css` ;
        this.render();
        this.addCardEventListener();
     }
@@ -81,8 +81,21 @@ class CardPage extends BaseComponant{
             app.notes.splice(objWithIdIndex, 1);
             app.notes.push(pinnedCard);
             this.render();
-    }
- })
+        }
+      });
+      document.addEventListener("CARD_IS_FAVORIT",(e)=>{
+        if(app.notes.length>0 && e.detail!=undefined){
+            // confirme 
+            // call API
+            // on success re render the page
+            const objWithIdIndex = app.notes.findIndex((obj) => obj.id === Number(e.detail.noteId));
+            const targetCard =  app.notes[objWithIdIndex] ;
+            targetCard.isFavorit=targetCard.isFavorit=="true"?"false":"true";
+            //app.notes.splice(objWithIdIndex, 1);
+            //app.notes.push(targetCard);
+            this.render();
+        }
+      });
     }
 }
 customElements.define("app-cards",CardPage);

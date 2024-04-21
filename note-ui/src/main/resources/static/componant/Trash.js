@@ -5,7 +5,7 @@ class Trash extends BaseComponant{
         super();
     }
     connectedCallback(){
-       super.css `Trash` ;
+       super.css `Trash.css` ;
        this.render();
     }
     render(){

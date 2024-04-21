@@ -11,7 +11,7 @@ class BaseComponant extends HTMLElement{
             this.root.appendChild(styles);
         }else{
             const loadCss = async ()=>{
-                const request =  await  fetch(`./componant/${style}.css`);
+                const request =  await  fetch(`./componant/${style}`);
                 const css =  await request.text() ;
                 styles.textContent = css ;
                 this.root.appendChild(styles);
