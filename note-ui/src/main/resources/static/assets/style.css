@@ -1,0 +1,31 @@
+.navbar{
+    background-color: #f8f9fa !important;
+}
+.nav-container{
+    max-width: 100%;
+    padding: 0px;
+    border-bottom: 1px solid gainsboro;
+}
+.app-title{
+    font-family: 'Comics', sans-serif;  
+    margin-left: 4px;  
+    color: #FEBD04;                                         
+}
+.app-header-form{
+    width: 50%;
+    margin: auto;
+}
+.body-container{
+    max-width: 100%;
+    padding: 0px;
+}
+.left-menu-label{
+    margin-left: 22px;
+    color: #495057;
+    font-weight: 500;
+}
+.fa-color{
+    color: #495057;
+}
+.test { color:red;}
+:host .test { color:green;}

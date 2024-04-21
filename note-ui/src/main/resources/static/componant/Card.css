@@ -1,0 +1,106 @@
+@import url('assets/font-awesome.min.css');
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 15px;
+  }
+  
+  .cards .red {
+    background-color: #FFC6E7;
+  }
+  
+  .cards .blue {
+    background-color: #92FFEA;
+  }
+  
+  .cards .green {
+    background-color: #B8FF89;
+  }
+  .cards .yellow {
+    background-color: #F6FF68;
+  }
+  .cards .removed{
+      background-color: #cfcfcf;
+  }
+  .cards .purple{
+    background-color: #f5bbd6;
+}
+  .cards .card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 162px;
+    width: 250px;
+    border-radius: 10px;
+    color: #232425;
+    cursor: pointer;
+    transition: 400ms;
+  }
+  
+  .cards .card p.tip {
+    margin: auto;
+    width: 90%;
+    text-align: left;
+    position: relative;
+    bottom: 23px;
+    letter-spacing: .00625em;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 1.5rem;
+  }
+  
+  .cards .card p.second-text {
+    font-size: .7em;
+    position: relative;
+    bottom: 37px;
+  }
+  
+  .cards .card:hover {
+    transform: scale(1.1, 1.1);
+  }
+  .card-buttons{
+    display: inline-block;
+    position: relative;
+    bottom: 5px;
+  }
+  .card-buttons-icons{
+    height: 31px;
+    width: 31px;
+    display: inline;
+    padding: 6px;
+  }
+  .card-buttons-icons:hover{
+    opacity: 0.87;
+    background-color: rgba(126, 133, 140, 0.157);
+    border-radius: 50%;
+  }
+ .card-favorit{
+  float: right;
+  color: red;
+  visibility: visible !important;
+ }
+ .card-removed{
+  float: right;
+  color: #212529;
+  visibility: visible !important;
+ }
+ .card-pinned{
+  float: right;
+  color: #212529;
+  visibility: visible !important;
+  position: relative;
+  right: 5px;
+ }
+ .card-active{
+  display: none !important;
+ }
+ .fa-heart{
+  visibility: hidden;
+ }
+ .remove-card{
+  display: none !important;
+ }

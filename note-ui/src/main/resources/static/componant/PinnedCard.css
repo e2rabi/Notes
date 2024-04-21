@@ -1,0 +1,10 @@
+.pinned-card-container{
+    margin-bottom: 36px;
+    display: flex;
+}
+.pinned-card{
+    position: relative;
+    top: 11px;
+    margin: 0px;
+    right: 5px;
+}

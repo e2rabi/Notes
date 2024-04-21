@@ -1,0 +1,28 @@
+.cards-display{
+    display: flex;
+}
+.pinned{
+    color: #9aa0a6;
+    letter-spacing: .07272727em;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: .6875rem;
+    font-weight: 500;
+    line-height: 1rem;
+    text-transform: uppercase;
+    position: relative;
+    top: 21px ;
+}
+.others{
+    color: #9aa0a6;
+    letter-spacing: .07272727em;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: .6875rem;
+    font-weight: 500;
+    line-height: 1rem;
+    text-transform: uppercase;
+}
+.test {
+   background-color: red !important;
+   position: relative;
+   top: 15px;
+}

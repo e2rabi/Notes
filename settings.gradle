@@ -1,5 +1,4 @@
-rootProject.name = 'note'
+rootProject.name = 'notes'
 
-include 'note-keep'
-include 'sdk'
+include 'note-ui'
 include 'note-infrastructure'
