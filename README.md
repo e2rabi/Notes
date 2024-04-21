@@ -5,7 +5,7 @@
 - This project is going to be developed as stages, and all such stage steps are documented under the project Notes wiki
 ## Getting started
 This Application show how to build and secure a real-world application, Using vainlla JS without any javascript framework implementing the following EC6 features :heartpulse: : 
-- Single page application SPA router from scratch
+- Single page application SPA Router from scratch
 - Event binding and handlers
 - Web component (template,shadow dom,custom element)
 - Use Javascript Proxy and Promises
