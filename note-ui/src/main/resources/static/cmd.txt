@@ -1,0 +1,1 @@
+npx babel ./componant/Card.js --out-file ./dist/card.js

@@ -1,4 +1,10 @@
 import BaseComponant from "./BaseComponant.js"
+function customElement(tag) {
+  return function(target) {
+      customElements.define(tag,Card)
+  };
+};
+//@customElement("app-card",Card)
 class Card extends BaseComponant{
     constructor(){
         super();
