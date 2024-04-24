@@ -37,15 +37,17 @@ class CardPage extends BaseComponant{
             }
             const cards = document.createElement("div");
             cards.style.display="flex";
+            cards.setAttribute("id","app-cards-container")
             element.appendChild(cards);
             app.notes.filter(e=>e.isPinned!="true").forEach(note=>{
                 const card = document.createElement("app-card");
                 card.setAttribute("id",note.id)
-                card.setAttribute("isFavorit",note.isFavorit)
-                card.setAttribute("draggable",true)
-                card.setAttribute("color",note.color)
-                card.setAttribute("title",note.name)
-                card.setAttribute("description",note.description)
+                card.isFavorit=note.isFavorit;
+                card.color=note.color;
+                card.draggable=true;
+                card.id=note.id;
+                card.title=note.name;
+                card.description=note.description;
                 cards.appendChild(card);
             })
               // apply drap and drop on childs
@@ -58,6 +60,26 @@ class CardPage extends BaseComponant{
             element.querySelector('span').textContent = ""
         }
            
+    }
+    updateComponents(newCard){
+        // if is pinned card 
+        // else 
+        const targetCard = this.shadowRoot.getElementById("app-cards-container");
+        if(targetCard){
+            targetCard.childNodes.forEach(e=>{
+                if(e.id==newCard.id){
+                    const card = document.createElement("app-card");
+                    card.isFavorit=newCard.isFavorit;
+                    card.color=newCard.color;
+                    card.draggable=true;
+                    card.id=newCard.id;
+                    card.title=newCard.name;
+                    card.description=newCard.description;
+                    card.setAttribute("id",newCard.id)
+                    e.replaceWith(card)
+                }
+             });
+        }
     }
     addCardEventListener(){
         document.addEventListener("CARD_IS_REMOVED",(e)=>{
@@ -93,7 +115,7 @@ class CardPage extends BaseComponant{
             targetCard.isFavorit=targetCard.isFavorit=="true"?"false":"true";
             //app.notes.splice(objWithIdIndex, 1);
             //app.notes.push(targetCard);
-            this.render();
+            this.updateComponents(targetCard);
         }
       });
     }

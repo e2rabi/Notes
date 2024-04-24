@@ -28,13 +28,13 @@ class PinnedCard extends BaseComponant{
             app.notes.filter(e=>e.isPinned=="true").forEach(note=>{
                 console.log(",note.color : "+note.color)
                 const card = document.createElement("app-card");
-                card.setAttribute("id",note.id)
-                card.setAttribute("isFavorit",note.isFavorit)
-                card.setAttribute("draggable",true)
-                card.setAttribute("color",note.color)
-                card.setAttribute("title",note.name)
+                card.isFavorit=note.isFavorit;
+                card.color=note.color;
+                card.draggable=true;
+                card.id=note.id;
+                card.title=note.name;
+                card.description=note.description;
                 card.setAttribute("isPinned",note.isPinned)
-                card.setAttribute("description",note.description)
                 card.classList.add("pinned-card")
                 elements.appendChild(card)
             })
