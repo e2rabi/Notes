@@ -7,29 +7,36 @@ class CardPage extends BaseComponant{
     }
     connectedCallback(){
        super.css `CardPage.css` ;
-       this.render();
        this.addCardEventListener();
+       this.render();
+    }
+    createCard(fetchedData){
+        const card = document.createElement("app-card");
+        card.setAttribute("id",fetchedData.id)
+        card.isFavorit=fetchedData.isFavorit;
+        card.color=fetchedData.color;
+        card.draggable=true;
+        card.id=fetchedData.id;
+        card.title=fetchedData.name;
+        card.description=fetchedData.description;
+        card.isPinned = fetchedData.isPinned;
+        return card ;
+    }
+    loadPinnedCard(card){
+        if(card && card.isPinned=="true"){
+            const pinnedCardContainer = this.root.getElementById("cards-pinned-container");
+            pinnedCardContainer.style.position="relative"
+            pinnedCardContainer.style.display="flex"
+            pinnedCardContainer.style.top="12px"
+            card.setAttribute("id","app-pinned-cards");
+            pinnedCardContainer.appendChild(card)
+        }
     }
     render(){
         const template = document.getElementById("app-cards");
         const content = template.content.cloneNode(true);  
         this.root.replaceChildren(content);
 
-        // Add pinned cards
-        const pinnedCardContainer = this.root.getElementById("cards-pinned-container");
-        pinnedCardContainer.style.position="relative"
-        pinnedCardContainer.style.top="12px"
-
-        if(app.notes.filter(e=>e.isPinned=="true").length==0){
-            this.shadowRoot.querySelector('span').textContent = "";
-        }else{
-            if(this.shadowRoot.querySelector('span').textContent == ""){
-                this.shadowRoot.querySelector('span').textContent = "PINNED";
-            }
-        }
-        const pinnedCards = document.createElement("app-pinned-cards");
-        pinnedCardContainer.appendChild(pinnedCards)
-        // Add othes cards
         const element = this.shadowRoot.getElementById("cards-container");
         if(app.notes.length>0){
             if(element.querySelector('span').textContent==""){
@@ -39,32 +46,30 @@ class CardPage extends BaseComponant{
             cards.style.display="flex";
             cards.setAttribute("id","app-cards-container")
             element.appendChild(cards);
-            app.notes.filter(e=>e.isPinned!="true").forEach(note=>{
-                const card = document.createElement("app-card");
-                card.setAttribute("id",note.id)
-                card.isFavorit=note.isFavorit;
-                card.color=note.color;
-                card.draggable=true;
-                card.id=note.id;
-                card.title=note.name;
-                card.description=note.description;
-                cards.appendChild(card);
-            })
+            app.notes.forEach(fetchedCardData=>{
+                if(fetchedCardData.isPinned=="true"){
+                    const card = this.createCard(fetchedCardData);
+                    this.loadPinnedCard(card);
+                }else{
+                    const card = this.createCard(fetchedCardData);
+                    cards.appendChild(card);
+                }
+            });
               // apply drap and drop on childs
             Sortable.create(cards,{
                 swapThreshold: 1,
                 animation: 150
             })
         }
-        if(app.notes.filter(e=>e.isPinned!="true").length==0){
-            element.querySelector('span').textContent = ""
-        }
            
     }
     updateComponents(newCard){
-        // if is pinned card 
-        // else 
-        const targetCard = this.shadowRoot.getElementById("app-cards-container");
+        let  targetCard = null ;
+        if(newCard.isPinned=="true"){
+             targetCard = this.shadowRoot.getElementById("cards-pinned-container");
+        }else{
+             targetCard = this.shadowRoot.getElementById("app-cards-container");
+        }
         if(targetCard){
             targetCard.childNodes.forEach(e=>{
                 if(e.id==newCard.id){
@@ -72,11 +77,12 @@ class CardPage extends BaseComponant{
                     card.isFavorit=newCard.isFavorit;
                     card.color=newCard.color;
                     card.draggable=true;
+                    card.isPinned = newCard.isPinned;
                     card.id=newCard.id;
                     card.title=newCard.name;
                     card.description=newCard.description;
-                    card.setAttribute("id",newCard.id)
-                    e.replaceWith(card)
+                    card.setAttribute("id",newCard.id);
+                    e.replaceWith(card);
                 }
              });
         }

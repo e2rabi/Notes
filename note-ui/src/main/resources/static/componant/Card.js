@@ -7,12 +7,19 @@ class Card extends BaseComponant{
         this._id;
         this._title;
         this._description;
+        this._pinned;
     } // TODO find a better way for property management
     get id() {
       return this._id;
     }
     set id(value) {
       this._id = value;
+    }
+    get pinned() {
+      return this._pinned;
+    }
+    set pinned(value) {
+      this._pinned = value;
     }
     get description() {
       return this._description;
@@ -60,7 +67,7 @@ class Card extends BaseComponant{
               <p class="tip" id="card-title">${this._title}
                 <i class="fa fa-heart ${this._isFavorit=="true"?"card-favorit":""}" aria-hidden="true"></i>
                 <i class="fa fa-trash ${this.getAttribute("isRemoved")=="true"?"card-removed":"card-active"}" aria-hidden="true"></i>
-                <i class="fa fa-thumb-tack ${this.getAttribute("isPinned")=="true"?"card-pinned":"card-active"}" aria-hidden="true"></i>
+                <i class="fa fa-thumb-tack ${this._pinned=="true"?"card-pinned":"card-active"}" aria-hidden="true"></i>
               </p>
               <p class="second-text">${this._description}</p>
               <div class="card-buttons" id="cardEdit">

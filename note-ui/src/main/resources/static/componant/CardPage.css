@@ -26,3 +26,9 @@
    position: relative;
    top: 15px;
 }
+#app-pinned-cards{
+    padding: 17px;
+    right: 69px;
+    position: relative;
+    top: 11px;
+}
