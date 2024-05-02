@@ -19,11 +19,11 @@ class CardPage extends BaseComponant{
         card.id=fetchedData.id;
         card.title=fetchedData.name;
         card.description=fetchedData.description;
-        card.isPinned = fetchedData.isPinned;
+        card.pinned = fetchedData.pinned;
         return card ;
     }
     loadPinnedCard(card){
-        if(card && card.isPinned=="true"){
+        if(card && card.pinned=="true"){
             const pinnedCardContainer = this.root.getElementById("cards-pinned-container");
             pinnedCardContainer.style.position="relative"
             pinnedCardContainer.style.display="flex"
@@ -47,7 +47,7 @@ class CardPage extends BaseComponant{
             cards.setAttribute("id","app-cards-container")
             element.appendChild(cards);
             app.notes.forEach(fetchedCardData=>{
-                if(fetchedCardData.isPinned=="true"){
+                if(fetchedCardData.pinned=="true"){
                     const card = this.createCard(fetchedCardData);
                     this.loadPinnedCard(card);
                 }else{
@@ -65,7 +65,7 @@ class CardPage extends BaseComponant{
     }
     updateComponents(newCard){
         let  targetCard = null ;
-        if(newCard.isPinned=="true"){
+        if(newCard.pinned=="true"){
              targetCard = this.shadowRoot.getElementById("cards-pinned-container");
         }else{
              targetCard = this.shadowRoot.getElementById("app-cards-container");
@@ -77,7 +77,7 @@ class CardPage extends BaseComponant{
                     card.isFavorit=newCard.isFavorit;
                     card.color=newCard.color;
                     card.draggable=true;
-                    card.isPinned = newCard.isPinned;
+                    card.pinned = newCard.pinned;
                     card.id=newCard.id;
                     card.title=newCard.name;
                     card.description=newCard.description;
@@ -105,7 +105,7 @@ class CardPage extends BaseComponant{
             // on success re render the page
             const objWithIdIndex = app.notes.findIndex((obj) => obj.id === Number(e.detail.noteId));
             const pinnedCard =  app.notes[objWithIdIndex] ;
-            pinnedCard.isPinned=pinnedCard.isPinned=="true"?"false":"true";
+            pinnedCard.pinned=pinnedCard.pinned=="true"?"false":"true";
             app.notes.splice(objWithIdIndex, 1);
             app.notes.push(pinnedCard);
             this.render();

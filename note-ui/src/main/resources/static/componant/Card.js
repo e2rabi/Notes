@@ -67,7 +67,7 @@ class Card extends BaseComponant{
               <p class="tip" id="card-title">${this._title}
                 <i class="fa fa-heart ${this._isFavorit=="true"?"card-favorit":""}" aria-hidden="true"></i>
                 <i class="fa fa-trash ${this.getAttribute("isRemoved")=="true"?"card-removed":"card-active"}" aria-hidden="true"></i>
-                <i class="fa fa-thumb-tack ${this._pinned=="true"?"card-pinned":"card-active"}" aria-hidden="true"></i>
+                <i class="fa fa-thumb-tack  ${this._pinned=="true"?"card-pinned":"card-active"}" aria-hidden="true"></i>
               </p>
               <p class="second-text">${this._description}</p>
               <div class="card-buttons" id="cardEdit">
