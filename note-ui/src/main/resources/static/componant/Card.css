@@ -26,6 +26,9 @@
   .cards .purple{
     background-color: #f5bbd6;
 }
+.cards .darkblue{
+  background-color: #5e70ff;
+}
   .cards .card {
     display: flex;
     align-items: center;

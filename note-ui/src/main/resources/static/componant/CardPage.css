@@ -10,7 +10,8 @@
     line-height: 1rem;
     text-transform: uppercase;
     position: relative;
-    top: 21px ;
+    top: 8px ;
+    display: contents;
 }
 .others{
     color: #9aa0a6;
@@ -28,7 +29,7 @@
 }
 #app-pinned-cards{
     padding: 17px;
-    right: 69px;
+    /*right: 69px;
     position: relative;
-    top: 11px;
+    top: 11px;*/
 }

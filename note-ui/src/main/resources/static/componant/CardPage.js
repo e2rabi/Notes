@@ -22,13 +22,16 @@ class CardPage extends BaseComponant{
         card.pinned = fetchedData.pinned;
         return card ;
     }
-    loadPinnedCard(card){
+    checkIfPinnedCardExist(){
+        if(app.notes.length>0){
+            return app.notes.filter(e=>e.pinned="true").length > 0 ? true:false;
+        }
+        return false ;
+    }
+    loadPinnedCard(card,pinnedCardContainer){
         if(card && card.pinned=="true"){
-            const pinnedCardContainer = this.root.getElementById("cards-pinned-container");
-            pinnedCardContainer.style.position="relative"
             pinnedCardContainer.style.display="flex"
-            pinnedCardContainer.style.top="12px"
-            card.setAttribute("id","app-pinned-cards");
+            pinnedCardContainer.setAttribute("id","app-pinned-cards");
             pinnedCardContainer.appendChild(card)
         }
     }
@@ -36,20 +39,26 @@ class CardPage extends BaseComponant{
         const template = document.getElementById("app-cards");
         const content = template.content.cloneNode(true);  
         this.root.replaceChildren(content);
-
+        // Normal card container
         const element = this.shadowRoot.getElementById("cards-container");
         if(app.notes.length>0){
-            if(element.querySelector('span').textContent==""){
-                element.querySelector('span').textContent = "OTHERS"
+            if(element.querySelector('div').textContent==""){
+                element.querySelector('div').textContent = "OTHERS"
             }
             const cards = document.createElement("div");
             cards.style.display="flex";
             cards.setAttribute("id","app-cards-container")
             element.appendChild(cards);
+             // Pinned card container
+            const pinnedCards = this.shadowRoot.getElementById("cards-pinned-container");
+            const pinnedCardsContainer = document.createElement("div");
+            pinnedCards.appendChild(pinnedCardsContainer)
+
+            // Fill containers with data 
             app.notes.forEach(fetchedCardData=>{
                 if(fetchedCardData.pinned=="true"){
                     const card = this.createCard(fetchedCardData);
-                    this.loadPinnedCard(card);
+                    this.loadPinnedCard(card,pinnedCardsContainer);
                 }else{
                     const card = this.createCard(fetchedCardData);
                     cards.appendChild(card);
@@ -66,7 +75,7 @@ class CardPage extends BaseComponant{
     updateComponents(newCard){
         let  targetCard = null ;
         if(newCard.pinned=="true"){
-             targetCard = this.shadowRoot.getElementById("cards-pinned-container");
+             targetCard = this.shadowRoot.getElementById("app-pinned-cards");
         }else{
              targetCard = this.shadowRoot.getElementById("app-cards-container");
         }
