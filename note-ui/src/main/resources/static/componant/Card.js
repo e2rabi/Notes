@@ -80,6 +80,7 @@ class Card extends BaseComponant{
               <i action="pin" class="fa fa-thumb-tack  card-buttons-icons" aria-hidden="true"></i>
               </div>
           </div>
+          <color-picker></color-picker>
       </div>
       `;
       const content = template.content.cloneNode(true); 

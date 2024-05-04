@@ -4,6 +4,10 @@
     width: 29%;
     border-radius: 11px;
     margin: 12px;
+    position: relative;
+    bottom: 25px;
+    width: 403px;
+    right: 93px;
   }
   
   .card:hover {
@@ -19,6 +23,9 @@
     overflow: hidden;
     position: absolute;
     z-index: 4011;
+  }
+  svg{
+    position: absolute;
   }
   .dot {
     height: 25px;

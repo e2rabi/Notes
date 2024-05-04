@@ -1,10 +1,10 @@
 .navbar{
-    background-color: #f8f9fa !important;
+    background-color: #202124 !important;
 }
 .nav-container{
     max-width: 100%;
     padding: 0px;
-    border-bottom: 1px solid gainsboro;
+    border-bottom: 1px solid #363636;
 }
 .app-title{
     font-family: 'Comics', sans-serif;  
@@ -21,11 +21,22 @@
 }
 .left-menu-label{
     margin-left: 22px;
-    color: #495057;
+    color: #e8eaed;
     font-weight: 500;
 }
-.fa-color{
-    color: #495057;
+.fa-color, .fa-solid ,.fa-bars,.fa-gear{
+    color: #e8eaed;
 }
+.dropdown-toggle::after {
+    color: #e8eaed;
+}
+
 .test { color:red;}
 :host .test { color:green;}
+body{
+    background-color: #202124;
+    color: #e8eaed;
+    direction: ltr;
+    font-family: "Roboto", arial, sans-serif;
+    font-size: 15px;
+}

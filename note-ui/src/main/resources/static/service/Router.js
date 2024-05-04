@@ -32,7 +32,7 @@ const Router = {
           pageElement = document.createElement("app-trash-cards")
          break ;
          case  "/test2":
-            pageElement = document.createElement("demo-app")
+            pageElement = document.createElement("color-picker")
             const el = document.createElement("h4");
             el.textContent="This is light dom";
             el.classList.add("test");

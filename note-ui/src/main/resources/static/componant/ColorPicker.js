@@ -13,7 +13,9 @@ class ColorPicker extends BaseComponant{
         template.innerHTML = `
             <div class="card">
                 <div class="container">
-                    <span class="dot pink"></span>
+                    <span class="dot pink">
+                    <svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="AHe6Kc-LgbsSe-gk6SMd-g6cJHd NMm5M"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"></path></svg>
+                    </span>
                     <span class="dot dark-green"></span>
                     <span class="dot brown"></span>
                     <span class="dot orange"></span>

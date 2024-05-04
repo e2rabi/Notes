@@ -8,9 +8,9 @@
      <script src="./app.js" type="module" defer></script>
      <script src="./componant/BaseComponant.js" type="module" defer></script>
      <script src="./componant/CardPage.js" type="module" defer></script>
+     <script src="./componant/ColorPicker.js" type="module" defer></script>
      <script src="./componant/Card.js" type="module" defer></script>
-     <script src="./componant/PinnedCard.js" type="module" defer></script>
-     <script src="./componant/Trash.js" type="module" defer></script>
+       <script src="./componant/Trash.js" type="module" defer></script>
      <link href="./assets/style.css" rel="stylesheet" />
      <link href="./assets/font-awesome.min.css" rel="stylesheet" />
      <link href="https://fonts.cdnfonts.com/css/comics" rel="stylesheet">
@@ -86,15 +86,20 @@
    <main></main>
    <!-- Card-->
     <template id="card"></template>
+
+
+
   <!-- Card container -->
     <template id="app-cards">
-      <div id="cards-pinned-container">
-               <span class="pinned">PINNED</span>
-      </div>
-      <div id="cards-container">
-            <span class="others">OTHERS</span>
-      </div>
+      <slot id="cards-pinned-container">
+        <div class="pinned">PINNED</div>
+      </slot>
+      <slot id="cards-container">
+        <div class="others">OTHERS</div>
+      </slot>
     </template>
+
+
   <!-- Card deleted container -->
     <template id="app-trash-cards">
       <div id="cards-container"></div>

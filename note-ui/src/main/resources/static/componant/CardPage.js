@@ -119,7 +119,7 @@ class CardPage extends BaseComponant{
             pinnedCard.pinned=pinnedCard.pinned=="true"?"false":"true";
             app.notes.splice(objWithIdIndex, 1);
             app.notes.push(pinnedCard);
-            this.render();
+            this.render(); // update only specific component instead of re render all component
         }
       });
       document.addEventListener("CARD_IS_FAVORIT",(e)=>{
