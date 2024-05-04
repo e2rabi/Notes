@@ -27,8 +27,6 @@
    top: 15px;
 }
 #app-pinned-cards{
-    padding: 17px;
-    /*right: 69px;
-    position: relative;
-    top: 11px;*/
+    padding: 0px;
+    margin-bottom: 25px;
 }

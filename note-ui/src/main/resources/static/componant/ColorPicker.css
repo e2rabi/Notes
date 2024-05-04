@@ -15,6 +15,10 @@
     height: 80px;
     background: #202124;
     border-radius: 10px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.6), 0 2px 6px 2px rgba(0,0,0,0.302);
+    overflow: hidden;
+    position: absolute;
+    z-index: 4011;
   }
   .dot {
     height: 25px;
