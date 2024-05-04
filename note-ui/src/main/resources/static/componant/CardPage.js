@@ -31,6 +31,8 @@ class CardPage extends BaseComponant{
     loadPinnedCard(card,pinnedCardContainer){
         if(card && card.pinned=="true"){
             pinnedCardContainer.style.display="flex"
+            pinnedCardContainer.style.position="relative";
+            pinnedCardContainer.style.top="8px";
             pinnedCardContainer.setAttribute("id","app-pinned-cards");
             pinnedCardContainer.appendChild(card)
         }
@@ -39,7 +41,7 @@ class CardPage extends BaseComponant{
         const template = document.getElementById("app-cards");
         const content = template.content.cloneNode(true);  
         this.root.replaceChildren(content);
-        // Normal card container
+        // build normal card container
         const element = this.shadowRoot.getElementById("cards-container");
         if(app.notes.length>0){
             if(element.querySelector('div').textContent==""){
@@ -49,7 +51,7 @@ class CardPage extends BaseComponant{
             cards.style.display="flex";
             cards.setAttribute("id","app-cards-container")
             element.appendChild(cards);
-             // Pinned card container
+             // build Pinned card container
             const pinnedCards = this.shadowRoot.getElementById("cards-pinned-container");
             const pinnedCardsContainer = document.createElement("div");
             pinnedCards.appendChild(pinnedCardsContainer)

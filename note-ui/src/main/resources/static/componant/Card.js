@@ -40,7 +40,7 @@ class Card extends BaseComponant{
       this._isFavorit = value;
     }
     get color() {
-      return this._isFavorit;
+      return this._color;
     }
     set color(value) {
       this._color = value;
@@ -73,7 +73,7 @@ class Card extends BaseComponant{
               <div class="card-buttons" id="cardEdit">
               <i action="reminder"class="fa fa-bell-o card-buttons-icons" aria-hidden="true"></i>
               <i action="edit" class="fa fa-pencil-square-o card-buttons-icons" aria-hidden="true"></i>
-              <i action="addImage" class="fa fa-picture-o card-buttons-icons" aria-hidden="true"></i>
+              <i action="addImage" class="fa fa-tachometer card-buttons-icons" aria-hidden="true"></i>
               <i action="archive" class="fa fa-file-archive-o card-buttons-icons" aria-hidden="true"></i>
               <i action="favorit" class="fa ${this._isFavorit=="true"?"fa-star":"fa-star-o"}  card-buttons-icons" aria-hidden="true"></i>
               <i action="trash" class="fa ${this.getAttribute("isRemoved")=="true"?"fa-trash":"fa-trash-o"}  card-buttons-icons" aria-hidden="true"></i>

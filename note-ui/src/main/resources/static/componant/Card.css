@@ -5,30 +5,6 @@
     gap: 15px;
     margin: 15px;
   }
-  
-  .cards .red {
-    background-color: #FFC6E7;
-  }
-  
-  .cards .blue {
-    background-color: #92FFEA;
-  }
-  
-  .cards .green {
-    background-color: #B8FF89;
-  }
-  .cards .yellow {
-    background-color: #F6FF68;
-  }
-  .cards .removed{
-      background-color: #cfcfcf;
-  }
-  .cards .purple{
-    background-color: #f5bbd6;
-}
-.cards .darkblue{
-  background-color: #5e70ff;
-}
   .cards .card {
     display: flex;
     align-items: center;
@@ -38,7 +14,7 @@
     height: 162px;
     width: 250px;
     border-radius: 10px;
-    color: #232425;
+    color: #e8eaed;
     cursor: pointer;
     transition: 400ms;
   }
@@ -93,7 +69,7 @@
  }
  .card-pinned{
   float: right;
-  color: #212529;
+  color: #e8eaed;
   visibility: visible !important;
   position: relative;
   right: 5px;
@@ -108,3 +84,42 @@
  .remove-card{
   display: none !important;
  }
+ .cards .blue {
+  background-color: #284255;
+  border-color: #284255;
+}
+.cards .orange {
+  background-color: #7c4a03;
+  border-color: #7c4a03;
+}
+.cards .red{
+  background-color: #77172e;
+  border-color: #77172e;
+}
+.cards .dark-green{
+  background-color: #264d3b;
+  border-color: #264d3b;
+}
+.cards .light-green{
+  background-color: #0c625d;
+  border-color: #0c625d;
+}
+.cards .purple{
+  background-color: #472e5b;
+  border-color: #472e5b;
+}
+.cards .pink{
+  background-color: #6c394f;
+  border-color: #6c394f;
+}
+.cards .brown{
+  background-color: #692b17;
+  border-color: #692b17;
+}
+.cards .light-brown{
+  background-color: #4b443a;
+  border-color: #4b443a;
+}
+.cards .removed{
+  background-color: #cfcfcf;
+}
