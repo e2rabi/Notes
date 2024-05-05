@@ -3,6 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '3.1.6'
 	id 'io.spring.dependency-management' version '1.1.4'
 	id 'org.flywaydb.flyway' version '10.1.0'
+	id "com.google.cloud.tools.jib" version "3.1.4"
 
 }
 
@@ -12,7 +13,14 @@ version = '1.0.0-SNAPSHOT'
 java {
 	sourceCompatibility = '17'
 }
-
+jib {
+	from {
+		image = 'azul/zulu-openjdk:17-jre'
+	}
+	to {
+		image = 'notes-ui'
+	}
+}
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
