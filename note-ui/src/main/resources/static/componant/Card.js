@@ -8,12 +8,19 @@ class Card extends BaseComponant{
         this._title;
         this._description;
         this._pinned;
+        this._displayColorPicker= "hidden"
     } // TODO find a better way for property management
     get id() {
       return this._id;
     }
     set id(value) {
       this._id = value;
+    }
+    get displayColorPicker() {
+      return this._displayColorPicker;
+    }
+    set displayColorPicker(value) {
+      this._displayColorPicker = value;
     }
     get pinned() {
       return this._pinned;
@@ -60,6 +67,18 @@ class Card extends BaseComponant{
         }));
       }
     }
+    showColorPicker(){ // todo to review this 
+      const oldColorPicker = this.shadowRoot.getElementById("color-picker");
+      if(this._displayColorPicker == "hidden"){
+        const  newColorPicker = document.createElement('color-picker');
+        newColorPicker.setAttribute("visibility","visible")
+        oldColorPicker.parentNode.replaceChild(newColorPicker, oldColorPicker);
+        this._displayColorPicker("visible");
+      }else{
+        this._displayColorPicker("hidden");
+        oldColorPicker.style.display="none";
+      }
+    }
     render(){
         const template = document.getElementById("card");
         template.innerHTML = ` <div class="cards">
@@ -73,14 +92,14 @@ class Card extends BaseComponant{
               <div class="card-buttons" id="cardEdit">
               <i action="reminder"class="fa fa-bell-o card-buttons-icons" aria-hidden="true"></i>
               <i action="edit" class="fa fa-pencil-square-o card-buttons-icons" aria-hidden="true"></i>
-              <i action="addImage" class="fa fa-tachometer card-buttons-icons" aria-hidden="true"></i>
+              <i action="color" class="fa fa-tachometer card-buttons-icons" aria-hidden="true"></i>
               <i action="archive" class="fa fa-file-archive-o card-buttons-icons" aria-hidden="true"></i>
               <i action="favorit" class="fa ${this._isFavorit=="true"?"fa-star":"fa-star-o"}  card-buttons-icons" aria-hidden="true"></i>
               <i action="trash" class="fa ${this.getAttribute("isRemoved")=="true"?"fa-trash":"fa-trash-o"}  card-buttons-icons" aria-hidden="true"></i>
               <i action="pin" class="fa fa-thumb-tack  card-buttons-icons" aria-hidden="true"></i>
               </div>
           </div>
-          <color-picker></color-picker>
+          <color-picker id="color-picker" visibility="${this._displayColorPicker}"></color-picker>
       </div>
       `;
       const content = template.content.cloneNode(true); 
@@ -97,6 +116,9 @@ class Card extends BaseComponant{
               break;
               case "FAVORIT" :
                 this.propagateEvent(this._id,'CARD_IS_FAVORIT');
+              break;
+              case "COLOR" :
+                this.showColorPicker();
               break;
             }
           }

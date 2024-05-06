@@ -11,7 +11,7 @@ class ColorPicker extends BaseComponant{
     render(){
         const template = document.createElement("div");
         template.innerHTML = `
-            <div class="card">
+            <div class="card ${this.getAttribute("visibility")}">
                 <div class="container">
                     <span class="dot pink">
                     <svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="AHe6Kc-LgbsSe-gk6SMd-g6cJHd NMm5M"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"></path></svg>

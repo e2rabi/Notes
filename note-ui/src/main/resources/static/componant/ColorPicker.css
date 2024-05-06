@@ -81,3 +81,9 @@
     border-style: solid;
     opacity: 0.9;
   }
+  .visible{
+    display: flex ;
+   }
+   .hidden{
+       display: none !important;
+   }
