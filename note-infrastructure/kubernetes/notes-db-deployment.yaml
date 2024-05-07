@@ -23,11 +23,20 @@ spec:
           containerPort: 5432
           env:
             - name: POSTGRES_DB
-              value: postgres
+              valueFrom:
+                secretKeyRef:
+                  name: notes-ui-secret
+                  key: POSTGRES_DB
             - name: POSTGRES_USER
-              value: admin
+              valueFrom:
+                secretKeyRef:
+                  name: notes-ui-secret
+                  key: POSTGRES_USER
             - name: POSTGRES_PASSWORD
-              value: admin
+              valueFrom:
+                secretKeyRef:
+                  name: notes-ui-secret
+                  key: POSTGRES_PASSWORD
           volumeMounts:
             - mountPath: "/home/docker/pgdata"
               name: notes-db-volume
