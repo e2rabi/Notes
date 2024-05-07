@@ -1,0 +1,12 @@
+apiVersion: v2
+name: notes-ui-chart
+description: A Helm chart for deploying the notes web application 1.0.0
+version: 0.1.0
+type: application
+keywords:
+  - tasks
+maintainers:
+  - name: Errabi AYOUB
+    email: errabi.ayoube@gmail.com
+icon: A URL to an SVG or PNG image to be used as an icon (optional).
+appVersion: 1.0.0-SNAPSHOT

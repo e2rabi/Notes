@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notes-db-deployment
+  namespace: app-notes-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notes-db-app
+  template:
+    metadata:
+      labels:
+        app: notes-db-app
+    spec:
+      volumes:
+        - name: notes-db-volume
+          persistentVolumeClaim:
+            claimName: notes-db-pvc
+      containers:
+        - name: notes-db-app
+          image: postgres:10.1
+          containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: notes-ui-secret
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: notes-ui-secret
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: notes-ui-secret
+                  key: POSTGRES_PASSWORD
+          volumeMounts:
+            - mountPath: "/home/docker/pgdata"
+              name: notes-db-volume
