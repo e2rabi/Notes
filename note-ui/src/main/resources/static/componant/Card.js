@@ -67,16 +67,17 @@ class Card extends BaseComponant{
         }));
       }
     }
-    showColorPicker(){ // todo to review this 
-      const oldColorPicker = this.shadowRoot.getElementById("color-picker");
+    toggleColorPicker(){
+      const card = this.shadowRoot.getElementById("card");
       if(this._displayColorPicker == "hidden"){
-        const  newColorPicker = document.createElement('color-picker');
-        newColorPicker.setAttribute("visibility","visible")
-        oldColorPicker.parentNode.replaceChild(newColorPicker, oldColorPicker);
-        this._displayColorPicker("visible");
+         this._displayColorPicker = "visible";
+         const cardColorPicker = document.createElement("color-picker");
+         cardColorPicker.setAttribute("visibility", this._displayColorPicker);
+         cardColorPicker.setAttribute("id", "cardColorPicker");
+         card.appendChild(cardColorPicker);
       }else{
-        this._displayColorPicker("hidden");
-        oldColorPicker.style.display="none";
+        this._displayColorPicker = "hidden";
+        card.removeChild(this.shadowRoot.getElementById("cardColorPicker"))
       }
     }
     render(){
@@ -99,8 +100,8 @@ class Card extends BaseComponant{
               <i action="pin" class="fa fa-thumb-tack  card-buttons-icons" aria-hidden="true"></i>
               </div>
           </div>
-          <color-picker id="color-picker" visibility="${this._displayColorPicker}"></color-picker>
       </div>
+      <div  id="card"></div>
       `;
       const content = template.content.cloneNode(true); 
       if(this.root.children.length<=1){
@@ -118,7 +119,7 @@ class Card extends BaseComponant{
                 this.propagateEvent(this._id,'CARD_IS_FAVORIT');
               break;
               case "COLOR" :
-                this.showColorPicker();
+                this.toggleColorPicker();
               break;
             }
           }

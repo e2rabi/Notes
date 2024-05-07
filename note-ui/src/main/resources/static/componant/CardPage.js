@@ -13,6 +13,7 @@ class CardPage extends BaseComponant{
     createCard(fetchedData){
         const card = document.createElement("app-card");
         card.setAttribute("id",fetchedData.id)
+        card.style.width="20%";
         card.isFavorit=fetchedData.isFavorit;
         card.color=fetchedData.color;
         card.draggable=true;
