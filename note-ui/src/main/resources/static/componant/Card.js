@@ -59,7 +59,7 @@ class Card extends BaseComponant{
     }
     propagateEvent(cardId,eventType){
       if(app.notes.length>0){
-         // dispatch event to render the card page
+         // dispatch event to the card page component
         document.dispatchEvent(new CustomEvent(eventType,{
             detail: {
               noteId: cardId

@@ -30,12 +30,15 @@ class CardPage extends BaseComponant{
         return false ;
     }
     loadPinnedCard(card,pinnedCardContainer){
-        if(card && card.pinned=="true"){
-            pinnedCardContainer.style.display="flex"
-            pinnedCardContainer.style.position="relative";
-            pinnedCardContainer.style.top="8px";
-            pinnedCardContainer.setAttribute("id","app-pinned-cards");
-            pinnedCardContainer.appendChild(card)
+        this.applyDragAndDrop(pinnedCardContainer);
+        return function(){
+            if(card && card.pinned=="true"){
+                pinnedCardContainer.style.display="flex"
+                pinnedCardContainer.style.position="relative";
+                pinnedCardContainer.style.top="8px";
+                pinnedCardContainer.setAttribute("id","app-pinned-cards");
+                pinnedCardContainer.appendChild(card);
+            }
         }
     }
     render(){
@@ -61,19 +64,22 @@ class CardPage extends BaseComponant{
             app.notes.forEach(fetchedCardData=>{
                 if(fetchedCardData.pinned=="true"){
                     const card = this.createCard(fetchedCardData);
-                    this.loadPinnedCard(card,pinnedCardsContainer);
+                    this.loadPinnedCard(card,pinnedCardsContainer)();
                 }else{
                     const card = this.createCard(fetchedCardData);
                     cards.appendChild(card);
                 }
             });
               // apply drap and drop on childs
-            Sortable.create(cards,{
-                swapThreshold: 1,
-                animation: 150
-            })
+            this.applyDragAndDrop(cards);
         }
            
+    }
+    applyDragAndDrop(cards){
+        Sortable.create(cards,{
+            swapThreshold: 1,
+            animation: 150
+        })
     }
     updateComponents(newCard){
         let  targetCard = null ;
