@@ -142,6 +142,19 @@ class CardPage extends BaseComponant{
             this.updateComponents(targetCard);
         }
       });
+      document.addEventListener("CHANGE_CARD_COLOR",(e)=>{
+        if(app.notes.length>0 && e.detail!=undefined){
+            // confirme 
+            // call API
+            // on success re render the page
+            const objWithIdIndex = app.notes.findIndex((obj) => obj.id === Number(e.detail.noteId));
+            const targetCard =  app.notes[objWithIdIndex] ;
+            targetCard.color=e.detail.color;
+            //app.notes.splice(objWithIdIndex, 1);
+            //app.notes.push(targetCard);
+            this.updateComponents(targetCard);
+        }
+      });
     }
 }
 customElements.define("app-cards",CardPage);

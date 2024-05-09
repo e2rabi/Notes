@@ -74,6 +74,7 @@ class Card extends BaseComponant{
          const cardColorPicker = document.createElement("color-picker");
          cardColorPicker.setAttribute("visibility", this._displayColorPicker);
          cardColorPicker.setAttribute("id", "cardColorPicker");
+         cardColorPicker.cardId=this._id;
          card.appendChild(cardColorPicker);
       }else{
         this._displayColorPicker = "hidden";
@@ -93,7 +94,7 @@ class Card extends BaseComponant{
               <div class="card-buttons" id="cardEdit">
               <i action="reminder"class="fa fa-bell-o card-buttons-icons" aria-hidden="true"></i>
               <i action="edit" class="fa fa-pencil-square-o card-buttons-icons" aria-hidden="true"></i>
-              <i action="color" class="fa fa-tachometer card-buttons-icons" aria-hidden="true"></i>
+              <i action="color" class="fa fa-paint-brush card-buttons-icons" aria-hidden="true"></i>
               <i action="archive" class="fa fa-file-archive-o card-buttons-icons" aria-hidden="true"></i>
               <i action="favorit" class="fa ${this._isFavorit=="true"?"fa-star":"fa-star-o"}  card-buttons-icons" aria-hidden="true"></i>
               <i action="trash" class="fa ${this.getAttribute("isRemoved")=="true"?"fa-trash":"fa-trash-o"}  card-buttons-icons" aria-hidden="true"></i>
