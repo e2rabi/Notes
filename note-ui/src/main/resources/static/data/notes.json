@@ -7,7 +7,8 @@
         "isFavorit":"false",
         "color":"light-brown",
         "pinned":"true",
-        "status":"F"
+        "status":"F",
+        "isRemoved":"false"
     },
     {
         "id":2,
@@ -15,7 +16,8 @@
         "description":"Note 2 description",
         "isFavorit":"true",
         "color":"blue",
-        "pinned":"true"
+        "pinned":"true",
+        "isRemoved":"false"
     },
     {
         "id":3,
@@ -23,7 +25,8 @@
         "description":"Note 3 description",
         "isFavorit":"false",
         "color":"orange",
-        "pinned":"false"
+        "pinned":"false",
+        "isRemoved":"false"
     },
     {
         "id":4,
@@ -31,7 +34,8 @@
         "description":"Note 4 description",
         "isFavorit":"false",
         "color":"dark-green",
-        "pinned":"false"
+        "pinned":"false",
+        "isRemoved":"false"
     },
     {
         "id":5,
@@ -39,7 +43,8 @@
         "description":"Note 5 description",
         "isFavorit":"false",
         "color":"pink",
-        "pinned":"false"
+        "pinned":"false",
+        "isRemoved":"false"
     },
     {
         "id":6,
@@ -47,7 +52,8 @@
         "description":"Note 6 description",
         "isFavorit":"false",
         "color":"brown",
-        "pinned":"false"
+        "pinned":"false",
+        "isRemoved":"false"
     },
     {
         "id":7,
@@ -55,7 +61,8 @@
         "description":"Note 7 description",
         "isFavorit":"false",
         "color":"light-green",
-        "pinned":"false"
+        "pinned":"false",
+        "isRemoved":"false"
     },
     {
         "id":8,
@@ -64,6 +71,7 @@
         "isFavorit":"false",
         "color":"red",
         "pinned":"true",
-        "status":"F"
+        "status":"F",
+        "isRemoved":"false"
     }
 ]

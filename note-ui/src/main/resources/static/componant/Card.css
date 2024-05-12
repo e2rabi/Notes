@@ -64,7 +64,7 @@
  }
  .card-removed{
   float: right;
-  color: #212529;
+  color: #c1c1c1;
   visibility: visible !important;
  }
  .card-pinned{

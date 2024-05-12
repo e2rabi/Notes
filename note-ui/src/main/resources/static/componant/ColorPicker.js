@@ -20,7 +20,6 @@ class ColorPicker extends BaseComponant{
         if(elements){
             elements.forEach(e=>{
                 e.addEventListener('click',(event)=>{
-                    console.info("event sent : CHANGE_CARD_COLOR")
                     document.dispatchEvent(new CustomEvent("CHANGE_CARD_COLOR",{
                         detail: {
                             noteId:this._cardId,

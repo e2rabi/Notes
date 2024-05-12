@@ -12,7 +12,7 @@
         "name":"Simple note 2",
         "description":"Note 2 description",
         "isFavorit":"false",
-        "color":"green",
+        "color":"pink",
         "isRemoved":"true"
     }
 ]

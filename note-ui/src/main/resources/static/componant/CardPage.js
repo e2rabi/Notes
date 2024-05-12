@@ -105,6 +105,23 @@ class CardPage extends BaseComponant{
              });
         }
     }
+    removeComponents(card){
+        if(card){
+            let  targetCard = null ;
+            if(card.pinned=="true"){
+                 targetCard = this.shadowRoot.getElementById("app-pinned-cards");
+            }else{
+                 targetCard = this.shadowRoot.getElementById("app-cards-container");
+            }
+            if(targetCard){
+                targetCard.childNodes.forEach(e=>{
+                    if(e.id==card.id){
+                        e.remove();
+                    }
+                 });
+            }
+        }
+    }
     addCardEventListener(){
         document.addEventListener("CARD_IS_REMOVED",(e)=>{
             if(app.notes.length>0 && e.detail!=undefined){
@@ -112,8 +129,9 @@ class CardPage extends BaseComponant{
                 // call API
                 // on success re render the page
                 const objWithIdIndex = app.notes.findIndex((obj) => obj.id === Number(e.detail.noteId));
+                const removedCard =  app.notes[objWithIdIndex] ;
                 app.notes.splice(objWithIdIndex, 1);
-                this.render();
+                this.removeComponents(removedCard);
         }
      });
      document.addEventListener("CARD_IS_PINNED",(e)=>{

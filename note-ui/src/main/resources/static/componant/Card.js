@@ -9,6 +9,7 @@ class Card extends BaseComponant{
         this._description;
         this._pinned;
         this._displayColorPicker= "hidden"
+        this._isRemoved="false"
     } // TODO find a better way for property management
     get id() {
       return this._id;
@@ -27,6 +28,12 @@ class Card extends BaseComponant{
     }
     set pinned(value) {
       this._pinned = value;
+    }
+    get isRemoved() {
+      return this._isRemoved;
+    }
+    set isRemoved(value) {
+      this._isRemoved = value;
     }
     get description() {
       return this._description;
@@ -87,7 +94,7 @@ class Card extends BaseComponant{
           <div key="${this._id}" class="card ${this._color}">
               <p class="tip" id="card-title">${this._title}
                 <i class="fa fa-heart ${this._isFavorit=="true"?"card-favorit":""}" aria-hidden="true"></i>
-                <i class="fa fa-trash ${this.getAttribute("isRemoved")=="true"?"card-removed":"card-active"}" aria-hidden="true"></i>
+                <i class="fa fa-trash ${this._isRemoved=="true"?"card-removed":"card-active"}" aria-hidden="true"></i>
                 <i class="fa fa-thumb-tack  ${this._pinned=="true"?"card-pinned":"card-active"}" aria-hidden="true"></i>
               </p>
               <p class="second-text">${this._description}</p>
