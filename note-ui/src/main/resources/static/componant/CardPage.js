@@ -157,6 +157,7 @@ class CardPage extends BaseComponant{
             targetCard.isFavorit=targetCard.isFavorit=="true"?"false":"true";
             //app.notes.splice(objWithIdIndex, 1);
             //app.notes.push(targetCard);
+            alert(JSON.stringify(targetCard))
             this.updateComponents(targetCard);
         }
       });

@@ -1,4 +1,4 @@
-@import url('assets/font-awesome.min.css');
+@import url('./assets/font-awesome.min.css');
 .cards {
     display: flex;
     flex-direction: column;
