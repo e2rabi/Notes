@@ -1,5 +1,5 @@
 import BaseComponant from "./BaseComponant.js"
-class Card extends BaseComponant {
+class CardEdit extends BaseComponant {
   constructor() {
     super();
     this._isFavorit;
@@ -61,7 +61,7 @@ class Card extends BaseComponant {
   }
 
   connectedCallback() {
-    super.css`Card.css`;
+    super.css`CardEdit.css`;
     this.render();
   }
   propagateEvent(cardId, eventType) {
@@ -129,9 +129,6 @@ class Card extends BaseComponant {
             case "COLOR":
               this.toggleColorPicker();
               break;
-            case "EDIT":
-              this.propagateEvent(this._id, 'EDIT_CARD');
-              break;
           }
         }
       });
@@ -140,4 +137,4 @@ class Card extends BaseComponant {
   }
 
 }
-customElements.define("app-card", Card)
+customElements.define("app-edit-card", CardEdit)

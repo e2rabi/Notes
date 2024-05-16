@@ -1,7 +1,8 @@
-.cards-display{
+.cards-display {
     display: flex;
 }
-.pinned{
+
+.pinned {
     color: #9aa0a6;
     letter-spacing: .07272727em;
     font-family: Roboto, Arial, sans-serif;
@@ -10,9 +11,10 @@
     line-height: 1rem;
     text-transform: uppercase;
     position: relative;
-    top: 13px ;
+    top: 13px;
 }
-.others{
+
+.others {
     color: #9aa0a6;
     letter-spacing: .07272727em;
     font-family: Roboto, Arial, sans-serif;
@@ -21,12 +23,25 @@
     line-height: 1rem;
     text-transform: uppercase;
 }
+
 .test {
-   background-color: red !important;
-   position: relative;
-   top: 15px;
+    background-color: red !important;
+    position: relative;
+    top: 15px;
 }
-#app-pinned-cards{
+
+#app-pinned-cards {
     padding: 0px;
     margin-bottom: 25px;
+}
+
+#card-edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    position: absolute;
+    bottom: 11%;
+    left: 44%;
 }
