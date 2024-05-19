@@ -122,7 +122,15 @@ class CardPage extends BaseComponant {
             }
         }
     }
-    editCard(newCard) {
+    closeEditCard() {
+        const element = this.shadowRoot.getElementById("card-edit");
+        const pinnedCardContainer = this.shadowRoot.getElementById("app-pinned-cards");
+        const otherCardContainer = this.shadowRoot.getElementById("app-cards-container");
+        pinnedCardContainer.style.opacity = "1";
+        otherCardContainer.style.opacity = "1";
+        element.innerHTML = "";
+    }
+    openEditCard(newCard) {
         // change other containers opacity
         const element = this.shadowRoot.getElementById("card-edit");
         const pinnedCardContainer = this.shadowRoot.getElementById("app-pinned-cards");
@@ -137,11 +145,16 @@ class CardPage extends BaseComponant {
         card.pinned = newCard.pinned;
         card.id = newCard.id;
         card.title = newCard.name;
-        card.description = newCard.description;
+        card.description = "Edit card description";
         card.setAttribute("id", newCard.id);
-        element.appendChild(card);
+        element.innerHTML = "";
+        if (element && element.children.length == 0) {
+            element.appendChild(card)
+        }
     }
     addCardEventListener() {
+        const cardPage = document.getElementById("app-cards");
+        console.log("card page : " + cardPage);
         document.addEventListener("CARD_IS_REMOVED", (e) => {
             if (app.notes.length > 0 && e.detail != undefined) {
                 // confirme 
@@ -199,9 +212,12 @@ class CardPage extends BaseComponant {
                 // on success re render the page
                 const objWithIdIndex = app.notes.findIndex((obj) => obj.id === Number(e.detail.noteId));
                 const targetCard = app.notes[objWithIdIndex];
-                this.editCard(targetCard);
+                this.openEditCard(targetCard);
 
             }
+        });
+        document.addEventListener("CARD_EDIT_CLOSE", (e) => {
+            this.closeEditCard();
         });
     }
 }

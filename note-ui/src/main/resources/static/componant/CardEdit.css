@@ -144,3 +144,7 @@
 .cards .removed {
   background-color: #cfcfcf;
 }
+
+.btn-close {
+  float: right;
+}

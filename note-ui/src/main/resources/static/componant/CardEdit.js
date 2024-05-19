@@ -95,17 +95,11 @@ class CardEdit extends BaseComponant {
               <p class="tip" id="card-title">${this._title}
                 <i class="fa fa-heart ${this._isFavorit == "true" ? "card-favorit" : ""}" aria-hidden="true"></i>
                 <i class="fa fa-trash ${this._isRemoved == "true" ? "card-removed" : "card-active"}" aria-hidden="true"></i>
-                <i class="fa fa-thumb-tack  ${this._pinned == "true" ? "card-pinned" : "card-active"}" aria-hidden="true"></i>
+                <i action="close" id="btn-close" class="fa fa-times btn-close"}" aria-hidden="true"></i>
               </p>
               <p class="second-text">${this._description}</p>
-              <div class="card-buttons" id="cardEdit">
-              <i action="reminder"class="fa fa-bell-o card-buttons-icons" aria-hidden="true"></i>
-              <i action="edit" class="fa fa-pencil-square-o card-buttons-icons" aria-hidden="true"></i>
-              <i action="color" class="fa fa-paint-brush card-buttons-icons" aria-hidden="true"></i>
-              <i action="archive" class="fa fa-file-archive-o card-buttons-icons" aria-hidden="true"></i>
-              <i action="favorit" class="fa ${this._isFavorit == "true" ? "fa-star" : "fa-star-o"}  card-buttons-icons" aria-hidden="true"></i>
-              <i action="trash" class="fa ${this.getAttribute("isRemoved") == "true" ? "fa-trash" : "fa-trash-o"}  card-buttons-icons" aria-hidden="true"></i>
-              <i action="pin" class="fa fa-thumb-tack  card-buttons-icons" aria-hidden="true"></i>
+              <div class="card-buttons">
+             
               </div>
           </div>
       </div>
@@ -113,21 +107,12 @@ class CardEdit extends BaseComponant {
       `;
     const content = template.content.cloneNode(true);
     if (this.root.children.length <= 1) {
-      content.getElementById('cardEdit').addEventListener('click', (event) => {
+      content.getElementById('card-title').addEventListener('click', (event) => {
         if (event.target.tagName == 'I') {
           const action = event.target.getAttribute("action");
           switch (action.toUpperCase()) {
-            case "TRASH":
-              this.propagateEvent(this._id, 'CARD_IS_REMOVED');
-              break;
-            case "PIN":
-              this.propagateEvent(this._id, 'CARD_IS_PINNED');
-              break;
-            case "FAVORIT":
-              this.propagateEvent(this._id, 'CARD_IS_FAVORIT');
-              break;
-            case "COLOR":
-              this.toggleColorPicker();
+            case "CLOSE":
+              this.propagateEvent(this._id, 'CARD_EDIT_CLOSE');
               break;
           }
         }
