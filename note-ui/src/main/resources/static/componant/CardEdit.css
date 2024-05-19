@@ -26,7 +26,7 @@
   width: 90%;
   text-align: left;
   position: relative;
-  bottom: 82px;
+  bottom: 107px;
   letter-spacing: .00625em;
   font-family: "Google Sans", Roboto, Arial, sans-serif;
   font-size: 1rem;
@@ -147,4 +147,16 @@
 
 .btn-close {
   float: right;
+}
+
+.text-edit {
+  background: transparent;
+  border: navajowhite;
+  position: absolute;
+  color: white;
+  font-size: medium;
+  line-height: 22px;
+  text-align: justify;
+  resize: none;
+  outline: none;
 }

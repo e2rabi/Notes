@@ -97,7 +97,8 @@ class CardEdit extends BaseComponant {
                 <i class="fa fa-trash ${this._isRemoved == "true" ? "card-removed" : "card-active"}" aria-hidden="true"></i>
                 <i action="close" id="btn-close" class="fa fa-times btn-close"}" aria-hidden="true"></i>
               </p>
-              <p class="second-text">${this._description}</p>
+              <!--p class="second-text">${this._description}</p-->
+              <textarea class="text-edit" name="text-edit" rows="4" cols="58">At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.</textarea>
               <div class="card-buttons">
              
               </div>
