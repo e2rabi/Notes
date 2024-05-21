@@ -128,7 +128,7 @@ class CardPage extends BaseComponant {
         const otherCardContainer = this.shadowRoot.getElementById("app-cards-container");
         pinnedCardContainer.style.opacity = "1";
         otherCardContainer.style.opacity = "1";
-        element.innerHTML = "";
+        element.children[0].remove();
     }
     openEditCard(newCard) {
         // change other containers opacity
@@ -147,14 +147,17 @@ class CardPage extends BaseComponant {
         card.title = newCard.name;
         card.description = "Edit card description";
         card.setAttribute("id", newCard.id);
-        element.innerHTML = "";
+
+        if (element && element.children.length > 0) {
+            element.children[0].remove();
+        }
+
         if (element && element.children.length == 0) {
             element.appendChild(card)
         }
     }
     addCardEventListener() {
-        const cardPage = document.getElementById("app-cards");
-        console.log("card page : " + cardPage);
+
         document.addEventListener("CARD_IS_REMOVED", (e) => {
             if (app.notes.length > 0 && e.detail != undefined) {
                 // confirme 

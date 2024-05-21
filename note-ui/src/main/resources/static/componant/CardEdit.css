@@ -67,6 +67,8 @@
   float: right;
   color: red;
   visibility: visible !important;
+  right: 37px;
+  position: relative;
 }
 
 .card-removed {
@@ -159,4 +161,5 @@
   text-align: justify;
   resize: none;
   outline: none;
+  height: 155px;
 }
