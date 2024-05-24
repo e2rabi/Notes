@@ -1,42 +1,70 @@
-.navbar{
+.navbar {
     background-color: #202124 !important;
 }
-.nav-container{
+
+.nav-container {
     max-width: 100%;
     padding: 0px;
     border-bottom: 1px solid #363636;
 }
-.app-title{
-    font-family: 'Comics', sans-serif;  
-    margin-left: 4px;  
-    color: #FEBD04;                                         
+
+.app-title {
+    font-family: 'Comics', sans-serif;
+    margin-left: 4px;
+    color: #FEBD04;
 }
-.app-header-form{
+
+.app-header-form {
     width: 50%;
     margin: auto;
 }
-.body-container{
+
+.body-container {
     max-width: 100%;
     padding: 0px;
 }
-.left-menu-label{
+
+.left-menu-label {
     margin-left: 22px;
     color: #e8eaed;
     font-weight: 500;
 }
-.fa-color, .fa-solid ,.fa-bars,.fa-gear{
+
+.fa-color,
+.fa-solid,
+.fa-bars,
+.fa-gear {
     color: #e8eaed;
 }
+
 .dropdown-toggle::after {
     color: #e8eaed;
 }
 
-.test { color:red;}
-:host .test { color:green;}
-body{
+.test {
+    color: red;
+}
+
+:host .test {
+    color: green;
+}
+
+body {
     background-color: #202124;
     color: #e8eaed;
     direction: ltr;
     font-family: "Roboto", arial, sans-serif;
     font-size: 15px;
+}
+
+.pinned {
+    color: #9aa0a6;
+    letter-spacing: .07272727em;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: .6875rem;
+    font-weight: 500;
+    line-height: 1rem;
+    text-transform: uppercase;
+    position: relative;
+    top: 13px;
 }

@@ -36,6 +36,8 @@ class CardPage extends BaseComponant {
                 pinnedCardContainer.style.display = "flex"
                 pinnedCardContainer.style.position = "relative";
                 pinnedCardContainer.style.top = "8px";
+                pinnedCardContainer.style.width = "87%";
+                pinnedCardContainer.style.flexWrap = "wrap";
                 pinnedCardContainer.setAttribute("id", "app-pinned-cards");
                 pinnedCardContainer.appendChild(card);
             }
@@ -53,6 +55,8 @@ class CardPage extends BaseComponant {
             }
             const cards = document.createElement("div");
             cards.style.display = "flex";
+            cards.style.flexWrap = "wrap";
+            cards.style.width = "87%"
             cards.setAttribute("id", "app-cards-container")
             element.appendChild(cards);
             // build Pinned card container
@@ -72,6 +76,10 @@ class CardPage extends BaseComponant {
             });
             // apply drap and drop on childs
             this.applyDragAndDrop(cards);
+        } else {
+            if (pinnedCards && pinnedCards.children[0]) {
+                pinnedCards.children[0].remove();
+            }
         }
 
     }
