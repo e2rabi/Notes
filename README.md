@@ -12,8 +12,19 @@ This Application show how to build and secure a real-world application, Using **
 - Use async and wait to fetch data
 - Higher oder functions and closer
 - Use of tagged template ,destruction,spread operator.
+- Use Css grid and flexbox to construct the layout 
   
 ![image](https://github.com/e2rabi/Notes/assets/16072199/5da98214-a3f6-4760-87fb-ae67c96ed92f)
 
+## Features
+ - Create Note (Both Todos and Text)
+ - Update Note
+ - Favorit Note
+ - Archive Note
+ - Delete Note
+ - Add Labels
+ - Change Colors of Notes
+ - Pin Notes
+ - Search Functionality
 
 ### System components Structure
