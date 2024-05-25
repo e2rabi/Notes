@@ -44,6 +44,8 @@
     text-align: center;
     min-height: 100vh;
     position: absolute;
-    bottom: 11%;
-    left: 44%;
+    justify-content: center;
+    left: 38%;
+    top: 2%;
+    align-items: center;
 }

@@ -38,6 +38,7 @@ class CardPage extends BaseComponant {
                 pinnedCardContainer.style.top = "8px";
                 pinnedCardContainer.style.width = "87%";
                 pinnedCardContainer.style.flexWrap = "wrap";
+                pinnedCardContainer.style.justifyContent = "flex-start";
                 pinnedCardContainer.setAttribute("id", "app-pinned-cards");
                 pinnedCardContainer.appendChild(card);
             }

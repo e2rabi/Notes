@@ -33,75 +33,83 @@
 </head>
 
 <body>
-  <header>
-    <div class="container nav-container">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/notes">
-            <i class="fa-solid fa-bars"></i>
-            <span class="app-title">Notes</span></a>
+  <div class="grid-container">
+    <!-- Header -->
+    <div class="header">
+      <header>
+        <div class="container nav-container">
+          <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="/notes">
+                <i class="fa-solid fa-bars"></i>
+                <span class="app-title">Notes</span></a>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="d-flex app-header-form" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-secondary" type="submit">Search</button>
-            </form>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/notes">
-                  <i class="fa-solid fa-bars-progress fa-flip-vertical fa-lg fa-color"></i>
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="/test2" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  <i class="fa-solid fa-gear fa-lg fa-color"></i>
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <hr class="dropdown-divider">
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="d-flex app-header-form" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </form>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/notes">
+                      <i class="fa-solid fa-bars-progress fa-flip-vertical fa-lg fa-color"></i>
+                    </a>
                   </li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/test2" role="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      <i class="fa-solid fa-gear fa-lg fa-color"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <hr class="dropdown-divider">
+                      </li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </li>
                 </ul>
-              </li>
-            </ul>
-          </div>
+              </div>
+            </div>
+          </nav>
+      </header>
+    </div>
+    <!-- Nav bar-->
+    <div class="nav-container">
+      <div class="container body-container">
+        <div class="row" style="margin:auto;">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link " href="/notes"> <i class="fa-regular fa-note-sticky fa-lg fa-color"></i>
+                <span class="left-menu-label">Notes</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="fa-solid fa-file-zipper fa-lg fa-color"></i>
+                <span class="left-menu-label">Archive</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/trash" aria-disabled="true">
+                <i class="fa-solid fa-trash-can fa-lg fa-color"></i>
+                <span class="left-menu-label">Trash</span></a>
+            </li>
+          </ul>
         </div>
-      </nav>
-  </header>
-  <div class="container body-container">
-    <div class="row">
-      <div class="col-2">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link " href="/notes"> <i class="fa-regular fa-note-sticky fa-lg fa-color"></i>
-              <span class="left-menu-label">Notes</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="fa-solid fa-file-zipper fa-lg fa-color"></i>
-              <span class="left-menu-label">Archive</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/trash" aria-disabled="true">
-              <i class="fa-solid fa-trash-can fa-lg fa-color"></i>
-              <span class="left-menu-label">Trash</span></a>
-          </li>
-        </ul>
-      </div>
-      <div class="col-10">
-        <main>
-        </main>
       </div>
     </div>
+    <!-- Main -->
+    <div class="main">
+      <main></main>
+    </div>
+    <!-- Footer-->
+    <div class="footer">Footer</div>
   </div>
-  <main></main>
+
+
+  <!-- Web component templates -->
+
   <!-- Card-->
   <template id="card"></template>
-
-
-
   <!-- Card container -->
   <template id="app-cards">
     <slot id="cards-pinned-container">
@@ -110,19 +118,11 @@
     <slot id="cards-container">
       <div class="others">OTHERS</div>
     </slot>
-    <slot id="card-edit">
-
-    </slot>
+    <slot id="card-edit"> </slot>
   </template>
-
-
   <!-- Card deleted container -->
   <template id="app-trash-cards">
     <div id="cards-container"></div>
-  </template>
-
-  <template id="app-pinned-cards">
-
   </template>
 </body>
 

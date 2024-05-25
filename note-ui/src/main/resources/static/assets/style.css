@@ -57,14 +57,38 @@ body {
     font-size: 15px;
 }
 
-.pinned {
-    color: #9aa0a6;
-    letter-spacing: .07272727em;
-    font-family: Roboto, Arial, sans-serif;
-    font-size: .6875rem;
-    font-weight: 500;
-    line-height: 1rem;
-    text-transform: uppercase;
-    position: relative;
-    top: 13px;
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "nav main"
+        "footer footer";
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 200px 1fr;
+    height: 100vh;
+}
+
+.header {
+    grid-area: header;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+
+.nav-container {
+    grid-area: nav;
+}
+
+.main {
+    grid-area: main;
+    padding: 1em;
+}
+
+.footer {
+    grid-area: footer;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 1em;
 }
