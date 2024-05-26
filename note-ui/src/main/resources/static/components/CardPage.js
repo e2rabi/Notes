@@ -114,6 +114,59 @@ class CardPage extends BaseComponant {
             });
         }
     }
+    findCardParent(card) {
+        let targetCard = null; // to review this part
+        let cardParent = null;
+        targetCard = this.shadowRoot.getElementById("app-pinned-cards");
+        if (card && targetCard) {
+            targetCard.childNodes.forEach(e => {
+                if (e.id == card.id) {
+                    cardParent = targetCard;
+                }
+            });
+        }
+        targetCard = this.shadowRoot.getElementById("app-cards-container");
+        if (card && targetCard) {
+            targetCard.childNodes.forEach(e => {
+                if (e.id == card.id) {
+                    cardParent = targetCard;
+                }
+            });
+        }
+        return cardParent;
+    }
+    pinCards(card) {
+        let targetCard = null;
+        let cardParent = this.findCardParent(card);
+        if (cardParent) {
+            const cardParentId = cardParent.getAttribute("id");
+            if (cardParentId == "app-pinned-cards") {
+                targetCard = this.shadowRoot.getElementById("app-cards-container");
+            } else {
+                targetCard = this.shadowRoot.getElementById("app-pinned-cards");
+            }
+            const newCard = document.createElement("app-card"); // to add method to clone utils ?
+            newCard.isFavorit = card.isFavorit;
+            newCard.color = card.color;
+            newCard.draggable = true;
+            newCard.pinned = card.pinned == "true" ? "false" : "true";
+            newCard.id = card.id;
+            newCard.title = card.name;
+            newCard.description = card.description;
+            newCard.setAttribute("id", card.id);
+
+            cardParent.childNodes.forEach(e => {
+                if (e.id == card.id) {
+                    e.remove();
+                }
+            });
+
+            targetCard.appendChild(newCard);
+        } else {
+            console.error(`Card id :  ${card.id} no parent found`);
+        }
+
+    }
     removeComponents(card) {
         if (card) {
             let targetCard = null;
@@ -185,10 +238,9 @@ class CardPage extends BaseComponant {
                 // on success re render the page
                 const objWithIdIndex = app.notes.findIndex((obj) => obj.id === Number(e.detail.noteId));
                 const pinnedCard = app.notes[objWithIdIndex];
-                pinnedCard.pinned = pinnedCard.pinned == "true" ? "false" : "true";
                 app.notes.splice(objWithIdIndex, 1);
                 app.notes.push(pinnedCard);
-                this.render(); // update only specific component instead of re render all component
+                this.pinCards(pinnedCard);
             }
         });
         document.addEventListener("CARD_IS_FAVORIT", (e) => {
