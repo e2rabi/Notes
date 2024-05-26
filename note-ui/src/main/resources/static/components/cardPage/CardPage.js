@@ -78,9 +78,7 @@ class CardPage extends BaseComponant {
             // apply drap and drop on childs
             this.applyDragAndDrop(cards);
         } else {
-            if (pinnedCards && pinnedCards.children[0]) {
-                pinnedCards.children[0].remove();
-            }
+            // todo do not display header pinned and others
         }
 
     }
