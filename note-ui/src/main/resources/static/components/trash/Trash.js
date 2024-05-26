@@ -1,11 +1,11 @@
-import BaseComponant from "./BaseComponant.js";
+import BaseComponant from "../BaseComponant.js";
 
 class Trash extends BaseComponant {
     constructor() {
         super();
     }
     connectedCallback() {
-        super.css`Trash.css`;
+        super.css`trash.css`;
         this.addEventListener();
         this.render();
     }

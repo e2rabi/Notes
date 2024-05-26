@@ -1,5 +1,5 @@
-import BaseComponant from "./BaseComponant.js"
-class Card extends BaseComponant {
+import BaseComponant from "../BaseComponant.js"
+class CardEdit extends BaseComponant {
   constructor() {
     super();
     this._isFavorit;
@@ -61,7 +61,7 @@ class Card extends BaseComponant {
   }
 
   connectedCallback() {
-    super.css`Card.css`;
+    super.css`cardEdit.css`;
     this.render();
   }
   propagateEvent(cardId, eventType) {
@@ -95,17 +95,12 @@ class Card extends BaseComponant {
               <p class="tip" id="card-title">${this._title}
                 <i class="fa fa-heart ${this._isFavorit == "true" ? "card-favorit" : ""}" aria-hidden="true"></i>
                 <i class="fa fa-trash ${this._isRemoved == "true" ? "card-removed" : "card-active"}" aria-hidden="true"></i>
-                <i class="fa fa-thumb-tack  ${this._pinned == "true" ? "card-pinned" : "card-active"}" aria-hidden="true"></i>
+                <i action="close" id="btn-close" class="fa fa-times btn-close"}" aria-hidden="true"></i>
               </p>
-              <p class="second-text">${this._description}</p>
-              <div class="card-buttons" id="cardEdit">
-              <i action="reminder"class="fa fa-bell-o card-buttons-icons" aria-hidden="true"></i>
-              <i action="edit" class="fa fa-pencil-square-o card-buttons-icons" aria-hidden="true"></i>
-              <i action="color" class="fa fa-paint-brush card-buttons-icons" aria-hidden="true"></i>
-              <i action="archive" class="fa fa-file-archive-o card-buttons-icons" aria-hidden="true"></i>
-              <i action="favorit" class="fa ${this._isFavorit == "true" ? "fa-star" : "fa-star-o"}  card-buttons-icons" aria-hidden="true"></i>
-              <i action="trash" class="fa ${this.getAttribute("isRemoved") == "true" ? "fa-trash" : "fa-trash-o"}  card-buttons-icons" aria-hidden="true"></i>
-              <i action="pin" class="fa fa-thumb-tack  card-buttons-icons" aria-hidden="true"></i>
+              <!--p class="second-text">${this._description}</p-->
+              <textarea  style="overflow-y: hidden;" class="text-edit" name="text-edit" rows="4" cols="58">At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.</textarea>
+              <div class="card-buttons">
+             
               </div>
           </div>
       </div>
@@ -113,24 +108,12 @@ class Card extends BaseComponant {
       `;
     const content = template.content.cloneNode(true);
     if (this.root.children.length <= 1) {
-      content.getElementById('cardEdit').addEventListener('click', (event) => {
+      content.getElementById('card-title').addEventListener('click', (event) => {
         if (event.target.tagName == 'I') {
           const action = event.target.getAttribute("action");
           switch (action.toUpperCase()) {
-            case "TRASH":
-              this.propagateEvent(this._id, 'CARD_IS_REMOVED');
-              break;
-            case "PIN":
-              this.propagateEvent(this._id, 'CARD_IS_PINNED');
-              break;
-            case "FAVORIT":
-              this.propagateEvent(this._id, 'CARD_IS_FAVORIT');
-              break;
-            case "COLOR":
-              this.toggleColorPicker();
-              break;
-            case "EDIT":
-              this.propagateEvent(this._id, 'EDIT_CARD');
+            case "CLOSE":
+              this.propagateEvent(this._id, 'CARD_EDIT_CLOSE');
               break;
           }
         }
@@ -140,4 +123,4 @@ class Card extends BaseComponant {
   }
 
 }
-customElements.define("app-card", Card)
+customElements.define("app-edit-card", CardEdit)

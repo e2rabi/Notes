@@ -1,28 +1,28 @@
-import BaseComponant from "./BaseComponant.js";
+import BaseComponant from "../BaseComponant.js";
 
-class ColorPicker extends BaseComponant{
-    constructor(){
+class ColorPicker extends BaseComponant {
+    constructor() {
         super();
         this._cardId;
     }
     get cardId() {
         return this._cardId;
-      }
+    }
     set cardId(value) {
         this._cardId = value;
     }
-    connectedCallback(){
-        super.css `ColorPicker.css` ;
+    connectedCallback() {
+        super.css`colorPicker.css`;
         this.render();
     }
-    addEventSListener(){
+    addEventSListener() {
         const elements = this.shadowRoot.querySelectorAll("span");
-        if(elements){
-            elements.forEach(e=>{
-                e.addEventListener('click',(event)=>{
-                    document.dispatchEvent(new CustomEvent("CHANGE_CARD_COLOR",{
+        if (elements) {
+            elements.forEach(e => {
+                e.addEventListener('click', (event) => {
+                    document.dispatchEvent(new CustomEvent("CHANGE_CARD_COLOR", {
                         detail: {
-                            noteId:this._cardId,
+                            noteId: this._cardId,
                             color: e.getAttribute("color")
                         }
                     }));
@@ -30,7 +30,7 @@ class ColorPicker extends BaseComponant{
             })
         }
     };
-    render(){
+    render() {
         const template = document.createElement("div");
         template.innerHTML = `
             <div class="card ${this.getAttribute("visibility")}">
@@ -51,7 +51,7 @@ class ColorPicker extends BaseComponant{
         `;
         this.root.appendChild(template);
         this.addEventSListener();
-      
+
     }
 }
-customElements.define("color-picker",ColorPicker);
+customElements.define("color-picker", ColorPicker);

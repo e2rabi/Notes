@@ -1,12 +1,12 @@
-import Sortable from "../lib/Sortable.js";
-import BaseComponant from "./BaseComponant.js"
+import Sortable from "../../lib/Sortable.js";
+import BaseComponant from "../BaseComponant.js"
 
 class CardPage extends BaseComponant {
     constructor() {
         super();
     }
     connectedCallback() {
-        super.css`CardPage.css`;
+        super.css`cardPage.css`;
         this.addCardEventListener();
         this.render();
     }
@@ -114,7 +114,7 @@ class CardPage extends BaseComponant {
             });
         }
     }
-    findCardParent(card) {
+    findCardParent(card) { // rename to getCardParent
         let targetCard = null; // to review this part
         let cardParent = null;
         targetCard = this.shadowRoot.getElementById("app-pinned-cards");

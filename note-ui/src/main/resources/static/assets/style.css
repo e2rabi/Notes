@@ -70,7 +70,6 @@ body {
 
 .header {
     grid-area: header;
-    background-color: #4CAF50;
     color: white;
     text-align: center;
     padding: 1em;
@@ -87,7 +86,7 @@ body {
 
 .footer {
     grid-area: footer;
-    background-color: #4CAF50;
+    background-color: #1b1b1b;
     color: white;
     text-align: center;
     padding: 1em;
