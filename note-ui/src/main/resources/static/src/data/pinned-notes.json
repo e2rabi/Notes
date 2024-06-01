@@ -1,0 +1,18 @@
+[
+    {
+        "id":1,
+        "name":"Simple note 1",
+        "description":"note 1 description",
+        "isFavorit":"false",
+        "color":"red",
+        "status":"P"
+    },
+    {
+        "id":2,
+        "name":"Simple note 2",
+        "description":"Note 2 description",
+        "isFavorit":"false",
+        "color":"green",
+        "status":"p"
+    }
+]

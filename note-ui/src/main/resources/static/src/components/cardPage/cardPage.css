@@ -1,0 +1,51 @@
+.cards-display {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+}
+
+.pinned {
+    color: #9aa0a6;
+    letter-spacing: .07272727em;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: .6875rem;
+    font-weight: 500;
+    line-height: 1rem;
+    text-transform: uppercase;
+    position: relative;
+    top: 13px;
+}
+
+.others {
+    color: #9aa0a6;
+    letter-spacing: .07272727em;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: .6875rem;
+    font-weight: 500;
+    line-height: 1rem;
+    text-transform: uppercase;
+}
+
+.test {
+    background-color: red !important;
+    position: relative;
+    top: 15px;
+}
+
+#app-pinned-cards {
+    padding: 0px;
+    margin-bottom: 25px;
+}
+
+#card-edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    position: absolute;
+    justify-content: center;
+    left: 38%;
+    top: 2%;
+    align-items: center;
+}

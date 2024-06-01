@@ -1,0 +1,165 @@
+@import url("../../assets/font-awesome-4.7.0/css/font-awesome.min.css");
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 15px;
+}
+
+.cards .card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  height: 276px;
+  width: 485px;
+  border-radius: 10px;
+  color: #e8eaed;
+  cursor: pointer;
+  transition: 400ms;
+}
+
+.cards .card p.tip {
+  margin: auto;
+  width: 90%;
+  text-align: left;
+  position: relative;
+  bottom: 107px;
+  letter-spacing: .00625em;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.5rem;
+}
+
+.cards .card p.second-text {
+  font-size: .7em;
+  position: relative;
+  bottom: 37px;
+}
+
+.cards .card:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.card-buttons {
+  display: inline-block;
+  position: relative;
+  bottom: 5px;
+}
+
+.card-buttons-icons {
+  height: 31px;
+  width: 31px;
+  display: inline;
+  padding: 6px;
+}
+
+.card-buttons-icons:hover {
+  opacity: 0.87;
+  background-color: rgba(126, 133, 140, 0.157);
+  border-radius: 50%;
+}
+
+.card-favorit {
+  float: right;
+  color: red;
+  visibility: visible !important;
+  right: 37px;
+  position: relative;
+}
+
+.card-removed {
+  float: right;
+  color: #c1c1c1;
+  visibility: visible !important;
+}
+
+.card-pinned {
+  float: right;
+  color: #e8eaed;
+  visibility: visible !important;
+  position: relative;
+  right: 5px;
+  opacity: 0.3;
+}
+
+.card-active {
+  display: none !important;
+}
+
+.fa-heart {
+  visibility: hidden;
+}
+
+.remove-card {
+  display: none !important;
+}
+
+.cards .blue {
+  background-color: #284255;
+  border-color: #284255;
+}
+
+.cards .orange {
+  background-color: #7c4a03;
+  border-color: #7c4a03;
+}
+
+.cards .red {
+  background-color: #77172e;
+  border-color: #77172e;
+}
+
+.cards .dark-green {
+  background-color: #264d3b;
+  border-color: #264d3b;
+}
+
+.cards .light-green {
+  background-color: #0c625d;
+  border-color: #0c625d;
+}
+
+.cards .purple {
+  background-color: #472e5b;
+  border-color: #472e5b;
+}
+
+.cards .pink {
+  background-color: #6c394f;
+  border-color: #6c394f;
+}
+
+.cards .brown {
+  background-color: #692b17;
+  border-color: #692b17;
+}
+
+.cards .light-brown {
+  background-color: #4b443a;
+  border-color: #4b443a;
+}
+
+.cards .removed {
+  background-color: #cfcfcf;
+}
+
+.btn-close {
+  float: right;
+}
+
+.text-edit {
+  background: transparent;
+  border: navajowhite;
+  position: absolute;
+  color: white;
+  font-size: medium;
+  line-height: 22px;
+  text-align: justify;
+  resize: none;
+  outline: none;
+  height: 155px;
+}

@@ -1,0 +1,11 @@
+import './components/cardEdit/CardEdit.js'
+import './components/cardPage/CardPage.js'
+import './components/card/Card.js'
+import './components/colorPicker/ColorPicker.js'
+import './components/trash/Trash.js'
+import './components/layout/Header.js'
+import './components/layout/NavBar.js'
+import './app.js'
+import './service/API.js'
+import './service/Router.js'
+

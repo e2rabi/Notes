@@ -1,0 +1,93 @@
+.navbar {
+    background-color: #202124 !important;
+}
+
+.nav-container {
+    max-width: 100%;
+    padding: 0px;
+    border-bottom: 1px solid #363636;
+}
+
+.app-title {
+    font-family: 'Comics', sans-serif;
+    margin-left: 4px;
+    color: #FEBD04;
+}
+
+.app-header-form {
+    width: 50%;
+    margin: auto;
+}
+
+.body-container {
+    max-width: 100%;
+    padding: 0px;
+}
+
+.left-menu-label {
+    margin-left: 22px;
+    color: #e8eaed;
+    font-weight: 500;
+}
+
+.fa-color,
+.fa-solid,
+.fa-bars,
+.fa-gear {
+    color: #e8eaed;
+}
+
+.dropdown-toggle::after {
+    color: #e8eaed;
+}
+
+.test {
+    color: red;
+}
+
+:host .test {
+    color: green;
+}
+
+body {
+    background-color: #202124;
+    color: #e8eaed;
+    direction: ltr;
+    font-family: "Roboto", arial, sans-serif;
+    font-size: 15px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "nav main"
+        "footer footer";
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 200px 1fr;
+    height: 100vh;
+}
+
+.header {
+    grid-area: header;
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+
+.nav-container {
+    grid-area: nav;
+}
+
+.main {
+    grid-area: main;
+    padding: 1em;
+}
+
+.footer {
+    grid-area: footer;
+    background-color: #1b1b1b;
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
