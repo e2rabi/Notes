@@ -4,6 +4,13 @@ import BaseComponant from "../BaseComponant.js"
 class CardPage extends BaseComponant {
     constructor() {
         super();
+        this._numberOfPinnedCard = 0;
+    }
+    get numberOfPinnedCard() {
+        return this._numberOfPinnedCard;
+    }
+    set numberOfPinnedCard(value) {
+        this._numberOfPinnedCard = value;
     }
     connectedCallback() {
         super.css`cardPage.css`;
@@ -149,12 +156,11 @@ class CardPage extends BaseComponant {
             newCard.isFavorit = card.isFavorit;
             newCard.color = card.color;
             newCard.draggable = true;
-            newCard.pinned = card.pinned == "true" ? "false" : "true";
             newCard.id = card.id;
             newCard.title = card.name;
+            newCard.pinned = card.pinned == "true" ? "false" : "true";
             newCard.description = card.description;
             newCard.setAttribute("id", card.id);
-
             cardParent.childNodes.forEach(e => {
                 if (e.id == card.id) {
                     e.remove();

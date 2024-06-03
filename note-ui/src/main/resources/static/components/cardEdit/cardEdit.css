@@ -67,8 +67,9 @@
   float: right;
   color: red;
   visibility: visible !important;
-  right: 37px;
+  right: 44px;
   position: relative;
+  top: 7px;
 }
 
 .card-removed {
@@ -149,6 +150,7 @@
 
 .btn-close {
   float: right;
+  padding: 8px;
 }
 
 .text-edit {
