@@ -17,7 +17,7 @@ class CardPage extends BaseComponant {
         this.addCardEventListener();
         this.render();
     }
-    createCard(fetchedData) {
+    createCard = (fetchedData) => {
         const card = document.createElement("app-card");
         card.setAttribute("id", fetchedData.id)
         card.style.width = "20%";
@@ -38,56 +38,58 @@ class CardPage extends BaseComponant {
     }
     loadPinnedCard(card, pinnedCardContainer) {
         this.applyDragAndDrop(pinnedCardContainer);
-        return function () {
-            if (card && card.pinned == "true") {
-                pinnedCardContainer.style.display = "flex"
-                pinnedCardContainer.style.position = "relative";
-                pinnedCardContainer.style.top = "8px";
-                pinnedCardContainer.style.width = "87%";
-                pinnedCardContainer.style.flexWrap = "wrap";
-                pinnedCardContainer.style.justifyContent = "flex-start";
-                pinnedCardContainer.setAttribute("id", "app-pinned-cards");
-                pinnedCardContainer.appendChild(card);
-            }
+        if (card && card.pinned == "true") {
+            pinnedCardContainer.style.display = "flex"
+            pinnedCardContainer.style.position = "relative";
+            pinnedCardContainer.style.top = "8px";
+            pinnedCardContainer.style.width = "87%";
+            pinnedCardContainer.style.flexWrap = "wrap";
+            pinnedCardContainer.style.justifyContent = "flex-start";
+            pinnedCardContainer.setAttribute("id", "app-pinned-cards");
+            pinnedCardContainer.appendChild(card);
         }
+    }
+    addToCardPage(data, cardDiv, cardPinnedDiv) {
+        if (data.pinned != "true") {
+            cardDiv.appendChild(this.createCard(data));
+        } else {
+            this.loadPinnedCard(this.createCard(data), cardPinnedDiv);
+        }
+    }
+    attachElementToShadowDom(cardDiv, cardPinnedDiv) {
+        const element = this.shadowRoot.getElementById("cards-container");
+        const pinnedElement = this.shadowRoot.getElementById("cards-pinned-container");
+
+        if (element.querySelector('div').textContent == "") {
+            element.querySelector('div').textContent = "OTHERS"
+        }
+        element.appendChild(cardDiv);
+        pinnedElement.appendChild(cardPinnedDiv);
+
+        cardDiv.style.display = "flex";
+        cardDiv.style.flexWrap = "wrap";
+        cardDiv.style.width = "87%"
+        cardDiv.setAttribute("id", "app-cards-container")
+    }
+    reduce(reducer, cardDiv, cardPinnedDiv, arr) {
+        this.attachElementToShadowDom(cardDiv, cardPinnedDiv);  // TODO hide parameters  cardDiv, cardPinnedDiv ?
+        arr.forEach(data => {
+            reducer(data, cardDiv, cardPinnedDiv)
+        });
     }
     render() {
         const template = document.getElementById("app-cards");
         const content = template.content.cloneNode(true);
         this.root.replaceChildren(content);
-        // build normal card container
-        const element = this.shadowRoot.getElementById("cards-container");
         if (app.notes.length > 0) {
-            if (element.querySelector('div').textContent == "") {
-                element.querySelector('div').textContent = "OTHERS"
-            }
-            const cards = document.createElement("div");
-            cards.style.display = "flex";
-            cards.style.flexWrap = "wrap";
-            cards.style.width = "87%"
-            cards.setAttribute("id", "app-cards-container")
-            element.appendChild(cards);
-            // build Pinned card container
-            const pinnedCards = this.shadowRoot.getElementById("cards-pinned-container");
-            const pinnedCardsContainer = document.createElement("div");
-            pinnedCards.appendChild(pinnedCardsContainer)
-
             // Fill containers with data 
-            app.notes.forEach(fetchedCardData => {
-                if (fetchedCardData.pinned == "true") {
-                    const card = this.createCard(fetchedCardData);
-                    this.loadPinnedCard(card, pinnedCardsContainer)();
-                } else {
-                    const card = this.createCard(fetchedCardData);
-                    cards.appendChild(card);
-                }
-            });
+            const cardDiv = document.createElement("div");
+            const cardPinnedDiv = document.createElement("div");
+            this.reduce(this.addToCardPage.bind(this), cardDiv, cardPinnedDiv, app.notes)
             // apply drap and drop on childs
-            this.applyDragAndDrop(cards);
+            this.applyDragAndDrop(cardDiv);
         } else {
-            if (pinnedCards && pinnedCards.children[0]) {
-                pinnedCards.children[0].remove();
-            }
+            // handle empty list of cards
         }
 
     }
