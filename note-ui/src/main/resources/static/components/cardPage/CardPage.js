@@ -17,17 +17,17 @@ class CardPage extends BaseComponant {
         this.addCardEventListener();
         this.render();
     }
-    createCard = (fetchedData) => {
+    createCard = (data) => {
         const card = document.createElement("app-card");
-        card.setAttribute("id", fetchedData.id)
+        card.setAttribute("id", data.id)
         card.style.width = "20%";
-        card.isFavorit = fetchedData.isFavorit;
-        card.color = fetchedData.color;
+        card.isFavorit = data.isFavorit;
+        card.color = data.color;
         card.draggable = true;
-        card.id = fetchedData.id;
-        card.title = fetchedData.name;
-        card.description = fetchedData.description;
-        card.pinned = fetchedData.pinned;
+        card.id = data.id;
+        card.title = data.name;
+        card.description = data.description;
+        card.pinned = data.pinned;
         return card;
     }
     checkIfPinnedCardExist() {
@@ -36,24 +36,23 @@ class CardPage extends BaseComponant {
         }
         return false;
     }
-    loadPinnedCard(card, pinnedCardContainer) {
-        this.applyDragAndDrop(pinnedCardContainer);
+    appendPinnedCard(card, pinnedCardDiv) {
         if (card && card.pinned == "true") {
-            pinnedCardContainer.style.display = "flex"
-            pinnedCardContainer.style.position = "relative";
-            pinnedCardContainer.style.top = "8px";
-            pinnedCardContainer.style.width = "87%";
-            pinnedCardContainer.style.flexWrap = "wrap";
-            pinnedCardContainer.style.justifyContent = "flex-start";
-            pinnedCardContainer.setAttribute("id", "app-pinned-cards");
-            pinnedCardContainer.appendChild(card);
+            pinnedCardDiv.style.display = "flex"
+            pinnedCardDiv.style.position = "relative";
+            pinnedCardDiv.style.top = "8px";
+            pinnedCardDiv.style.width = "87%";
+            pinnedCardDiv.style.flexWrap = "wrap";
+            pinnedCardDiv.style.justifyContent = "flex-start";
+            pinnedCardDiv.setAttribute("id", "app-pinned-cards");
+            pinnedCardDiv.appendChild(card);
         }
     }
     addToCardPage(data, cardDiv, cardPinnedDiv) {
         if (data.pinned != "true") {
             cardDiv.appendChild(this.createCard(data));
         } else {
-            this.loadPinnedCard(this.createCard(data), cardPinnedDiv);
+            this.appendPinnedCard(this.createCard(data), cardPinnedDiv);
         }
     }
     attachElementToShadowDom(cardDiv, cardPinnedDiv) {
@@ -70,9 +69,15 @@ class CardPage extends BaseComponant {
         cardDiv.style.flexWrap = "wrap";
         cardDiv.style.width = "87%"
         cardDiv.setAttribute("id", "app-cards-container")
+        // apply drag and drop
+        this.applyDragAndDrop(cardDiv);
+        this.applyDragAndDrop(cardPinnedDiv);
     }
-    reduce(reducer, cardDiv, cardPinnedDiv, arr) {
-        this.attachElementToShadowDom(cardDiv, cardPinnedDiv);  // TODO hide parameters  cardDiv, cardPinnedDiv ?
+
+    reduce(reducer, arr) {
+        const cardDiv = document.createElement("div");
+        const cardPinnedDiv = document.createElement("div");
+        this.attachElementToShadowDom(cardDiv, cardPinnedDiv);
         arr.forEach(data => {
             reducer(data, cardDiv, cardPinnedDiv)
         });
@@ -81,20 +86,16 @@ class CardPage extends BaseComponant {
         const template = document.getElementById("app-cards");
         const content = template.content.cloneNode(true);
         this.root.replaceChildren(content);
+
         if (app.notes.length > 0) {
-            // Fill containers with data 
-            const cardDiv = document.createElement("div");
-            const cardPinnedDiv = document.createElement("div");
-            this.reduce(this.addToCardPage.bind(this), cardDiv, cardPinnedDiv, app.notes)
-            // apply drap and drop on childs
-            this.applyDragAndDrop(cardDiv);
+            this.reduce(this.addToCardPage.bind(this), app.notes)
         } else {
             // handle empty list of cards
         }
 
     }
-    applyDragAndDrop(cards) {
-        Sortable.create(cards, {
+    applyDragAndDrop(div) {
+        Sortable.create(div, {
             swapThreshold: 1,
             animation: 150
         })
