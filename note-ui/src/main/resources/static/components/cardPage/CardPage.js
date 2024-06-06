@@ -55,7 +55,8 @@ class CardPage extends BaseComponant {
             this.appendPinnedCard(this.createCard(data), cardPinnedDiv);
         }
     }
-    attachElementToShadowDom(cardDiv, cardPinnedDiv) {
+    attachElementToShadowDom(elements) {
+        const [cardDiv, cardPinnedDiv] = elements;
         const element = this.shadowRoot.getElementById("cards-container");
         const pinnedElement = this.shadowRoot.getElementById("cards-pinned-container");
 
@@ -77,7 +78,7 @@ class CardPage extends BaseComponant {
     reduce(reducer, arr) {
         const cardDiv = document.createElement("div");
         const cardPinnedDiv = document.createElement("div");
-        this.attachElementToShadowDom(cardDiv, cardPinnedDiv);
+        this.attachElementToShadowDom([cardDiv, cardPinnedDiv]);
         arr.forEach(data => {
             reducer(data, cardDiv, cardPinnedDiv)
         });
