@@ -47,8 +47,9 @@
 
   <!-- Card-->
   <template id="card"></template>
+
   <!-- Card container -->
-  <template id="app-cards">
+  <template id="card-list">
     <slot id="cards-pinned-container">
       <div class="pinned">PINNED</div>
     </slot>
@@ -57,6 +58,7 @@
     </slot>
     <slot id="card-edit"> </slot>
   </template>
+
   <!-- Card deleted container -->
   <template id="app-trash-cards">
     <div id="cards-container"></div>

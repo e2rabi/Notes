@@ -1,7 +1,8 @@
 import Sortable from "../../lib/Sortable.js";
 import BaseComponant from "../BaseComponant.js"
+import { Mixin } from "../../utils/Mixin.js";
 
-class CardPage extends BaseComponant {
+export default class CardPage extends BaseComponant {
     constructor() {
         super();
         this._numberOfPinnedCard = 0;
@@ -36,7 +37,7 @@ class CardPage extends BaseComponant {
         }
         return false;
     }
-    appendPinnedCard(card, pinnedCardDiv) {
+    addPinnedCard(card, pinnedCardDiv) {
         if (card && card.pinned == "true") {
             pinnedCardDiv.style.display = "flex"
             pinnedCardDiv.style.position = "relative";
@@ -52,7 +53,7 @@ class CardPage extends BaseComponant {
         if (data.pinned != "true") {
             cardDiv.appendChild(this.createCard(data));
         } else {
-            this.appendPinnedCard(this.createCard(data), cardPinnedDiv);
+            this.addPinnedCard(this.createCard(data), cardPinnedDiv);
         }
     }
     attachElementToShadowDom(elements) {
@@ -84,7 +85,7 @@ class CardPage extends BaseComponant {
         });
     }
     render() {
-        const template = document.getElementById("app-cards");
+        const template = document.getElementById("card-list");
         const content = template.content.cloneNode(true);
         this.root.replaceChildren(content);
 
@@ -146,7 +147,7 @@ class CardPage extends BaseComponant {
         }
         return cardParent;
     }
-    pinCards(card) {
+    pinCards = (card) => {
         let targetCard = null;
         let cardParent = this.findCardParent(card);
         if (cardParent) {
@@ -156,15 +157,7 @@ class CardPage extends BaseComponant {
             } else {
                 targetCard = this.shadowRoot.getElementById("app-pinned-cards");
             }
-            const newCard = document.createElement("app-card"); // to add method to clone utils ?
-            newCard.isFavorit = card.isFavorit;
-            newCard.color = card.color;
-            newCard.draggable = true;
-            newCard.id = card.id;
-            newCard.title = card.name;
-            newCard.pinned = card.pinned == "true" ? "false" : "true";
-            newCard.description = card.description;
-            newCard.setAttribute("id", card.id);
+            const newCard = this.cloneCard(card)
             cardParent.childNodes.forEach(e => {
                 if (e.id == card.id) {
                     e.remove();
@@ -295,4 +288,5 @@ class CardPage extends BaseComponant {
         });
     }
 }
+Object.assign(CardPage.prototype, Mixin);
 customElements.define("app-cards", CardPage);
