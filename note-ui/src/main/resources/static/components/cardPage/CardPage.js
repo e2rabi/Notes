@@ -18,19 +18,6 @@ export default class CardPage extends BaseComponant {
         this.addCardEventListener();
         this.render();
     }
-    createCard = (data) => {
-        const card = document.createElement("app-card");
-        card.setAttribute("id", data.id)
-        card.style.width = "20%";
-        card.isFavorit = data.isFavorit;
-        card.color = data.color;
-        card.draggable = true;
-        card.id = data.id;
-        card.title = data.name;
-        card.description = data.description;
-        card.pinned = data.pinned;
-        return card;
-    }
     checkIfPinnedCardExist() {
         if (app.notes.length > 0) {
             return app.notes.filter(e => e.pinned = "true").length > 0 ? true : false;
@@ -96,12 +83,6 @@ export default class CardPage extends BaseComponant {
         }
 
     }
-    applyDragAndDrop(div) {
-        Sortable.create(div, {
-            swapThreshold: 1,
-            animation: 150
-        })
-    }
     updateComponents(newCard) {
         let targetCard = null;
         if (newCard.pinned == "true") {
@@ -112,21 +93,13 @@ export default class CardPage extends BaseComponant {
         if (targetCard) {
             targetCard.childNodes.forEach(e => {
                 if (e.id == newCard.id) {
-                    const card = document.createElement("app-card");
-                    card.isFavorit = newCard.isFavorit;
-                    card.color = newCard.color;
-                    card.draggable = true;
-                    card.pinned = newCard.pinned;
-                    card.id = newCard.id;
-                    card.title = newCard.name;
-                    card.description = newCard.description;
-                    card.setAttribute("id", newCard.id);
+                    const card = this.cloneCard(newCard) // call from mixin 
                     e.replaceWith(card);
                 }
             });
         }
     }
-    findCardParent(card) { // rename to getCardParent
+    getCardParent(card) { // rename to getCardParent
         let targetCard = null; // to review this part
         let cardParent = null;
         targetCard = this.shadowRoot.getElementById("app-pinned-cards");
@@ -149,7 +122,7 @@ export default class CardPage extends BaseComponant {
     }
     pinCards = (card) => {
         let targetCard = null;
-        let cardParent = this.findCardParent(card);
+        let cardParent = this.getCardParent(card);
         if (cardParent) {
             const cardParentId = cardParent.getAttribute("id");
             if (cardParentId == "app-pinned-cards") {
@@ -157,7 +130,7 @@ export default class CardPage extends BaseComponant {
             } else {
                 targetCard = this.shadowRoot.getElementById("app-pinned-cards");
             }
-            const newCard = this.cloneCard(card)
+            const newCard = this.cloneCard(card) // call from mixin
             cardParent.childNodes.forEach(e => {
                 if (e.id == card.id) {
                     e.remove();
