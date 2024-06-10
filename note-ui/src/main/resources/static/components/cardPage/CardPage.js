@@ -194,7 +194,7 @@ export default class CardPage extends BaseComponant {
             element.appendChild(card)
         }
     }
-    addCardEventListener() {
+    addCardEventListener() { // TODO Refactor this part using observable pattern
 
         document.addEventListener("CARD_IS_REMOVED", (e) => {
             if (app.notes.length > 0 && e.detail != undefined) {
