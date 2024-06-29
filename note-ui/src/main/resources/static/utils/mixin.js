@@ -1,7 +1,6 @@
 // Define the mixin
 const Mixin = {
     cloneCard(card) {
-        console.log(`Clone card : ${JSON.stringify(card)}`)
         const newCard = document.createElement("app-card");
         newCard.isFavorit = card.isFavorit;
         newCard.color = card.color;

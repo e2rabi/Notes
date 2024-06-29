@@ -15,6 +15,9 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.1.2/redux.min.js"></script>
+
+
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
     crossorigin="anonymous"></script>
@@ -55,5 +58,50 @@
     <div id="cards-container"></div>
   </template>
 </body>
+<script defer>
+
+  const initialState = {
+    users: [
+      { id: 1, name: "Steve" },
+      { id: 2, name: "Wes" },
+    ],
+    tasks: [
+      { title: "File the TPS reports", assignedTo: 1 },
+      { title: "Order more toner for the printer", assignedTo: null },
+    ],
+  };
+
+  const ADD_USER = "ADD_USER";
+  const ADD_TASK = "ADD_TASK";
+
+  const addTask = (title) => ({ type: ADD_TASK, payload: { title } });
+  const addUser = (name) => ({ type: ADD_USER, payload: { name } });
+
+  let obj = { id: 3, name: "Ayoub" };
+  console.log({ ...initialState.users, obj })
+
+  const reducer = (state = initialState, action) => {
+    if (action.type === ADD_USER) {
+      return {
+        ...state,
+        users: [...state.users, action.payload],
+      };
+    }
+
+    if (action.type === ADD_TASK) {
+      return {
+        ...state,
+        tasks: [...state.tasks, action.payload],
+      };
+    }
+  };
+
+  const store = Redux.createStore(reducer, initialState);
+
+  store.dispatch(addTask("Record the statistics"));
+  store.dispatch(addUser("Marc"));
+
+  console.log(store.getState());
+</script>
 
 </html>
