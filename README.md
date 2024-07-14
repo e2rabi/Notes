@@ -4,7 +4,7 @@
 - The project follows [**CloudNative**](https://www.cncf.io/) recommendations and The [**twelve-factor app**](https://12factor.net/) methodology for building *software-as-a-service apps* to show how μServices should be developed and deployed.
 - This project is going to be developed as stages, and all such stage steps are documented under the project Notes wiki
 ## Getting started
-This Application show how to build and secure a real-world application, Using **VanillaJS** without any javascript framework implementing the following EC6 features : 
+This Application show how to build and secure a real-world application, Using **VanillaJS** without any javascript framework using ES6 features : 
 - Single page application SPA Router from scratch
 - Event binding and handlers
 - Web component (template,shadow dom,custom element)
