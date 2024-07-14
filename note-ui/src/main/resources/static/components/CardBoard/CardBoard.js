@@ -2,7 +2,7 @@ import Sortable from "../../lib/Sortable.js";
 import BaseComponant from "../BaseComponant.js"
 import { Mixin } from "../../utils/Mixin.js";
 
-export default class CardPage extends BaseComponant {
+export default class CardBoard extends BaseComponant {
     constructor() {
         super();
         this._numberOfPinnedCard = 0;
@@ -14,13 +14,13 @@ export default class CardPage extends BaseComponant {
         this._numberOfPinnedCard = value;
     }
     connectedCallback() {
-        super.css`cardPage.css`;
+        super.css`cardBoard.css`;
         this.addCardEventListener();
         this.render();
     }
     checkIfPinnedCardExist() {
-        if (app.notes.length > 0) {
-            return app.notes.filter(e => e.pinned = "true").length > 0 ? true : false;
+        if (app.store.getNotes().length > 0) {
+            return app.store.getNotes().filter(e => e.pinned = "true").length > 0 ? true : false;
         }
         return false;
     }
@@ -76,8 +76,8 @@ export default class CardPage extends BaseComponant {
         const content = template.content.cloneNode(true);
         this.root.replaceChildren(content);
 
-        if (app.notes.length > 0) {
-            this.reduce(this.addToCardPage.bind(this), app.notes)
+        if (app.store.getNotes().length > 0) {
+            this.reduce(this.addToCardPage.bind(this), app.store.getNotes())
         } else {
             // handle empty list of cards
         }
@@ -197,61 +197,61 @@ export default class CardPage extends BaseComponant {
     addCardEventListener() { // TODO Refactor this part using observable pattern
 
         document.addEventListener("CARD_IS_REMOVED", (e) => {
-            if (app.notes.length > 0 && e.detail != undefined) {
+            if (app.store.getNotes().length > 0 && e.detail != undefined) {
                 // confirme 
                 // call API
                 // on success re render the page
-                const objWithIdIndex = app.notes.findIndex((obj) => obj.id === Number(e.detail.noteId));
-                const removedCard = app.notes[objWithIdIndex];
-                app.notes.splice(objWithIdIndex, 1);
+                const objWithIdIndex = app.store.getNotes().findIndex((obj) => obj.id === Number(e.detail.noteId));
+                const removedCard = app.store.getNotes()[objWithIdIndex];
+                app.store.getNotes().splice(objWithIdIndex, 1);
                 this.removeComponents(removedCard);
             }
         });
         document.addEventListener("CARD_IS_PINNED", (e) => {
-            if (app.notes.length > 0 && e.detail != undefined) {
+            if (app.store.getNotes().length > 0 && e.detail != undefined) {
                 // confirme 
                 // call API
                 // on success re render the page
-                const objWithIdIndex = app.notes.findIndex((obj) => obj.id === Number(e.detail.noteId));
-                const pinnedCard = app.notes[objWithIdIndex];
-                app.notes.splice(objWithIdIndex, 1);
-                app.notes.push(pinnedCard);
+                const objWithIdIndex = app.store.getNotes().findIndex((obj) => obj.id === Number(e.detail.noteId));
+                const pinnedCard = app.store.getNotes()[objWithIdIndex];
+                app.store.getNotes().splice(objWithIdIndex, 1);
+                app.store.getNotes().push(pinnedCard);
                 this.pinCards(pinnedCard);
             }
         });
         document.addEventListener("CARD_IS_FAVORIT", (e) => {
-            if (app.notes.length > 0 && e.detail != undefined) {
+            if (app.store.getNotes().length > 0 && e.detail != undefined) {
                 // confirme 
                 // call API
                 // on success re render the page
-                const objWithIdIndex = app.notes.findIndex((obj) => obj.id === Number(e.detail.noteId));
-                const targetCard = app.notes[objWithIdIndex];
+                const objWithIdIndex = app.store.getNotes().findIndex((obj) => obj.id === Number(e.detail.noteId));
+                const targetCard = app.store.getNotes()[objWithIdIndex];
                 targetCard.isFavorit = targetCard.isFavorit == "true" ? "false" : "true";
-                //app.notes.splice(objWithIdIndex, 1);
-                //app.notes.push(targetCard);
+                //app.store.getNotes().splice(objWithIdIndex, 1);
+                //app.store.getNotes().push(targetCard);
                 this.updateComponents(targetCard);
             }
         });
         document.addEventListener("CHANGE_CARD_COLOR", (e) => {
-            if (app.notes.length > 0 && e.detail != undefined) {
+            if (app.store.getNotes().length > 0 && e.detail != undefined) {
                 // confirme 
                 // call API
                 // on success re render the page
-                const objWithIdIndex = app.notes.findIndex((obj) => obj.id === Number(e.detail.noteId));
-                const targetCard = app.notes[objWithIdIndex];
+                const objWithIdIndex = app.store.getNotes().findIndex((obj) => obj.id === Number(e.detail.noteId));
+                const targetCard = app.store.getNotes()[objWithIdIndex];
                 targetCard.color = e.detail.color;
-                //app.notes.splice(objWithIdIndex, 1);
-                //app.notes.push(targetCard);
+                //app.store.getNotes().splice(objWithIdIndex, 1);
+                //app.store.getNotes().push(targetCard);
                 this.updateComponents(targetCard);
             }
         });
         document.addEventListener("EDIT_CARD", (e) => {
-            if (app.notes.length > 0 && e.detail != undefined) {
+            if (app.store.getNotes().length > 0 && e.detail != undefined) {
                 // confirme 
                 // call API
                 // on success re render the page
-                const objWithIdIndex = app.notes.findIndex((obj) => obj.id === Number(e.detail.noteId));
-                const targetCard = app.notes[objWithIdIndex];
+                const objWithIdIndex = app.store.getNotes().findIndex((obj) => obj.id === Number(e.detail.noteId));
+                const targetCard = app.store.getNotes()[objWithIdIndex];
                 this.openEditCard(targetCard);
 
             }
@@ -261,5 +261,5 @@ export default class CardPage extends BaseComponant {
         });
     }
 }
-Object.assign(CardPage.prototype, Mixin);
-customElements.define("app-cards", CardPage);
+Object.assign(CardBoard.prototype, Mixin);
+customElements.define("app-cards", CardBoard);

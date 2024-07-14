@@ -10,7 +10,7 @@ app.deletedNotes = [];
 
 // Setup redux store
 const store = new Store(noteReducer);
-
+app.store = store;
 // wait for this event to manipulate the DOM
 window.addEventListener("DOMContentLoaded", async () => {
     console.log("DOM is ready")
@@ -21,6 +21,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     store.save(app.notes);
 
     console.log(store.getNotes());
+    console.log(app.notes)
 })
 // shorthand methods
 const $ = (selector) => document.querySelector(selector);
